@@ -28,5 +28,15 @@ namespace PathPlanningTests
 			Assert::AreEqual(4, n->GetF());
 		}
 
+		TEST_METHOD(NodeSetGetParentTest)
+		{
+			Node* p = new Node{};
+			p->SetG(0);
+			p->SetH(1);
+			Node* n = new Node{};
+			n->SetParent(p);
+			Assert::AreEqual(n->GetParent()->GetG(), 0);
+			Assert::AreEqual(n->GetParent()->GetH(), 1);
+		}
 	};
 }
