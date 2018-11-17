@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
-// A node in a graph
+// A node in a graph.
+// @author Tianhua Zhao
 class Node
 {
 
