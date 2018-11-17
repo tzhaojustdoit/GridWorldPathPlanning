@@ -9,27 +9,27 @@ public:
 
 	// accessors
 	// get the g value;
-	int GetG() const;
+	int get_g() const;
 	// get the h value;
-	int GetH() const;
+	int get_h() const;
 	// get the f value;
-	int GetF() const;
+	int get_f() const;
 	// get the parent node pointer;
-	Node* GetParent() const;
+	Node* get_parent() const;
 	// get number of neighbors the node has
-	int GetNumOfNeighbors() const;
+	int get_num_of_neighbors() const;
 	// get the neighbor's node pointer
-	Node* GetNeighbor(int) const;
+	Node* get_neighbor(int) const;
 
 	// mutators
 	// set the g value;
-	void SetG(int);
+	void set_g(int);
 	// set the h value;
-	void SetH(int);
+	void set_h(int);
 	// set the parent pointer
-	void SetParent(Node*);
+	void set_parent(Node*);
 	// add a neighbor
-	void AddNeightbor(Node*);
+	void add_neightbor(Node*);
 
 	// comparators
 	bool operator< (const Node &);
@@ -40,7 +40,7 @@ private:
 	int h_ = 0;
 	int f_ = 0;
 	Node* parent_ = nullptr;
-	int numOfNeighbors_ = 0;
+	int num_of_neighbors_ = 0;
 	Node* neighbors_[4];
 
 };

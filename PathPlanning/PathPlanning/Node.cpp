@@ -1,33 +1,33 @@
 #include "Node.h"
 
-int Node::GetG() const
+int Node::get_g() const
 {
 	return g_;
 }
 
-int Node::GetH() const
+int Node::get_h() const
 {
 	return h_;
 }
 
-int Node::GetF() const
+int Node::get_f() const
 {
 	return f_;
 }
 
-Node * Node::GetParent() const
+Node * Node::get_parent() const
 {
 	return parent_;
 }
 
-int Node::GetNumOfNeighbors() const
+int Node::get_num_of_neighbors() const
 {
-	return numOfNeighbors_;
+	return num_of_neighbors_;
 }
 
-Node * Node::GetNeighbor(int num) const
+Node * Node::get_neighbor(int num) const
 {
-	if (num < numOfNeighbors_) {
+	if (num < num_of_neighbors_) {
 		return neighbors_[num];
 	}
 	return nullptr;
@@ -35,27 +35,27 @@ Node * Node::GetNeighbor(int num) const
 
 
 
-void Node::SetG(int g)
+void Node::set_g(int g)
 {
 	g_ = g;
 	f_ = g_ + h_;
 }
 
-void Node::SetH(int h)
+void Node::set_h(int h)
 {
 	h_ = h;
 	f_ = g_ + h_;
 }
 
-void Node::SetParent(Node * n)
+void Node::set_parent(Node * n)
 {
 	parent_ = n;
 }
 
-void Node::AddNeightbor(Node * n)
+void Node::add_neightbor(Node * n)
 {
-	neighbors_[numOfNeighbors_] = n;
-	++numOfNeighbors_;
+	neighbors_[num_of_neighbors_] = n;
+	++num_of_neighbors_;
 }
 
 
