@@ -1,25 +1,36 @@
 #pragma once
 #include <vector>
+// A node in a graph
 class Node
 {
 
 public:
 
-	//accessors
+	// accessors
+	// get the g value;
 	int GetG() const;
+	// get the h value;
 	int GetH() const;
+	// get the f value;
 	int GetF() const;
+	// get the parent node pointer;
 	Node* GetParent() const;
+	// get number of neighbors the node has
 	int GetNumOfNeighbors() const;
+	// get the neighbor's node pointer
 	Node* GetNeighbor(int) const;
 
-	//mutators
+	// mutators
+	// set the g value;
 	void SetG(int);
+	// set the h value;
 	void SetH(int);
+	// set the parent pointer
 	void SetParent(Node*);
+	// add a neighbor
 	void AddNeightbor(Node*);
 
-	//comparators
+	// comparators
 	bool operator< (const Node &);
 
 private:
