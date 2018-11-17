@@ -165,6 +165,11 @@
     </ClCompile>
     <ClCompile Include="DriverTests.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PathPlanning\PathPlanning.vcxproj">
+      <Project>{60bcf981-ebc2-4fcd-bce8-5138c2dcf77b}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
