@@ -30,6 +30,8 @@ public:
 	void set_parent(Node*);
 	// add a neighbor
 	void add_neightbor(Node*);
+	// set the location: x, y
+	void set_location(int, int);
 
 	// comparators
 	bool operator< (const Node &);
@@ -42,5 +44,6 @@ private:
 	Node* parent_ = nullptr;
 	int num_of_neighbors_ = 0;
 	Node* neighbors_[4];
-
+	int x_;
+	int y_;
 };

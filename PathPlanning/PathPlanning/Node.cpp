@@ -58,6 +58,12 @@ void Node::add_neightbor(Node * n)
 	++num_of_neighbors_;
 }
 
+void Node::set_location(int x, int y)
+{
+	x_ = x;
+	y_ = y;
+}
+
 
 bool Node::operator<(const Node &other)
 {
