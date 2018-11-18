@@ -17,11 +17,13 @@ void PriorityQueue::push(const Node &n)
 	perculate_up(vec_.size() - 1);
 }
 
-void PriorityQueue::pop()
+Node PriorityQueue::pop()
 {
+	Node res = vec_.front();
 	std::swap(vec_.front(), vec_.back());
 	vec_.pop_back();
 	perculate_down(0);
+	return res;
 }
 
 const Node & PriorityQueue::top() const

@@ -11,7 +11,7 @@ public:
 	// push a node to priority queue.
 	void push(const Node &);
 	// pop the min node.
-	void pop();
+	Node pop();
 	// peek the min node.
 	const Node & top() const;
 	// is the priority queue empty?
