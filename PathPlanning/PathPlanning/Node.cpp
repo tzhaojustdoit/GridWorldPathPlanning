@@ -1,5 +1,14 @@
 #include "Node.h"
 
+Node::Node(int g, int h, Node * parent, int x, int y)
+{
+	g_ = g;
+	h_ = h;
+	parent_ = parent;
+	x_ = x;
+	y_ = y;
+}
+
 int Node::get_g() const
 {
 	return g_;
@@ -31,6 +40,16 @@ Node * Node::get_neighbor(int num) const
 		return neighbors_[num];
 	}
 	return nullptr;
+}
+
+int Node::get_x()
+{
+	return x_;
+}
+
+int Node::get_y()
+{
+	return y_;
 }
 
 

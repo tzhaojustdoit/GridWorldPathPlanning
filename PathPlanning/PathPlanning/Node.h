@@ -6,6 +6,8 @@ class Node
 {
 
 public:
+	//ctor
+	Node(int, int, Node*, int, int);
 
 	// accessors
 	// get the g value;
@@ -20,6 +22,10 @@ public:
 	int get_num_of_neighbors() const;
 	// get the neighbor's node pointer
 	Node* get_neighbor(int) const;
+	// get the x coordinate
+	int get_x();
+	// get the y coordinate
+	int get_y();
 
 	// mutators
 	// set the g value;
@@ -30,7 +36,7 @@ public:
 	void set_parent(Node*);
 	// add a neighbor
 	void add_neightbor(Node*);
-	// set the location: x, y
+	// set the location: x, y coordinates
 	void set_location(int, int);
 
 	// comparators
