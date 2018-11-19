@@ -10,8 +10,8 @@ PathPlanner::PathPlanner(std::vector<std::vector<char>> map)
 	int col = input_map_[0].size();
 	for (int i = 0; i < row; i++)
 	{
-		std::vector<int> status_row_vec{ col, 0 };
-		std::vector<Node*> pointer_row_vec{ (unsigned)col,nullptr };
+		std::vector<int> status_row_vec( (unsigned)col, 0 );
+		std::vector<Node*> pointer_row_vec( (unsigned)col,nullptr );
 		node_status_matrix_.push_back(status_row_vec);
 		node_pointer_matrix_.push_back(pointer_row_vec);
 	}
