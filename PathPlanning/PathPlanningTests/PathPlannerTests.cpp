@@ -12,26 +12,26 @@ namespace PathPlanningTests
 	public:
 		TEST_METHOD_INITIALIZE(Initializer) 
 		{
-			std::vector<char> map_row1{ 's','x' };
-			std::vector<char> map_row2{ '_','g' };
+			std::vector<int> map_row1{ 1,-1 };
+			std::vector<int> map_row2{ 0,2 };
 			map1.push_back(map_row1);
 			map1.push_back(map_row2);
 
-			map_row1 = { '_','_' };
-			map_row2 = { 'x','_' };
+			map_row1 = { 0,0 };
+			map_row2 = { -1,0 };
 			map2.push_back(map_row1);
 			map2.push_back(map_row2);
 
-			map_row1 = { 'x','_','x','x','_' };
-			map_row2 = { 's','_','_','x','_' };
-			std::vector<char>map_row3 = { 'x','x','_','_','g' };
+			map_row1 = { -1,0,-1,-1,0 };
+			map_row2 = { 1,0,0,-1,0 };
+			std::vector<int>map_row3 = { -1,-1,0,0,2 };
 			map3.push_back(map_row1);
 			map3.push_back(map_row2);
 			map3.push_back(map_row3);
 
-			map_row1 = { 'x','_','_','_','_' };
-			map_row2 = { 's','_','x','x','_' };
-			map_row3 = { 'x','_','x','_','g' };
+			map_row1 = { -1,0,0,0,0 };
+			map_row2 = { 1,0,-1,-1,0 };
+			map_row3 = { -1,0,-1,0,2 };
 			map4.push_back(map_row1);
 			map4.push_back(map_row2);
 			map4.push_back(map_row3);
@@ -63,15 +63,15 @@ namespace PathPlanningTests
 		{
 
 			PathPlanner p{ map4 };
-			p.a_star_search();
+			p.a_star_go();
 			std::string res = p.toString();
 			// manualy debugged
 		}
 
 	private:
-		std::vector<std::vector<char>> map1;
-		std::vector<std::vector<char>> map2;
-		std::vector<std::vector<char>> map3;
-		std::vector<std::vector<char>> map4;
+		std::vector<std::vector<int>> map1;
+		std::vector<std::vector<int>> map2;
+		std::vector<std::vector<int>> map3;
+		std::vector<std::vector<int>> map4;
 	};
 }

@@ -1,7 +1,7 @@
 #include "PathPlanner.h"
 #include <stack>
 
-PathPlanner::PathPlanner(std::vector<std::vector<char>> map)
+PathPlanner::PathPlanner(std::vector<std::vector<int>> map)
 {
 	construct_matrices(map);
 	start_ = get_start_pos();
@@ -31,7 +31,7 @@ Point2D PathPlanner::get_start_pos() const
 	{
 		for (int j = 1; j < col - 1; j++)
 		{
-			if (input_matrix_[i][j] == 's') {
+			if (input_matrix_[i][j] == 1) {
 				return Point2D{ j,i };
 			}
 		}
@@ -47,7 +47,7 @@ Point2D PathPlanner::get_goal_pos() const
 	{
 		for (int j = 1; j < col -1; j++)
 		{
-			if (input_matrix_[i][j] == 'g') {
+			if (input_matrix_[i][j] == 2) {
 				return Point2D{ j,i };
 			}
 		}
@@ -68,8 +68,8 @@ std::string PathPlanner::toString()
 
 void PathPlanner::generate(int x, int y, Node* parent)
 {
-	char myChar = input_matrix_[y][x];
-	if (myChar == '_' || myChar == 'g') {
+	int myint = input_matrix_[y][x];
+	if (myint == 0 || myint == 2) {
 		int status = node_status_matrix_[y][x];
 		if (status == 0) {
 			Point2D cur{ x, y };
@@ -90,40 +90,48 @@ void PathPlanner::generate(int x, int y, Node* parent)
 	}
 }
 
-void PathPlanner::construct_matrices(std::vector<std::vector<char>> map)
+void PathPlanner::construct_matrices(std::vector<std::vector<int>> map)
 {
 	int row = map.size();
 	int col = map[0].size();
 
 	// construct the top row
-	std::vector<char> top_and_bottom_input_row_vec((unsigned)col + 2, 'x');
+	std::vector<int> top_and_bottom_input_row_vec((unsigned)col + 2, -1);
 	std::vector<int> top_and_bottom_node_status_row_vec((unsigned)col + 2, 0);
 	std::vector<Node*> top_and_bottom_node_pointer_row_vec((unsigned)col + 2, nullptr);
+
 	input_matrix_.push_back(top_and_bottom_input_row_vec);
+	observed_matrix_.push_back(top_and_bottom_input_row_vec);
 	node_status_matrix_.push_back(top_and_bottom_node_status_row_vec);
 	node_pointer_matrix_.push_back(top_and_bottom_node_pointer_row_vec);
 
 	// construct middle rows
 	for (int i = 0; i < row; i++)
 	{
-		std::vector<char> input_row_vec = map[i];
-		input_row_vec.push_back('x');
-		input_row_vec.push_back('x');
+		std::vector<int> input_row_vec = map[i];
+		input_row_vec.push_back(-1);
+		input_row_vec.push_back(-1);
 		std::rotate(input_row_vec.begin(), input_row_vec.begin() + col, input_row_vec.begin() + col + 1);
+		std::vector<int> observed_row_vec((unsigned)col + 2, 0);
+		observed_row_vec.front() = -1;
+		observed_row_vec.back() = -1;
 		std::vector<int> status_row_vec((unsigned)col + 2, 0);
 		std::vector<Node*> pointer_row_vec((unsigned)col + 2, nullptr);
+
 		input_matrix_.push_back(input_row_vec);
+		observed_matrix_.push_back(observed_row_vec);
 		node_status_matrix_.push_back(status_row_vec);
 		node_pointer_matrix_.push_back(pointer_row_vec);
 	}
 
 	// construct the bottom row
 	input_matrix_.push_back(top_and_bottom_input_row_vec);
+	observed_matrix_.push_back(top_and_bottom_input_row_vec);
 	node_status_matrix_.push_back(top_and_bottom_node_status_row_vec);
 	node_pointer_matrix_.push_back(top_and_bottom_node_pointer_row_vec);
 }
 
-void PathPlanner::a_star_search()
+void PathPlanner::a_star_go()
 {
 	int h = start_.get_manhattan_distance(goal_);
 	// create start node
@@ -137,7 +145,7 @@ void PathPlanner::a_star_search()
 		Node* cur = pq_.pop();
 		int cur_x = cur->get_x();
 		int cur_y = cur->get_y();
-		if (input_matrix_[cur_y][cur_x] == 'g') {
+		if (input_matrix_[cur_y][cur_x] == 2) {
 			return;
 		}
 		// mark as expanded
