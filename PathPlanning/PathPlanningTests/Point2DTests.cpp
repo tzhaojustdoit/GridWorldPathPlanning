@@ -17,5 +17,12 @@ namespace PathPlanningTests
 			Assert::AreEqual(3, p1.get_manhattan_distance(p2));
 		}
 
+		TEST_METHOD(EqualityTest)
+		{
+			Point2D p1{ 1,2 };
+			Point2D p2{ 1,2 };
+			Assert::IsTrue(p1 == p2);
+		}
+
 	};
 }
