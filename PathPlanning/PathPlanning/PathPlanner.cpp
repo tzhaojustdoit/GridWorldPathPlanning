@@ -1,5 +1,5 @@
 #include "PathPlanner.h"
-
+#include <stack>
 
 PathPlanner::PathPlanner(std::vector<std::vector<char>> map)
 {
@@ -20,7 +20,7 @@ PathPlanner::PathPlanner(std::vector<std::vector<char>> map)
 		std::vector<char> input_row_vec = map[i];
 		input_row_vec.push_back('x');
 		input_row_vec.push_back('x');
-		std::rotate(input_row_vec.begin(), input_row_vec.begin() + row, input_row_vec.begin() + row + 1);
+		std::rotate(input_row_vec.begin(), input_row_vec.begin() + col, input_row_vec.begin() + col + 1);
 		std::vector<int> status_row_vec((unsigned)col + 2, 0);
 		std::vector<Node*> pointer_row_vec((unsigned)col + 2, nullptr);
 		input_matrix_.push_back(input_row_vec);
@@ -61,7 +61,7 @@ Point2D PathPlanner::get_start_pos() const
 		for (int j = 1; j < col - 1; j++)
 		{
 			if (input_matrix_[i][j] == 's') {
-				return Point2D{ i,j };
+				return Point2D{ j,i };
 			}
 		}
 	}
@@ -77,18 +77,29 @@ Point2D PathPlanner::get_goal_pos() const
 		for (int j = 1; j < col -1; j++)
 		{
 			if (input_matrix_[i][j] == 'g') {
-				return Point2D{ i,j };
+				return Point2D{ j,i };
 			}
 		}
 	}
 	return Point2D{ -1,-1 };
 }
 
+std::string PathPlanner::toString()
+{
+	std::string res = "";
+	Node* cur = node_pointer_matrix_[goal_.y][goal_.x];
+	while (cur != nullptr) {
+		res = std::to_string(cur->get_x()) + "," + std::to_string(cur->get_y()) + "->" + res;
+		cur = cur->get_parent();
+	}
+	return res;
+}
+
 void PathPlanner::generate(int x, int y, Node* parent)
 {
-	char myChar = input_matrix_[x][y];
+	char myChar = input_matrix_[y][x];
 	if (myChar == '_' || myChar == 'g') {
-		int status = node_status_matrix_[x][y];
+		int status = node_status_matrix_[y][x];
 		if (status == 0) {
 			Point2D cur{ x, y };
 			int h = cur.get_manhattan_distance(goal_);
@@ -97,12 +108,12 @@ void PathPlanner::generate(int x, int y, Node* parent)
 			// push to priority queue
 			pq_.push(myNode);
 			// update status matrix
-			node_status_matrix_[x][y] = 1;
+			node_status_matrix_[y][x] = 1;
 			// update pointer matrix
-			node_pointer_matrix_[x][y] = myNode;
+			node_pointer_matrix_[y][x] = myNode;
 		}
 		if (status == 1) {
-			Node* myNode = node_pointer_matrix_[x][y];
+			Node* myNode = node_pointer_matrix_[y][x];
 			myNode->set_g(parent->get_g() + 1);
 		}
 	}
@@ -116,25 +127,25 @@ void PathPlanner::a_star_search()
 	// add the start node to priority queue
 	pq_.push(start_node);
 	// update pointer matrix
-	node_pointer_matrix_[start_.x][start_.y] = start_node;
+	node_pointer_matrix_[start_.y][start_.x] = start_node;
 
 	while (!pq_.empty()) {
 		Node* cur = pq_.pop();
 		int cur_x = cur->get_x();
 		int cur_y = cur->get_y();
-		if (node_status_matrix_[cur_x][cur_y] == 'g') {
+		if (input_matrix_[cur_y][cur_x] == 'g') {
 			return;
 		}
 		// mark as expanded
-		node_status_matrix_[cur_x][cur_y] = 2;
+		node_status_matrix_[cur_y][cur_x] = 2;
 		// try to generate up neighbor
-		generate(cur_x, cur_x + 1, cur);
+		generate(cur_x, cur_y + 1, cur);
 		// try to generate right neighbor
-		generate(cur_x + 1, cur_x, cur);
+		generate(cur_x + 1, cur_y, cur);
 		// try to generate down neighbor
-		generate(cur_x, cur_x - 1, cur);
+		generate(cur_x, cur_y - 1, cur);
 		// try to generate left neighbor
-		generate(cur_x - 1, cur_x, cur);
+		generate(cur_x - 1, cur_y, cur);
 	}
 }
 

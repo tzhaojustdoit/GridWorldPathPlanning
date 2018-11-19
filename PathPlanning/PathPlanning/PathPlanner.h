@@ -16,6 +16,7 @@ public:
 	void a_star_search();
 	Point2D get_start_pos() const;
 	Point2D get_goal_pos() const;
+	std::string toString();
 private:
 	std::vector<std::vector<char>> input_matrix_;
 	std::vector<std::vector<int>> node_status_matrix_;
