@@ -14,13 +14,13 @@ public:
 	PathPlanner(std::vector<std::vector<char>>);
 	~PathPlanner();
 	void a_star_search();
-
+	Point2D get_start_pos() const;
+	Point2D get_goal_pos() const;
 private:
 	PriorityQueue pq_;
 	std::vector<std::vector<char>> input_map_;
 	std::vector<std::vector<int>> node_status_matrix_;
 	std::vector<std::vector<Node*>> node_pointer_matrix_;
-	Point2D get_start_pos() const;
-	Point2D get_goal_pos() const;
+
 };
 
