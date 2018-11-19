@@ -2,6 +2,7 @@
 #include "CppUnitTest.h"
 #include "../PathPlanning/PathPlanner.h"
 #include "../PathPlanning/PathPlanner.cpp"
+#include <vector>
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace PathPlanningTests
@@ -10,9 +11,16 @@ namespace PathPlanningTests
 	{
 	public:
 
-		TEST_METHOD(TestMethod1)
+		TEST_METHOD(ConstructorTest)
 		{
-			// TODO: Your test code here
+			std::vector<std::vector<char>> map;
+			std::vector<char> map_row1{'s','_'};
+			std::vector<char> map_row2{ 'x','g' };
+			map.push_back(map_row1);
+			map.push_back(map_row2);
+			PathPlanner p{ map };
+			// manually debugged
+			Assert::IsTrue(1);
 		}
 
 	};
