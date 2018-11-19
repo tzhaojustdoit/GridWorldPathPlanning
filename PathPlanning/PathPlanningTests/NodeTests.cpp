@@ -39,21 +39,6 @@ namespace PathPlanningTests
 			Assert::AreEqual(n->get_parent()->get_h(), 1);
 		}
 
-		TEST_METHOD(NodeNeighborTest)
-		{
-			Node* n = new Node{};
-			Node* n1 = new Node{};
-			n1->set_g(1);
-			Node* n2 = new Node{};
-			n2->set_g(2);
-			n->add_neightbor(n1);
-			Assert::AreEqual(n->get_num_of_neighbors(), 1);
-			Assert::AreEqual(n->get_neighbor(0)->get_g(), 1);
-			n->add_neightbor(n2);
-			Assert::AreEqual(n->get_num_of_neighbors(), 2);
-			Assert::AreEqual(n->get_neighbor(1)->get_g(), 2);
-		}
-
 		TEST_METHOD(NodeLessThanOperatorTest)
 		{
 			Node* n1 = new Node{};
