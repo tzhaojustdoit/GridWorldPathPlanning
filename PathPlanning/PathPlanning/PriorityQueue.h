@@ -19,7 +19,7 @@ public:
 	// the size of the priority queue
 	int size() const;
 private:
-	std::vector<Node*> vec_ = std::vector<Node*>();
+	std::vector<Node*> vec_;
 	void perculate_up(int);
 	void perculate_down(int);
 };
