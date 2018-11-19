@@ -1,5 +1,7 @@
 #include "Node.h"
 
+Node::Node() {};
+
 Node::Node(int g, int h, Node * parent, int x, int y)
 {
 	g_ = g;

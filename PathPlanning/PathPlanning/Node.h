@@ -7,6 +7,7 @@ class Node
 
 public:
 	//ctor
+	Node();
 	Node(int, int, Node*, int, int);
 
 	// accessors
