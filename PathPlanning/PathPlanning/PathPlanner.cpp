@@ -29,12 +29,12 @@ Point2D PathPlanner::get_start_pos() const
 	{
 		for (int j = 0; j < col; j++)
 		{
-			if (input_map_[row][col] == 's') {
+			if (input_map_[i][j] == 's') {
 				return Point2D{ i,j };
 			}
 		}
 	}
-	throw std::invalid_argument("start position not found.");
+	return Point2D{ -1,-1 };
 }
 
 Point2D PathPlanner::get_goal_pos() const
@@ -45,12 +45,12 @@ Point2D PathPlanner::get_goal_pos() const
 	{
 		for (int j = 0; j < col; j++)
 		{
-			if (input_map_[row][col] == 'g') {
+			if (input_map_[i][j] == 'g') {
 				return Point2D{ i,j };
 			}
 		}
 	}
-	throw std::invalid_argument("goal position not found.");
+	return Point2D{ -1,-1 };
 }
 
 void PathPlanner::a_star_search()
