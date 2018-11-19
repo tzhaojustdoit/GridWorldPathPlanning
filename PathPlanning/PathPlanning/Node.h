@@ -43,6 +43,6 @@ private:
 	int h_ = 0;
 	int f_ = 0;
 	Node* parent_ = nullptr;
-	int x_;
-	int y_;
+	int x_ = 0;
+	int y_ = 0;
 };
