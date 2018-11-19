@@ -25,5 +25,6 @@ private:
 	Point2D goal_;
 	PriorityQueue pq_;
 	void generate(int, int, Node *);
+	void construct_matrices(std::vector<std::vector<char>>);
 };
 

@@ -3,36 +3,7 @@
 
 PathPlanner::PathPlanner(std::vector<std::vector<char>> map)
 {
-	int row = map.size();
-	int col = map[0].size();
-
-	// construct the top row
-	std::vector<char> top_and_bottom_input_row_vec((unsigned)col + 2, 'x');
-	std::vector<int> top_and_bottom_node_status_row_vec((unsigned)col + 2, 0);
-	std::vector<Node*> top_and_bottom_node_pointer_row_vec((unsigned)col + 2, nullptr);
-	input_matrix_.push_back(top_and_bottom_input_row_vec);
-	node_status_matrix_.push_back(top_and_bottom_node_status_row_vec);
-	node_pointer_matrix_.push_back(top_and_bottom_node_pointer_row_vec);
-
-	// construct middle rows
-	for (int i = 0; i < row; i++)
-	{
-		std::vector<char> input_row_vec = map[i];
-		input_row_vec.push_back('x');
-		input_row_vec.push_back('x');
-		std::rotate(input_row_vec.begin(), input_row_vec.begin() + col, input_row_vec.begin() + col + 1);
-		std::vector<int> status_row_vec((unsigned)col + 2, 0);
-		std::vector<Node*> pointer_row_vec((unsigned)col + 2, nullptr);
-		input_matrix_.push_back(input_row_vec);
-		node_status_matrix_.push_back(status_row_vec);
-		node_pointer_matrix_.push_back(pointer_row_vec);
-	}
-
-	// construct the bottom row
-	input_matrix_.push_back(top_and_bottom_input_row_vec);
-	node_status_matrix_.push_back(top_and_bottom_node_status_row_vec);
-	node_pointer_matrix_.push_back(top_and_bottom_node_pointer_row_vec);
-
+	construct_matrices(map);
 	start_ = get_start_pos();
 	goal_ = get_goal_pos();
 }
@@ -117,6 +88,39 @@ void PathPlanner::generate(int x, int y, Node* parent)
 			myNode->set_g(parent->get_g() + 1);
 		}
 	}
+}
+
+void PathPlanner::construct_matrices(std::vector<std::vector<char>> map)
+{
+	int row = map.size();
+	int col = map[0].size();
+
+	// construct the top row
+	std::vector<char> top_and_bottom_input_row_vec((unsigned)col + 2, 'x');
+	std::vector<int> top_and_bottom_node_status_row_vec((unsigned)col + 2, 0);
+	std::vector<Node*> top_and_bottom_node_pointer_row_vec((unsigned)col + 2, nullptr);
+	input_matrix_.push_back(top_and_bottom_input_row_vec);
+	node_status_matrix_.push_back(top_and_bottom_node_status_row_vec);
+	node_pointer_matrix_.push_back(top_and_bottom_node_pointer_row_vec);
+
+	// construct middle rows
+	for (int i = 0; i < row; i++)
+	{
+		std::vector<char> input_row_vec = map[i];
+		input_row_vec.push_back('x');
+		input_row_vec.push_back('x');
+		std::rotate(input_row_vec.begin(), input_row_vec.begin() + col, input_row_vec.begin() + col + 1);
+		std::vector<int> status_row_vec((unsigned)col + 2, 0);
+		std::vector<Node*> pointer_row_vec((unsigned)col + 2, nullptr);
+		input_matrix_.push_back(input_row_vec);
+		node_status_matrix_.push_back(status_row_vec);
+		node_pointer_matrix_.push_back(pointer_row_vec);
+	}
+
+	// construct the bottom row
+	input_matrix_.push_back(top_and_bottom_input_row_vec);
+	node_status_matrix_.push_back(top_and_bottom_node_status_row_vec);
+	node_pointer_matrix_.push_back(top_and_bottom_node_pointer_row_vec);
 }
 
 void PathPlanner::a_star_search()
