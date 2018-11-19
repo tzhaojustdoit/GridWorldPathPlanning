@@ -89,7 +89,7 @@ std::string PathPlanner::toString()
 	std::string res = "";
 	Node* cur = node_pointer_matrix_[goal_.y][goal_.x];
 	while (cur != nullptr) {
-		res = std::to_string(cur->get_x()) + "," + std::to_string(cur->get_y()) + "->" + res;
+		res = std::to_string(cur->get_x()) + ", " + std::to_string(cur->get_y()) + " -> " + res;
 		cur = cur->get_parent();
 	}
 	return res;
