@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AStarPathPlanner.cpp" />
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="PathPlanner.cpp" />
@@ -122,6 +123,7 @@
     <ClCompile Include="PriorityQueue.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="A_StarPathPlanner.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="PathPlanner.h" />
     <ClInclude Include="Point2D.h" />

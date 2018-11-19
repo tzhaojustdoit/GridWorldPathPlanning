@@ -9,16 +9,15 @@
 class PathPlanner
 {
 public:
-	// ctor
-	// takes an input 2d matrix of chars
-	PathPlanner(std::vector<std::vector<int>>);
-	~PathPlanner();
-	void a_star_go();
-	void adaptive_a_star_go();
+	PathPlanner();
+	virtual ~PathPlanner();
+	virtual void load_grid_world(std::vector<std::vector<int>> map);
+	virtual void go();
+	virtual int get_num_of_searches();
+	virtual int get_num_of_explored_nodes();
+protected:
 	Point2D get_start_pos() const;
 	Point2D get_goal_pos() const;
-	std::string toString();
-private:
 	std::vector<std::vector<int>> input_matrix_;
 	std::vector<std::vector<int>> observed_matrix_;
 	std::vector<std::vector<int>> node_status_matrix_;
