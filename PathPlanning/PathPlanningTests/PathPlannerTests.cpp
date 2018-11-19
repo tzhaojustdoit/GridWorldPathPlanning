@@ -34,8 +34,8 @@ namespace PathPlanningTests
 		{
 
 			PathPlanner p{ map1 };
-			Point2D expected_start{ 0,0 };
-			Point2D expected_goal{ 1,1 };
+			Point2D expected_start{ 1,1 };
+			Point2D expected_goal{ 2,2 };
 			Assert::IsTrue(p.get_start_pos() == expected_start);
 			Assert::IsTrue(p.get_goal_pos() == expected_goal);
 

@@ -17,10 +17,12 @@ public:
 	Point2D get_start_pos() const;
 	Point2D get_goal_pos() const;
 private:
-	PriorityQueue pq_;
-	std::vector<std::vector<char>> input_map_;
+	std::vector<std::vector<char>> input_matrix_;
 	std::vector<std::vector<int>> node_status_matrix_;
 	std::vector<std::vector<Node*>> node_pointer_matrix_;
-
+	Point2D start_;
+	Point2D goal_;
+	PriorityQueue pq_;
+	void generate(int, int, Node *);
 };
 
