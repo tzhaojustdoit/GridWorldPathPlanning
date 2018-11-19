@@ -31,29 +31,16 @@ Node * Node::get_parent() const
 	return parent_;
 }
 
-int Node::get_num_of_neighbors() const
-{
-	return num_of_neighbors_;
-}
 
-Node * Node::get_neighbor(int num) const
-{
-	if (num < num_of_neighbors_) {
-		return neighbors_[num];
-	}
-	return nullptr;
-}
-
-int Node::get_x()
+int Node::get_x() const
 {
 	return x_;
 }
 
-int Node::get_y()
+int Node::get_y() const
 {
 	return y_;
 }
-
 
 
 void Node::set_g(int g)
@@ -73,11 +60,6 @@ void Node::set_parent(Node * n)
 	parent_ = n;
 }
 
-void Node::add_neightbor(Node * n)
-{
-	neighbors_[num_of_neighbors_] = n;
-	++num_of_neighbors_;
-}
 
 void Node::set_location(int x, int y)
 {

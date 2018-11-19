@@ -19,14 +19,10 @@ public:
 	int get_f() const;
 	// get the parent node pointer;
 	Node* get_parent() const;
-	// get number of neighbors the node has
-	int get_num_of_neighbors() const;
-	// get the neighbor's node pointer
-	Node* get_neighbor(int) const;
 	// get the x coordinate
-	int get_x();
+	int get_x() const;
 	// get the y coordinate
-	int get_y();
+	int get_y() const;
 
 	// mutators
 	// set the g value;
@@ -35,8 +31,6 @@ public:
 	void set_h(int);
 	// set the parent pointer
 	void set_parent(Node*);
-	// add a neighbor
-	void add_neightbor(Node*);
 	// set the location: x, y coordinates
 	void set_location(int, int);
 
@@ -49,8 +43,6 @@ private:
 	int h_ = 0;
 	int f_ = 0;
 	Node* parent_ = nullptr;
-	int num_of_neighbors_ = 0;
-	Node* neighbors_[4];
 	int x_;
 	int y_;
 };
