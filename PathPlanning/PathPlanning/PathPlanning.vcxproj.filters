@@ -24,9 +24,6 @@
     <ClCompile Include="PriorityQueue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PathPlanner.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Point2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -118,7 +118,6 @@
     <ClCompile Include="AStarPathPlanner.cpp" />
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="Node.cpp" />
-    <ClCompile Include="PathPlanner.cpp" />
     <ClCompile Include="Point2D.cpp" />
     <ClCompile Include="PriorityQueue.cpp" />
   </ItemGroup>
