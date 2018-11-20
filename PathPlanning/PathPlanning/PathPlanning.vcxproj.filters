@@ -47,5 +47,8 @@
     <ClInclude Include="A_StarPathPlanner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CellType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
