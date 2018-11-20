@@ -1,9 +1,12 @@
 #pragma once
 enum CellType
 {
+	START,
+	GOAL,
 	UNEXPLORED,
 	EMPTY,
-	BLOCKED
+	BLOCKED,
+	PATHPOINT
 };
 
 
