@@ -35,10 +35,10 @@
     <ClCompile Include="PriorityQueueTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PathPlannerTests.cpp">
+    <ClCompile Include="Point2DTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Point2DTests.cpp">
+    <ClCompile Include="AStarPathPlannerTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

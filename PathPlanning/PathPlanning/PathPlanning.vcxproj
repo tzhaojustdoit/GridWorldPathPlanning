@@ -120,14 +120,20 @@
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Point2D.cpp" />
     <ClCompile Include="PriorityQueue.cpp" />
+    <ClCompile Include="Util.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="A_StarPathPlanner.h" />
+    <ClInclude Include="AStarPathPlanner.h" />
     <ClInclude Include="CellType.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="PathPlanner.h" />
     <ClInclude Include="Point2D.h" />
     <ClInclude Include="PriorityQueue.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Util.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="PathPlanning.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

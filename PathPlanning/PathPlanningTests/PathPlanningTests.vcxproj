@@ -156,8 +156,8 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AStarPathPlannerTests.cpp" />
     <ClCompile Include="NodeTests.cpp" />
-    <ClCompile Include="PathPlannerTests.cpp" />
     <ClCompile Include="Point2DTests.cpp" />
     <ClCompile Include="PriorityQueueTests.cpp" />
     <ClCompile Include="stdafx.cpp">
