@@ -29,12 +29,20 @@ namespace PathPlanningTests
 			map3.push_back(map_row2);
 			map3.push_back(map_row3);
 		}
-		TEST_METHOD(ConstructorTest)
+		TEST_METHOD(LoadTest)
 		{
 			AStarPathPlanner p;
 			p.Load(map1);
 			p.Load(map3);
 			p.Load(map2);
+			// manually debugged
+		}
+
+		TEST_METHOD(GoTest)
+		{
+			AStarPathPlanner p;
+			p.Load(map1);
+			p.Go();
 			// manually debugged
 		}
 
