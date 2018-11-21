@@ -27,6 +27,8 @@ void AStarPathPlanner::Go()
 {
 	// get the start location
 	current_location_ = GetStartLocation();
+	// mark the start location as empty in the observed world map
+	observed_world_[current_location_.x][current_location_.y] = EMPTY;
 	// sense adjacent cells
 	SenseAdjacentCells();
 	// get the goal location
@@ -76,9 +78,9 @@ int AStarPathPlanner::GetNumOfNodesExpanded()
 
 Point2D AStarPathPlanner::GetStartLocation() const
 {
-	for (unsigned i = 1; i < actual_world_.size() - 1; i++)
+	for (unsigned i = 0; i < actual_world_.size(); i++)
 	{
-		for (unsigned j = 1; j < actual_world_[0].size() - 1; j++)
+		for (unsigned j = 0; j < actual_world_[0].size(); j++)
 		{
 			if (actual_world_[i][j] == 's') {
 				return Point2D{ (int)i, (int)j };
@@ -90,9 +92,9 @@ Point2D AStarPathPlanner::GetStartLocation() const
 
 Point2D AStarPathPlanner::GetGoalLocation() const
 {
-	for (unsigned i = 1; i < actual_world_.size() - 1; i++)
+	for (unsigned i = 0; i < actual_world_.size(); i++)
 	{
-		for (unsigned j = 1; j < actual_world_[0].size() - 1; j++)
+		for (unsigned j = 0; j < actual_world_[0].size(); j++)
 		{
 			if (actual_world_[i][j] == 'g') {
 				return Point2D{ (int)i, (int)j };
@@ -116,7 +118,7 @@ void AStarPathPlanner::SenseAdjacentCells()
 void AStarPathPlanner::ObserveLocation(int x, int y)
 {
 	try {
-		char observed = actual_world_[x][y];
+		char observed = actual_world_.at(x).at(y);
 		switch (observed)
 		{
 		case 'x':
