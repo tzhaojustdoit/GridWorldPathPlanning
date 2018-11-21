@@ -2,14 +2,8 @@
 
 Node::Node() {};
 
-Node::Node(int g, int h, Node * parent, int x, int y)
+Node::Node(int g, int h, Node * parent, int x, int y) : g_(g), h_(h), parent_(parent), x_(x), y_(y)
 {
-	g_ = g;
-	h_ = h;
-	f_ = g + h;
-	parent_ = parent;
-	x_ = x;
-	y_ = y;
 }
 
 int Node::get_g() const
