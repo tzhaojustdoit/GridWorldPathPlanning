@@ -1,15 +1,26 @@
-#include "A_StarPathPlanner.h"
-
+#include "AStarPathPlanner.h"
 
 
 AStarPathPlanner::~AStarPathPlanner()
 {
 }
 
-// assumption: map has one and only one start and one and only one goal location.
-void AStarPathPlanner::LoadGridWorld(std::vector<std::vector<char>> map)
+// assumption: input map has one and only one start location and one and only one goal location.
+void AStarPathPlanner::Load(const std::vector<std::vector<char>> &map)
 {
-	ConstructMatrices(map);
+	// copy the map
+	actual_world_ = map;
+	// num of rows
+	unsigned row = map.size();
+	// num of columns
+	unsigned col = map[0].size();
+	// intialize the currently observed world
+	observed_world_.reserve(row);
+	for (unsigned i = 0; i < col; i++)
+	{
+		std::vector<CellType> row_vec(col, UNEXPLORED);
+		observed_world_.push_back(row_vec);
+	}
 }
 
 void AStarPathPlanner::Go()
@@ -70,7 +81,7 @@ Point2D AStarPathPlanner::GetStartLocation() const
 		for (unsigned j = 1; j < actual_world_[0].size() - 1; j++)
 		{
 			if (actual_world_[i][j] == 's') {
-				return Point2D{ i, j };
+				return Point2D{ (int)i, (int)j };
 			}
 		}
 	}
@@ -84,7 +95,7 @@ Point2D AStarPathPlanner::GetGoalLocation() const
 		for (unsigned j = 1; j < actual_world_[0].size() - 1; j++)
 		{
 			if (actual_world_[i][j] == 'g') {
-				return Point2D{ i, j };
+				return Point2D{ (int)i, (int)j };
 			}
 		}
 	}
@@ -104,31 +115,26 @@ void AStarPathPlanner::SenseAdjacentCells()
 
 void AStarPathPlanner::ObserveLocation(int x, int y)
 {
-	char observed = actual_world_[x][y];
-	switch (observed)
-	{
-	case 'x':
-		observed_world_[x][y] = BLOCKED;
-		break;
-	default:
-		observed_world_[x][y] = EMPTY;
-		break;
+	try {
+		char observed = actual_world_[x][y];
+		switch (observed)
+		{
+		case 'x':
+			observed_world_[x][y] = BLOCKED;
+			break;
+		default:
+			observed_world_[x][y] = EMPTY;
+			break;
+		}
+	}
+	catch (const std::out_of_range&) {
 	}
 }
 
-void AStarPathPlanner::ConstructMatrices(std::vector<std::vector<char>> map)
-{
-	// num of rows
-	unsigned row = map.size();
-	// num of columns
-	unsigned col = map[0].size();
-
-
-}
-
-void AStarPathPlanner::Plan()
+std::stack<Point2D> AStarPathPlanner::Plan()
 {
 	num_of_searches_++;
+	return std::stack<Point2D>();
 }
 
 
