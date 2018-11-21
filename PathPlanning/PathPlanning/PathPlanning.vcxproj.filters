@@ -30,9 +30,6 @@
     <ClCompile Include="AStarPathPlanner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Util.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Node.h">
@@ -53,9 +50,6 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Util.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AStarPathPlanner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -64,5 +58,61 @@
     <ResourceCompile Include="PathPlanning.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="1.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="2.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="3.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="4.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="5.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="6.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="7.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="8.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="9.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="10.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="11.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="12.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="13.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="14.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="15.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="16.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="17.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="18.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

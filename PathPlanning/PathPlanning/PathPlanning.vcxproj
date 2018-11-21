@@ -120,7 +120,6 @@
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Point2D.cpp" />
     <ClCompile Include="PriorityQueue.cpp" />
-    <ClCompile Include="Util.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AStarPathPlanner.h" />
@@ -130,10 +129,29 @@
     <ClInclude Include="Point2D.h" />
     <ClInclude Include="PriorityQueue.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="Util.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PathPlanning.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="1.txt" />
+    <Text Include="10.txt" />
+    <Text Include="11.txt" />
+    <Text Include="12.txt" />
+    <Text Include="13.txt" />
+    <Text Include="14.txt" />
+    <Text Include="15.txt" />
+    <Text Include="16.txt" />
+    <Text Include="17.txt" />
+    <Text Include="18.txt" />
+    <Text Include="2.txt" />
+    <Text Include="3.txt" />
+    <Text Include="4.txt" />
+    <Text Include="5.txt" />
+    <Text Include="6.txt" />
+    <Text Include="7.txt" />
+    <Text Include="8.txt" />
+    <Text Include="9.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
