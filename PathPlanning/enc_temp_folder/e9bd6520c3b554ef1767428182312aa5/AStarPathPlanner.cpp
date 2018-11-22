@@ -26,15 +26,14 @@ void AStarPathPlanner::Load(const std::vector<std::vector<char>> &map)
 		}
 		observed_world_.push_back(row_vec);
 	}
-	// get the start location
-	current_location_ = GetStartLocation();
-	// get the goal location
-	goal_location_ = GetGoalLocation();
 }
 
 void AStarPathPlanner::Go()
 {
-
+	// get the start location
+	current_location_ = GetStartLocation();
+	// get the goal location
+	goal_location_ = GetGoalLocation();
 	// get the cell;
 	Node & my_node = observed_world_[current_location_.x][current_location_.y];
 	// mark the start location as empty in the observed world map
