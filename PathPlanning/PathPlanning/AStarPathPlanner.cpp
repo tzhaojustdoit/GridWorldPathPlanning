@@ -26,9 +26,9 @@ void AStarPathPlanner::Load(const std::vector<std::vector<char>> &map)
 		}
 		observed_world_.push_back(row_vec);
 	}
-	// get the start location
+	// set the start location
 	current_location_ = GetStartLocation();
-	// get the goal location
+	// set the goal location
 	goal_location_ = GetGoalLocation();
 }
 
