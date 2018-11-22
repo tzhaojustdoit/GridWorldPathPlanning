@@ -3,13 +3,15 @@
 #include "CellType.h"
 // A node in a graph.
 // @author Tianhua Zhao
+
+// invariant: f = g + h
 class Node
 {
 
 public:
 	//ctor
 	Node();
-
+	Node(int x, int y);
 	// accessors
 	// get the g value;
 	int get_g() const;
