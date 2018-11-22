@@ -1,7 +1,8 @@
 #include <vector>
 #include <fstream>
 #include <string>
-
+#include "PathPlanner.h"
+#include "AstarPathPlanner.h"
 int main() {
 	std::string filename = "5.txt";
 	std::vector<std::vector<char>> map;
@@ -27,4 +28,6 @@ int main() {
 		}
 		input_file_stream.close();
 	}
+	PathPlanner* p = new AStarPathPlanner();
+	p->Load(map);
 }
