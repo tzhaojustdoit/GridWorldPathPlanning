@@ -22,12 +22,14 @@ namespace PathPlanningTests
 			map2.push_back(map_row1);
 			map2.push_back(map_row2);
 
-			map_row1 = { 'x', '_','x','x','_' };
-			map_row2 = { 's', '_', '_','x','_' };
-			std::vector<char>map_row3 = { 'x','x', '_', '_','g' };
+			map_row1 = { '_', 's','_','_' };
+			map_row2 = { 'x', 'x', '_','_', };
+			std::vector<char>map_row3 = { '_','_', 'x', 'x' };
+			std::vector<char>map_row4 = { '_','g', '_', '_' };
 			map3.push_back(map_row1);
 			map3.push_back(map_row2);
 			map3.push_back(map_row3);
+			map3.push_back(map_row4);
 		}
 		TEST_METHOD(LoadTest)
 		{
@@ -41,7 +43,7 @@ namespace PathPlanningTests
 		TEST_METHOD(GoTest)
 		{
 			AStarPathPlanner p;
-			p.Load(map1);
+			p.Load(map3);
 			p.Go();
 			// manually debugged
 		}

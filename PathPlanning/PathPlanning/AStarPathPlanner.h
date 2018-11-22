@@ -10,9 +10,9 @@
 #include "PathPlanner.h"
 #include "PriorityQueue.h"
 #include "Point2D.h"
-#include "CellType.h"
 #include <stack>
 #include <stdexcept>
+#include <iostream>
 
 class AStarPathPlanner : public PathPlanner
 {
@@ -29,16 +29,16 @@ private:
 	Point2D current_location_;
 	Point2D goal_location_;
 	std::vector<std::vector<char>> actual_world_;
-	std::vector<std::vector<CellType>> observed_world_;
-	PriorityQueue open_;
-	std::vector<Node*> closed_;
+	std::vector<std::vector<Node>> observed_world_;
 	int num_of_searches_ = 0;
-	int num_of_explored_nodes_ = 0;
+	int num_of_expanded_nodes_ = 0;
 	Point2D GetStartLocation() const;
 	Point2D GetGoalLocation() const;
 	void SenseAdjacentCells();
 	void ObserveLocation(int x, int y);
 	std::stack<Point2D> Plan();
+	void Expand(int x, int y, PriorityQueue &open, std::vector<Node*> &closed);
+	void Generate(int x, int y, Node* parent, PriorityQueue &open, std::vector<Node*> &closed);
 };
 #endif // !A_STAR_PATH_PLANNER
 
