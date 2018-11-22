@@ -26,7 +26,7 @@ Node* PriorityQueue::pop()
 	return res;
 }
 
-const Node* PriorityQueue::top() const
+Node* PriorityQueue::top() const
 {
 	return vec_[0];
 }
@@ -39,6 +39,16 @@ bool PriorityQueue::empty() const
 int PriorityQueue::size() const
 {
 	return vec_.size();
+}
+
+bool PriorityQueue::contains(Node *target) const
+{
+	for (Node* var : vec_) {
+		if (var == target) {
+			return true;
+		}
+	}
+	return false;
 }
 
 void PriorityQueue::perculate_up(int idx)
