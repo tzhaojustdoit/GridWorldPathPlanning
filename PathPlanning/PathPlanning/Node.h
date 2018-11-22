@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "CellType.h"
 // A node in a graph.
 // @author Tianhua Zhao
 class Node
@@ -8,7 +9,6 @@ class Node
 public:
 	//ctor
 	Node();
-	Node(int, int, Node*, int, int);
 
 	// accessors
 	// get the g value;
@@ -23,6 +23,8 @@ public:
 	int get_x() const;
 	// get the y coordinate
 	int get_y() const;
+	// get the cell type
+	CellType get_type() const;
 
 	// mutators
 	// set the g value;
@@ -33,6 +35,8 @@ public:
 	void set_parent(Node*);
 	// set the location: x, y coordinates
 	void set_location(int, int);
+	// set the cell type
+	void set_type(CellType type);
 
 	// comparators
 	bool operator< (const Node &);
@@ -45,4 +49,5 @@ private:
 	Node* parent_ = nullptr;
 	int x_ = 0;
 	int y_ = 0;
+	CellType type_ = UNEXPLORED;
 };

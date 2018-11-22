@@ -2,10 +2,6 @@
 
 Node::Node() {};
 
-Node::Node(int g, int h, Node * parent, int x, int y) : g_(g), h_(h), parent_(parent), x_(x), y_(y)
-{
-}
-
 int Node::get_g() const
 {
 	return g_;
@@ -37,6 +33,11 @@ int Node::get_y() const
 	return y_;
 }
 
+CellType Node::get_type() const
+{
+	return type_;
+}
+
 
 void Node::set_g(int g)
 {
@@ -60,6 +61,11 @@ void Node::set_location(int x, int y)
 {
 	x_ = x;
 	y_ = y;
+}
+
+void Node::set_type(CellType type)
+{
+	type_ = type;
 }
 
 
