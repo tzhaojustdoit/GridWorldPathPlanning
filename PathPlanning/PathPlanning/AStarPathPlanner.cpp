@@ -44,8 +44,11 @@ void AStarPathPlanner::Go()
 		std::vector<Node*> path_points = Plan();
 		// if path is not found, break out of the loop
 		if (path_points.empty()) {
-			std::cout << "No route found" << std::endl;
+			std::cout << "No route found." << std::endl;
 			break;
+		}
+		else {
+			std::cout << "Moving along the path above..." << std::endl;
 		}
 		// move the car from the start cell to the next cell
 		// since start cell is already sensed, it is safe to move one step
@@ -63,7 +66,7 @@ void AStarPathPlanner::Go()
 			// if next cell is blocked, break out of the loop
 			if (actual_world_[x][y] == 'x')
 			{
-				std::cout << "Obstacle detected, start replanning" << std::endl;
+				std::cout << "Obstacle detected, start replanning..." << std::endl;
 				break;
 			}
 			// move to the next cell
@@ -72,7 +75,7 @@ void AStarPathPlanner::Go()
 		}
 	}
 	// print number of nodes expanded
-	std::cout << "Total number of nodes expanded is: " << num_of_expanded_nodes_ << std::endl;
+	std::cout << "Navigation ended." << std::endl << "Total number of nodes expanded is: " << num_of_expanded_nodes_ <<"."<< std::endl;
 }
 
 
@@ -146,7 +149,7 @@ void AStarPathPlanner::ObserveLocation(int x, int y)
 std::vector<Node*> AStarPathPlanner::Plan()
 {
 	num_of_searches_++;
-	std::cout << "Planning with A* (#" << num_of_searches_ << ")" << std::endl;
+	std::cout << "Planning (" << num_of_searches_ << ")..." << std::endl;
 	// open list, contains generated nodes
 	PriorityQueue open;
 	// closed list, contains expanded nodes
