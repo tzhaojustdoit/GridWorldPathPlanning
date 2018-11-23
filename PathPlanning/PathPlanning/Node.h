@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-#include "CellType.h"
 // A node in a graph.
 // @author Tianhua Zhao
 
