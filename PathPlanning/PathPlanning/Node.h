@@ -1,48 +1,98 @@
-#pragma once
+/**
+ * @file Node.h
+ * @brief Defines the Node class.
+ * @authur: Tianhua Zhao
+ */
+
+#ifndef NODE_
+#define NODE_
 #include <vector>
 #include "Point2D.h"
-// A node in a graph.
-// @author Tianhua Zhao
 
-// invariant: f = g + h
+/**
+ * @class Node
+ *
+ * @brief A cell node in a grid world.
+ * @invariants: f = g + h
+ */
 class Node
 {
-
 public:
-	//ctor
 	Node();
+
+	/**
+	 *@brief construct a node with given x, y coordinate
+	 */
 	Node(int x, int y);
-	// accessors
-	// get the g value;
+
+	/**
+	 *@brief get g value
+	 */
 	int get_g() const;
-	// get the h value;
+
+	/**
+	 *@brief get h value
+	 */
 	int get_h() const;
-	// get the f value;
+
+	/**
+	 *@brief get f value
+	 */
 	int get_f() const;
-	// get the parent node pointer;
+
+	/**
+	 *@brief get parent pointer
+	 */
 	Node* get_parent() const;
-	// get the x coordinate
+
+	/**
+	 *@brief get x coordinate
+	 */
 	int get_x() const;
-	// get the y coordinate
+
+	/**
+	 *@brief get y coordinate
+	 */
 	int get_y() const;
-	// get the cell type
+
+	/**
+	 *@brief if the cell is blocked
+	 */
 	bool is_blocked() const;
-	// get location 
+	
+	/**
+	 *@brief get the current location
+	 */
 	Point2D get_location() const;
 
-	// mutators
-	// set the g value;
+	/**
+	 *@brief set g value
+	 */
 	void set_g(int);
-	// set the h value;
+
+	/**
+	 *@brief set h value
+	 */
 	void set_h(int);
-	// set the parent pointer
+
+	/**
+	 *@brief set parent pointer
+	 */
 	void set_parent(Node*);
-	// set the location: x, y coordinates
+
+	/**
+	 *@brief set location
+	 */
 	void set_location(int, int);
-	// set the cell type
+
+	/**
+	 *@brief mark the cell as blocked
+	 */
 	void set_blocked();
 
-	// comparators
+	/**
+	 *@brief overloaded < operator 
+	 */
 	bool operator< (const Node &);
 
 private:
@@ -55,3 +105,8 @@ private:
 	int y_ = 0;
 	bool blocked = false;
 };
+#endif // !NODE_
+
+
+
+
