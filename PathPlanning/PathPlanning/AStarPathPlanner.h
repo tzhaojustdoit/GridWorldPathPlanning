@@ -10,10 +10,9 @@
 #include "PathPlanner.h"
 #include "PriorityQueue.h"
 #include "Point2D.h"
-#include <stack>
 #include <stdexcept>
 #include <iostream>
-
+#include <string>
 class AStarPathPlanner : public PathPlanner
 {
 public:
@@ -36,10 +35,10 @@ private:
 	Point2D GetGoalLocation() const;
 	void SenseAdjacentCells();
 	void ObserveLocation(int x, int y);
-	std::stack<Point2D> Plan();
+	std::vector<Node*> Plan();
 	void Expand(int x, int y, PriorityQueue &open, std::vector<Node*> &closed);
 	void Generate(int x, int y, Node* parent, PriorityQueue &open, std::vector<Node*> &closed);
-	void PrintNavigationMap(std::stack<Point2D> &path_points);
+	void PrintNavigationMap(const std::vector<Node*> &path_points);
 };
 #endif // !A_STAR_PATH_PLANNER
 

@@ -16,7 +16,7 @@ void AStarPathPlanner::Load(const std::vector<std::vector<char>> &map)
 	unsigned col = map[0].size();
 	// intialize the currently observed map, all nodes are marked as unexplored initially.
 	observed_world_.reserve(row);
-	for (unsigned i = 0; i < col; i++)
+	for (unsigned i = 0; i < row; i++)
 	{
 		std::vector<Node> row_vec;
 		row_vec.reserve(col);
@@ -41,25 +41,23 @@ void AStarPathPlanner::Go()
 	while (!(current_location_ == goal_location_))
 	{
 		// plan using the currently observed map
-		std::stack<Point2D> path_points = Plan();
+		std::vector<Node*> path_points = Plan();
 		// if path is not found, break out of the loop
 		if (path_points.empty()) {
 			std::cout << "No route found" << std::endl;
 			break;
 		}
-		// if path is found, output the navigation map
-		PrintNavigationMap(path_points);
 		// move the car from the start cell to the next cell
 		// since start cell is already sensed, it is safe to move one step
-		current_location_ = path_points.top();
-		path_points.pop();
+		current_location_ = path_points.back()->get_location();
 		// move the car along the shortest path until it is blocked by an obstacle or reaches the goal
-		while (!path_points.empty())
+		int cur = path_points.size() - 1;
+		while (cur > 0)
 		{
 			// sense adjacent cells
 			SenseAdjacentCells();
 			// get the next path point
-			Point2D next = path_points.top();
+			Point2D next = path_points[cur - 1]->get_location();
 			int x = next.x;
 			int y = next.y;
 			// if next cell is blocked, break out of the loop
@@ -69,8 +67,8 @@ void AStarPathPlanner::Go()
 				break;
 			}
 			// move to the next cell
-			current_location_ = path_points.top();
-			path_points.pop();
+			current_location_ = next;
+			cur--;
 		}
 	}
 	// print number of nodes expanded
@@ -145,7 +143,7 @@ void AStarPathPlanner::ObserveLocation(int x, int y)
 	}
 }
 
-std::stack<Point2D> AStarPathPlanner::Plan()
+std::vector<Node*> AStarPathPlanner::Plan()
 {
 	num_of_searches_++;
 	std::cout << "Planning with A* (#" << num_of_searches_ << ")" << std::endl;
@@ -153,8 +151,8 @@ std::stack<Point2D> AStarPathPlanner::Plan()
 	PriorityQueue open;
 	// closed list, contains expanded nodes
 	std::vector<Node*> closed;
-	// path points from the current location(exclusive) to the goal location(incluseive)
-	std::stack<Point2D> path_points;
+	// path points from the current location(exclusive) to the goal location(exclusive)
+	std::vector<Node*> path_points;
 
 	Node* current_node = &observed_world_[current_location_.x][current_location_.y];
 	// set g value
@@ -181,13 +179,10 @@ std::stack<Point2D> AStarPathPlanner::Plan()
 			{
 				var->set_h(g_goal - var->get_g());
 			}
-			// make path points, push them to the stack
-			Point2D curr;
+			// make path points 
 			while (current_node->get_parent() != nullptr)
 			{
-				curr.x = current_node->get_x();
-				curr.y = current_node->get_y();
-				path_points.push(curr);
+				path_points.push_back(current_node);
 				current_node = current_node->get_parent();
 			}
 			break;
@@ -197,6 +192,8 @@ std::stack<Point2D> AStarPathPlanner::Plan()
 		// expand the node
 		Expand(location.x, location.y, open, closed);
 	}
+	// print the navigation map
+	PrintNavigationMap(path_points);
 	return path_points;
 }
 
@@ -239,8 +236,44 @@ void AStarPathPlanner::Generate(int x, int y, Node* parent, PriorityQueue &open,
 	}
 }
 
-void AStarPathPlanner::PrintNavigationMap(std::stack<Point2D>& path_points)
+void AStarPathPlanner::PrintNavigationMap(const std::vector<Node*> &path_points)
 {
+	std::vector<std::string> rows;
+	rows.reserve(observed_world_.size());
+	for (std::vector<Node> var : observed_world_)
+	{
+		std::string row;
+		for (Node n : var) {
+			if (n.is_blocked()) {
+				row += "x ";
+			}
+			else {
+				row += "_ ";
+			}
+		}
+		rows.push_back(row);
+	}
+	// set path points to 'o'
+	for (unsigned i = 1; i < path_points.size(); i++)
+	{
+		int x = path_points[i]->get_x();
+		int y = path_points[i]->get_y();
+		rows[x].replace(y * 2, 1, 1, 'o');
+	}
+
+	// set start to 's'
+	int start_x = current_location_.x;
+	int start_y = current_location_.y;
+	rows[start_x].replace(start_y * 2, 1, 1, 's');
+	// set goal to 'g'
+	int goal_x = goal_location_.x;
+	int goal_y = goal_location_.y;
+	rows[goal_x].replace(goal_y * 2, 1, 1, 'g');
+
+	// print
+	for (std::string str : rows) {
+		std::cout << str << std::endl;
+	}
 
 }
 
