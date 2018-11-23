@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include "../PathPlanning/AStarPathPlanner.h"
-#include "../PathPlanning/AStarPathPlanner.cpp"
+#include "../PathPlanning/AdaptiveAStarPathPlanner.h"
+#include "../PathPlanning/AdaptiveAStarPathPlanner.cpp"
 #include <vector>
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace PathPlanningTests
 {
-	TEST_CLASS(AStarPathPlannerTests)
+	TEST_CLASS(AdaptiveAStarPathPlannerTests)
 	{
 	public:
 		TEST_METHOD_INITIALIZE(Initializer)
@@ -33,7 +33,7 @@ namespace PathPlanningTests
 		}
 		TEST_METHOD(LoadTest)
 		{
-			AStarPathPlanner p;
+			AdaptiveAStarPathPlanner p;
 			p.Load(map1);
 			p.Load(map3);
 			p.Load(map2);
@@ -42,7 +42,7 @@ namespace PathPlanningTests
 
 		TEST_METHOD(GoTest)
 		{
-			AStarPathPlanner p;
+			AdaptiveAStarPathPlanner p;
 			p.Load(map3);
 			p.Go();
 			// manually debugged

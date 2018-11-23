@@ -1,12 +1,12 @@
-#include "AStarPathPlanner.h"
+#include "AdaptiveAStarPathPlanner.h"
 
 
-AStarPathPlanner::~AStarPathPlanner()
+AdaptiveAStarPathPlanner::~AdaptiveAStarPathPlanner()
 {
 }
 
 // assumption: input map has one and only one start location and one and only one goal location.
-void AStarPathPlanner::Load(const std::vector<std::vector<char>> &map)
+void AdaptiveAStarPathPlanner::Load(const std::vector<std::vector<char>> &map)
 {
 	// copy the map
 	actual_world_ = map;
@@ -32,7 +32,7 @@ void AStarPathPlanner::Load(const std::vector<std::vector<char>> &map)
 	goal_location_ = GetGoalLocation();
 }
 
-void AStarPathPlanner::Go()
+void AdaptiveAStarPathPlanner::Go()
 {
 	// get the current node;
 	Node & current_node = observed_world_[current_location_.x][current_location_.y];
@@ -80,17 +80,17 @@ void AStarPathPlanner::Go()
 
 
 
-int AStarPathPlanner::GetNumOfSearches()
+int AdaptiveAStarPathPlanner::GetNumOfSearches()
 {
 	return num_of_searches_;
 }
 
-int AStarPathPlanner::GetNumOfNodesExpanded()
+int AdaptiveAStarPathPlanner::GetNumOfNodesExpanded()
 {
 	return num_of_expanded_nodes_;
 }
 
-Point2D AStarPathPlanner::GetStartLocation() const
+Point2D AdaptiveAStarPathPlanner::GetStartLocation() const
 {
 	for (unsigned i = 0; i < actual_world_.size(); i++)
 	{
@@ -104,7 +104,7 @@ Point2D AStarPathPlanner::GetStartLocation() const
 	return Point2D{ -1, -1 };
 }
 
-Point2D AStarPathPlanner::GetGoalLocation() const
+Point2D AdaptiveAStarPathPlanner::GetGoalLocation() const
 {
 	for (unsigned i = 0; i < actual_world_.size(); i++)
 	{
@@ -118,7 +118,7 @@ Point2D AStarPathPlanner::GetGoalLocation() const
 	return Point2D{ -1, -1 };
 }
 
-void AStarPathPlanner::SenseAdjacentCells()
+void AdaptiveAStarPathPlanner::SenseAdjacentCells()
 {
 	int x = current_location_.x;
 	int y = current_location_.y;
@@ -129,7 +129,7 @@ void AStarPathPlanner::SenseAdjacentCells()
 	ObserveLocation(x - 1, y);
 }
 
-void AStarPathPlanner::ObserveLocation(int x, int y)
+void AdaptiveAStarPathPlanner::ObserveLocation(int x, int y)
 {
 	try {
 		char observed = actual_world_.at(x).at(y);
@@ -146,7 +146,7 @@ void AStarPathPlanner::ObserveLocation(int x, int y)
 	}
 }
 
-std::vector<Node*> AStarPathPlanner::Plan()
+std::vector<Node*> AdaptiveAStarPathPlanner::Plan()
 {
 	num_of_searches_++;
 	std::cout << "Planning (" << num_of_searches_ << ")..." << std::endl;
@@ -200,7 +200,7 @@ std::vector<Node*> AStarPathPlanner::Plan()
 	return path_points;
 }
 
-void AStarPathPlanner::Expand(int x, int y, PriorityQueue &open, std::vector<Node*> &closed)
+void AdaptiveAStarPathPlanner::Expand(int x, int y, PriorityQueue &open, std::vector<Node*> &closed)
 {
 	num_of_expanded_nodes_++;
 	Node* current_node = &observed_world_[x][y];
@@ -211,7 +211,7 @@ void AStarPathPlanner::Expand(int x, int y, PriorityQueue &open, std::vector<Nod
 	Generate(x, y + 1, current_node, open, closed);
 }
 
-void AStarPathPlanner::Generate(int x, int y, Node* parent, PriorityQueue &open, std::vector<Node*> &closed)
+void AdaptiveAStarPathPlanner::Generate(int x, int y, Node* parent, PriorityQueue &open, std::vector<Node*> &closed)
 {
 	try {
 		Node& current_node = observed_world_.at(x).at(y);
@@ -239,7 +239,7 @@ void AStarPathPlanner::Generate(int x, int y, Node* parent, PriorityQueue &open,
 	}
 }
 
-void AStarPathPlanner::PrintNavigationMap(const std::vector<Node*> &path_points)
+void AdaptiveAStarPathPlanner::PrintNavigationMap(const std::vector<Node*> &path_points)
 {
 	std::vector<std::string> rows;
 	rows.reserve(observed_world_.size());

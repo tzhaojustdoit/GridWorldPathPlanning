@@ -1,6 +1,6 @@
 /**
  * @file PathPlanner.h
- * @brief Defines the AStarPathPlanner class.
+ * @brief Defines the AdaptiveAStarPathPlanner class.
  * @authur: Tianhua Zhao
  */
 
@@ -13,11 +13,11 @@
 #include <stdexcept>
 #include <iostream>
 #include <string>
-class AStarPathPlanner : public PathPlanner
+class AdaptiveAStarPathPlanner : public PathPlanner
 {
 public:
-	AStarPathPlanner() = default;
-	~AStarPathPlanner();
+	AdaptiveAStarPathPlanner() = default;
+	~AdaptiveAStarPathPlanner();
 
 	void Load(const std::vector<std::vector<char>> &map) override;
 	void Go() override;

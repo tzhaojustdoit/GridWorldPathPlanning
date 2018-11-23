@@ -27,7 +27,7 @@
     <ClCompile Include="Point2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AStarPathPlanner.cpp">
+    <ClCompile Include="AdaptiveAStarPathPlanner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,7 +47,7 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AStarPathPlanner.h">
+    <ClInclude Include="AdaptiveAStarPathPlanner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

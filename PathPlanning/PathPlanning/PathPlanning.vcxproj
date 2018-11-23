@@ -118,14 +118,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AStarPathPlanner.cpp" />
+    <ClCompile Include="AdaptiveAStarPathPlanner.cpp" />
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Point2D.cpp" />
     <ClCompile Include="PriorityQueue.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AStarPathPlanner.h" />
+    <ClInclude Include="AdaptiveAStarPathPlanner.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="PathPlanner.h" />
     <ClInclude Include="Point2D.h" />
