@@ -51,5 +51,5 @@ private:
 	Node* parent_ = nullptr;
 	int x_ = 0;
 	int y_ = 0;
-	CellType type_ = UNEXPLORED;
+	CellType type_ = EMPTY;
 };
