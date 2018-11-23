@@ -168,7 +168,7 @@ std::vector<Node*> AdaptiveAStarPathPlanner::Plan()
 		current_node = open.top();
 		open.pop();
 		// get the current location
-		Point2D location{ current_node->get_x(), current_node->get_y() };
+		Point2D location = current_node->get_location();
 		// if goal has been reached
 		if (location == goal_location_) {
 			// update h values for nodes in the closed list
