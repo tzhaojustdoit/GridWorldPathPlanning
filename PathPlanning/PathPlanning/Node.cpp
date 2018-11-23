@@ -36,9 +36,9 @@ int Node::get_y() const
 	return y_;
 }
 
-CellType Node::get_type() const
+bool Node::is_blocked() const
 {
-	return type_;
+	return blocked;
 }
 
 
@@ -66,9 +66,9 @@ void Node::set_location(int x, int y)
 	y_ = y;
 }
 
-void Node::set_type(CellType type)
+void Node::set_blocked()
 {
-	type_ = type;
+	blocked = true;
 }
 
 

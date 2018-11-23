@@ -36,8 +36,6 @@ void AStarPathPlanner::Go()
 {
 	// get the current node;
 	Node & current_node = observed_world_[current_location_.x][current_location_.y];
-	// mark the current node as empty in the observed map
-	current_node.set_type(EMPTY);
 	// sense adjacent cells, update observed map
 	SenseAdjacentCells();
 	while (!(current_location_ == goal_location_))
@@ -137,10 +135,9 @@ void AStarPathPlanner::ObserveLocation(int x, int y)
 		switch (observed)
 		{
 		case 'x':
-			observed_world_[x][y].set_type(BLOCKED);
+			observed_world_[x][y].set_blocked();
 			break;
 		default:
-			observed_world_[x][y].set_type(EMPTY);
 			break;
 		}
 	}
@@ -218,7 +215,7 @@ void AStarPathPlanner::Generate(int x, int y, Node* parent, PriorityQueue &open,
 {
 	try {
 		Node& current_node = observed_world_.at(x).at(y);
-		if (current_node.get_type() != BLOCKED) {
+		if (!current_node.is_blocked()) {
 			bool closedcontains = (std::find(closed.begin(), closed.end(), &current_node) != closed.end());
 			if (!open.contains(&current_node) && !closedcontains) {
 				Point2D location{ x,y };

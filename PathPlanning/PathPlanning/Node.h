@@ -26,7 +26,7 @@ public:
 	// get the y coordinate
 	int get_y() const;
 	// get the cell type
-	CellType get_type() const;
+	bool is_blocked() const;
 
 	// mutators
 	// set the g value;
@@ -38,7 +38,7 @@ public:
 	// set the location: x, y coordinates
 	void set_location(int, int);
 	// set the cell type
-	void set_type(CellType type);
+	void set_blocked();
 
 	// comparators
 	bool operator< (const Node &);
@@ -51,5 +51,5 @@ private:
 	Node* parent_ = nullptr;
 	int x_ = 0;
 	int y_ = 0;
-	CellType type_ = EMPTY;
+	bool blocked = false;
 };
