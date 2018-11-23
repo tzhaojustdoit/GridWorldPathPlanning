@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "Point2D.h"
 // A node in a graph.
 // @author Tianhua Zhao
 
@@ -26,6 +27,8 @@ public:
 	int get_y() const;
 	// get the cell type
 	bool is_blocked() const;
+	// get location 
+	Point2D get_location() const;
 
 	// mutators
 	// set the g value;

@@ -41,6 +41,11 @@ bool Node::is_blocked() const
 	return blocked;
 }
 
+Point2D Node::get_location() const
+{
+	return Point2D{x_, y_};
+}
+
 
 void Node::set_g(int g)
 {
