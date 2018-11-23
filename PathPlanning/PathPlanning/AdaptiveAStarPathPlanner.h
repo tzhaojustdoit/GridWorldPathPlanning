@@ -15,20 +15,20 @@
 #include "PriorityQueue.h"
 #include "Point2D.h"
 
- /**
-  * @class AdaptiveAStarPathPlanner
-  *
-  * @brief A planning system for a self driving car using adaptive a* algorithm.
-  */
+/**
+ * @class AdaptiveAStarPathPlanner
+ *
+ * @brief a planning system for a self driving car using adaptive a* algorithm.
+ */
 class AdaptiveAStarPathPlanner : public PathPlanner
 {
 public:
 	~AdaptiveAStarPathPlanner() = default;
 
 	/**
-	 * @brief Load the map. The self driving car navigates on this map.
-	 *   The car initially only knows the start and goal position, and assumes
-	 *   the map is empty.
+	 * @brief load the map. The self driving car navigates on this map.
+	 *  The car initially only knows the start and goal position, and assumes
+	 *  the map is empty.
 	 */
 	void Load(const std::vector<std::vector<char>> &map) override;
 
