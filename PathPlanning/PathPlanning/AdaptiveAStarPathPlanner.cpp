@@ -1,10 +1,5 @@
 #include "AdaptiveAStarPathPlanner.h"
 
-
-AdaptiveAStarPathPlanner::~AdaptiveAStarPathPlanner()
-{
-}
-
 // assumption: input map has one and only one start location and one and only one goal location.
 void AdaptiveAStarPathPlanner::Load(const std::vector<std::vector<char>> &map)
 {
