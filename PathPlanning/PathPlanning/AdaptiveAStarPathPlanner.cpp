@@ -177,7 +177,7 @@ std::vector<Node*> AdaptiveAStarPathPlanner::Plan()
 			{
 				var->set_h(g_goal - var->get_g());
 			}
-			// make path points 
+			// make path points from the current location(exclusive) to the goal location(exclusive)
 			while (current_node->get_parent() != nullptr)
 			{
 				path_points.push_back(current_node);
@@ -238,6 +238,8 @@ void AdaptiveAStarPathPlanner::PrintNavigationMap(const std::vector<Node*> &path
 {
 	std::vector<std::string> rows;
 	rows.reserve(observed_world_.size());
+
+	// set blocked to 'x", set empty to '_'
 	for (std::vector<Node> var : observed_world_)
 	{
 		std::string row;
@@ -251,6 +253,7 @@ void AdaptiveAStarPathPlanner::PrintNavigationMap(const std::vector<Node*> &path
 		}
 		rows.push_back(row);
 	}
+
 	// set path points to 'o'
 	for (unsigned i = 1; i < path_points.size(); i++)
 	{
@@ -263,6 +266,7 @@ void AdaptiveAStarPathPlanner::PrintNavigationMap(const std::vector<Node*> &path
 	int start_x = current_location_.x;
 	int start_y = current_location_.y;
 	rows[start_x].replace(start_y * 2, 1, 1, 's');
+
 	// set goal to 'g'
 	int goal_x = goal_location_.x;
 	int goal_y = goal_location_.y;

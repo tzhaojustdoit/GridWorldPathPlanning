@@ -6,7 +6,7 @@
 #include "AStarPathPlanner.h"
 #include <iostream>
 int main() {
-	std::string filename = "10.txt";
+	std::string filename = "15.txt";
 	std::vector<std::vector<char>> map;
 	std::ifstream input_file_stream(filename);
 	std::string line;
@@ -30,7 +30,7 @@ int main() {
 		}
 		input_file_stream.close();
 	}
-	PathPlanner* p = new AStarPathPlanner();
+	PathPlanner* p = new AdaptiveAStarPathPlanner();
 	p->Load(map);
 	p->Go();
 	return 0;
