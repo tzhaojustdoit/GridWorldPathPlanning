@@ -3,8 +3,9 @@
 #include <string>
 #include "PathPlanner.h"
 #include "AstarPathPlanner.h"
+#include <iostream>
 int main() {
-	std::string filename = "5.txt";
+	std::string filename = "10.txt";
 	std::vector<std::vector<char>> map;
 	std::ifstream input_file_stream(filename);
 	std::string line;
@@ -30,4 +31,7 @@ int main() {
 	}
 	PathPlanner* p = new AStarPathPlanner();
 	p->Load(map);
+	p->Go();
+	std::cin.ignore();
+	return 0;
 }
