@@ -1,27 +1,70 @@
-#pragma once
+/**
+ * @file PriorityQueue.h
+ * @brief Defines the PriorityQueue class.
+ * @authur: Tianhua Zhao
+ */
+
+#ifndef PRIORITY_QUEUE_
+#define PRIORITY_QUEUE_
+
 #include <vector>
+
 #include "Node.h"
-// A priority queue implementation, min element is alway on top.
-// @author: Tianhua Zhao
+
+/*
+ *@class PriorityQueue
+ *
+ *@brief A priority queue of node pointers. Min element is always on top and poped first.
+ * Smaller f value is favored; if f values are the same, node with larger g value is favored.
+ */
 class PriorityQueue
 {
 public:
-	PriorityQueue();
-	~PriorityQueue();
-	// push a node to priority queue.
+	/**
+	 * @brief insert a node pointer
+	 */
 	void push(Node*);
-	// pop the min node.
+
+	/**
+	 * @brief remove top node pointer
+	 */
 	Node* pop();
-	// peek the min node.
+
+	/**
+	 * @brief access top node pointer
+	 */
 	Node* top() const;
-	// is the priority queue empty?
+
+	/**
+	 * @brief test whether container is empty
+	 */
 	bool empty() const;
-	// the size of the priority queue
+
+	/**
+	 * @brief return size
+	 */
 	int size() const;
-	// does the priority queue contain the elememt?
+
+	/**
+	 * @brief test whether a node pointer is in the priority queue
+	 */
 	bool contains(Node*) const;
+
 private:
+	/**
+	 * @brief the underlying container
+	 */
 	std::vector<Node*> vec_;
+
+	/**
+	 * @brief perculate a node* up to the correct location
+	 */
 	void perculate_up(int);
+
+	/**
+	 * @brief perculate a node* down to the correct location
+	 */
 	void perculate_down(int);
 };
+#endif // !PRIORITY_QUEUE_
+

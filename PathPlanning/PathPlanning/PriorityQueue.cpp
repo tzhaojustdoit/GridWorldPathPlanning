@@ -1,16 +1,5 @@
 #include "PriorityQueue.h"
 
-
-
-PriorityQueue::PriorityQueue()
-{
-}
-
-
-PriorityQueue::~PriorityQueue()
-{
-}
-
 void PriorityQueue::push(Node* n)
 {
 	vec_.push_back(n);
