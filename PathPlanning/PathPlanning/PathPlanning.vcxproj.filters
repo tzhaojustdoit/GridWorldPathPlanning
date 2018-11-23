@@ -30,6 +30,9 @@
     <ClCompile Include="AdaptiveAStarPathPlanner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AStarPathPlanner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Node.h">
@@ -48,6 +51,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AdaptiveAStarPathPlanner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AStarPathPlanner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
