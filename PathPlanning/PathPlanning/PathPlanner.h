@@ -23,6 +23,7 @@ public:
 	 * @brief Load the map. The self driving car navigates on this map.
 	 *  The car initially only knows the start and goal position, and assumes
 	 *  the map is empty.
+	 * @assumption Input map has one and only one start location and one and only one goal location.
 	 */
 	virtual void Load(const std::vector<std::vector<char>> &map) = 0;
 
