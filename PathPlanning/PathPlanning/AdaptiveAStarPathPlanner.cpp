@@ -73,8 +73,6 @@ void AdaptiveAStarPathPlanner::Go()
 	std::cout << "Navigation ended." << std::endl << "Total number of nodes expanded is: " << num_of_expanded_nodes_ <<"."<< std::endl;
 }
 
-
-
 int AdaptiveAStarPathPlanner::GetNumOfSearches()
 {
 	return num_of_searches_;
@@ -128,13 +126,8 @@ void AdaptiveAStarPathPlanner::ObserveLocation(int x, int y)
 {
 	try {
 		char observed = actual_world_.at(x).at(y);
-		switch (observed)
-		{
-		case 'x':
+		if (observed == 'x') {
 			observed_world_[x][y].set_blocked();
-			break;
-		default:
-			break;
 		}
 	}
 	catch (const std::out_of_range&) {
