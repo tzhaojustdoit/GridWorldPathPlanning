@@ -26,14 +26,14 @@ public:
 	~AdaptiveAStarPathPlanner() = default;
 
 	/**
-	 * @brief load the map. The self driving car navigates on this map.
+	 * @brief Load the map. The self driving car navigates on this map.
 	 *  The car initially only knows the start and goal position, and assumes
 	 *  the map is empty.
 	 */
 	void Load(const std::vector<std::vector<char>> &map) override;
 
 	/**
-	 * @brief Start navigating until the car reaches the goal oris unable to reach the goal
+	 * @brief Start navigating until the car reaches the goal oris unable to reach the goal.
 	 */
 	void Go() override;
 
