@@ -14,7 +14,7 @@ void AStarPathPlanner::Load(const std::vector<std::vector<char>> &map)
 	unsigned row = map.size();
 	// num of columns
 	unsigned col = map[0].size();
-	// intialize the currently observed world
+	// intialize the currently observed map, all nodes are marked as unexplored initially.
 	observed_world_.reserve(row);
 	for (unsigned i = 0; i < col; i++)
 	{
@@ -26,7 +26,7 @@ void AStarPathPlanner::Load(const std::vector<std::vector<char>> &map)
 		}
 		observed_world_.push_back(row_vec);
 	}
-	// set the start location
+	// set the current location
 	current_location_ = GetStartLocation();
 	// set the goal location
 	goal_location_ = GetGoalLocation();
@@ -34,22 +34,22 @@ void AStarPathPlanner::Load(const std::vector<std::vector<char>> &map)
 
 void AStarPathPlanner::Go()
 {
-
-	// get the cell;
-	Node & my_node = observed_world_[current_location_.x][current_location_.y];
-	// mark the start location as empty in the observed world map
-	my_node.set_type(EMPTY);
-	// sense adjacent cells
+	// get the current node;
+	Node & current_node = observed_world_[current_location_.x][current_location_.y];
+	// mark the current node as empty in the observed map
+	current_node.set_type(EMPTY);
+	// sense adjacent cells, update observed map
 	SenseAdjacentCells();
-
 	while (!(current_location_ == goal_location_))
 	{
-		// plan using the currently observed world map
+		// plan using the currently observed map
 		std::stack<Point2D> path_points = Plan();
 		// if path is not found, break out of the loop
 		if (path_points.empty()) {
+			std::cout << "No route found" << std::endl;
 			break;
 		}
+		// if path is found, move one step
 		current_location_ = path_points.top();
 		path_points.pop();
 		// move the car along the shortest path until it is blocked by an obstacle or reaches the goal
@@ -57,13 +57,14 @@ void AStarPathPlanner::Go()
 		{
 			// sense adjacent cells
 			SenseAdjacentCells();
-			// get location of the next cell
+			// get the next path point
 			Point2D next = path_points.top();
 			int x = next.x;
 			int y = next.y;
 			// if next cell is blocked, break out of the loop
 			if (actual_world_[x][y] == 'x')
 			{
+				std::cout << "Obstacle detected, start replanning" << std::endl;
 				break;
 			}
 			// move to the next cell
@@ -72,6 +73,7 @@ void AStarPathPlanner::Go()
 		}
 	}
 	// print number of nodes expanded
+	std::cout << "Total number of nodes expanded is: " << num_of_expanded_nodes_ << std::endl;
 }
 
 
@@ -183,33 +185,33 @@ std::stack<Point2D> AStarPathPlanner::Plan()
 void AStarPathPlanner::Expand(int x, int y, PriorityQueue &open, std::vector<Node*> &closed)
 {
 	num_of_expanded_nodes_++;
-	Node* my_node = &observed_world_[x][y];
+	Node* current_node = &observed_world_[x][y];
 	// generate 4 adjacent nodes
-	Generate(x - 1, y, my_node, open, closed);
-	Generate(x, y - 1, my_node, open, closed);
-	Generate(x + 1, y, my_node, open, closed);
-	Generate(x, y + 1, my_node, open, closed);
+	Generate(x - 1, y, current_node, open, closed);
+	Generate(x, y - 1, current_node, open, closed);
+	Generate(x + 1, y, current_node, open, closed);
+	Generate(x, y + 1, current_node, open, closed);
 }
 
 void AStarPathPlanner::Generate(int x, int y, Node* parent, PriorityQueue &open, std::vector<Node*> &closed)
 {
 	try {
-		Node& my_node = observed_world_.at(x).at(y);
-		if (my_node.get_type() != BLOCKED) {
-			bool closedcontains = (std::find(closed.begin(), closed.end(), &my_node) != closed.end());
-			if (!open.contains(&my_node) && !closedcontains) {
+		Node& current_node = observed_world_.at(x).at(y);
+		if (current_node.get_type() != BLOCKED) {
+			bool closedcontains = (std::find(closed.begin(), closed.end(), &current_node) != closed.end());
+			if (!open.contains(&current_node) && !closedcontains) {
 				Point2D location{ x,y };
 				int h = location.get_manhattan_distance(goal_location_);
-				my_node.set_h(h);
+				current_node.set_h(h);
 				int g = parent->get_g() + 1;
-				my_node.set_g(g);
-				my_node.set_parent(parent);
-				open.push(&my_node);
+				current_node.set_g(g);
+				current_node.set_parent(parent);
+				open.push(&current_node);
 			}
-			else if (open.contains(&my_node)) {
+			else if (open.contains(&current_node)) {
 				int g = parent->get_g() + 1;
-				my_node.set_g(g);
-				my_node.set_parent(parent);
+				current_node.set_g(g);
+				current_node.set_parent(parent);
 			}
 		}
 	}
