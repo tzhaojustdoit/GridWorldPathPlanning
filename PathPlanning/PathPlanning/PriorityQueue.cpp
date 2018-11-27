@@ -61,3 +61,10 @@ void PriorityQueue::perculate_down(int idx)
 		idx = minChildIdx;
 	}
 }
+
+void PriorityQueue::reset_type()
+{
+	for (Node* var : vec_) {
+		var->set_type(DEFAULT);
+	}
+}

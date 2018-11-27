@@ -50,6 +50,10 @@ public:
 	 */
 	bool contains(Node*) const;
 
+	/**
+	 * @brief reset the type of each node in the pq to DEFAULT
+	 */
+	void reset_type();
 private:
 	/**
 	 * @brief the underlying container
@@ -65,6 +69,7 @@ private:
 	 * @brief perculate a node* down to the correct location
 	 */
 	void perculate_down(int);
+
 };
 #endif // !PRIORITY_QUEUE_
 
