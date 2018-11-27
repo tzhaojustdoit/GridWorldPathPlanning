@@ -164,23 +164,32 @@ std::vector<Node*> AStarPathPlanner::Plan()
 	open.push(current_node);
 	while (!open.empty())
 	{
-		// move the top of the open list to the closed list
+		// get the node with the min f value
 		current_node = open.top();
-		open.pop();
 		// get the current location
 		Point2D location = current_node->get_location();
 		// if goal has been reached
 		if (location == goal_location_) {
+			// reset type for each node in open and closed list
+			for (Node* var : closed)
+			{
+				var->set_type(DEFAULT);
+			}
+			open.reset_type();
 			// make path points 
 			while (current_node->get_parent() != nullptr)
 			{
 				path_points.push_back(current_node);
 				current_node = current_node->get_parent();
 			}
+
 			break;
 		}
+		// remove from the open list
+		open.pop();
 		// add the node to the closed list
 		closed.push_back(current_node);
+		current_node->set_type(CLOSED);
 		// expand the node
 		Expand(location.x, location.y, open, closed);
 	}
@@ -205,8 +214,7 @@ void AStarPathPlanner::Generate(int x, int y, Node* parent, PriorityQueue &open,
 	try {
 		Node& current_node = observed_world_.at(x).at(y);
 		if (!current_node.is_blocked()) {
-			bool closedcontains = (std::find(closed.begin(), closed.end(), &current_node) != closed.end());
-			if (!open.contains(&current_node) && !closedcontains) {
+			if (current_node.get_type() == DEFAULT) {
 				Point2D location{ x,y };
 				int g = parent->get_g() + 1;
 				current_node.set_g(g);
@@ -216,8 +224,9 @@ void AStarPathPlanner::Generate(int x, int y, Node* parent, PriorityQueue &open,
 				}
 				current_node.set_parent(parent);
 				open.push(&current_node);
+				current_node.set_type(OPEN);
 			}
-			else if (open.contains(&current_node)) {
+			else if (current_node.get_type() == OPEN) {
 				int g = parent->get_g() + 1;
 				current_node.set_g(g);
 				current_node.set_parent(parent);

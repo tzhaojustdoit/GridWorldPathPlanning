@@ -7,13 +7,14 @@
 #ifndef ADAPTIVE_A_STAR_PATH_PLANNER_
 #define ADAPTIVE_A_STAR_PATH_PLANNER_
 
-#include <stdexcept>
+ //#include <stdexcept>
 #include <iostream>
 #include <string>
 
 #include "PathPlanner.h"
 #include "PriorityQueue.h"
 #include "Point2D.h"
+#include "CellType.h"
 
 /**
  * @class AdaptiveAStarPathPlanner
