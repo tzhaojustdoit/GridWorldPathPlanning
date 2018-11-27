@@ -8,6 +8,7 @@
 #define NODE_
 #include <vector>
 #include "Point2D.h"
+#include "CellType.h"
 
 /**
  * @class Node
@@ -66,6 +67,11 @@ public:
 	Point2D get_location() const;
 
 	/**
+	 *@brief get the cell type, i.e., in open list or closed list or neither
+	 */
+	CellType get_type() const;
+
+	/**
 	 *@brief set g value
 	 */
 	void set_g(int);
@@ -91,19 +97,24 @@ public:
 	void set_blocked();
 
 	/**
+	 *@brief mark the cell as blocked
+	 */
+	void set_type(CellType type);
+
+	/**
 	 *@brief overloaded < operator 
 	 */
 	bool operator< (const Node &);
 
 private:
-
 	int g_ = 0;
 	int h_ = 0;
 	int f_ = 0;
 	Node* parent_ = nullptr;
 	int x_ = 0;
 	int y_ = 0;
-	bool blocked = false;
+	bool blocked_ = false;
+	CellType type_ = DEFAULT;
 };
 #endif // !NODE_
 

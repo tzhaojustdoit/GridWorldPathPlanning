@@ -38,12 +38,17 @@ int Node::get_y() const
 
 bool Node::is_blocked() const
 {
-	return blocked;
+	return blocked_;
 }
 
 Point2D Node::get_location() const
 {
 	return Point2D{x_, y_};
+}
+
+CellType Node::get_type() const
+{
+	return type_;
 }
 
 
@@ -73,7 +78,12 @@ void Node::set_location(int x, int y)
 
 void Node::set_blocked()
 {
-	blocked = true;
+	blocked_ = true;
+}
+
+void Node::set_type(CellType type)
+{
+	type_ = type;
 }
 
 
