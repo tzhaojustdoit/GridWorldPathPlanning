@@ -228,8 +228,10 @@ void AdaptiveAStarPathPlanner::Generate(int x, int y, Node* parent, PriorityQueu
 			}
 			else if (current_node.get_type() == OPEN) {
 				int g = parent->get_g() + 1;
-				current_node.set_g(g);
-				current_node.set_parent(parent);
+				if (g < current_node.get_g()) {
+					current_node.set_g(g);
+					current_node.set_parent(parent);
+				}
 			}
 		}
 	}
