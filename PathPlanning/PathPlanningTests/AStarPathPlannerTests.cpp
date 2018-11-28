@@ -49,8 +49,8 @@ namespace PathPlanningTests
 		}
 
 	private:
-		std::vector<std::vector<char>> map1;
-		std::vector<std::vector<char>> map2;
-		std::vector<std::vector<char>> map3;
+		std::vector<std::vector<char> > map1;
+		std::vector<std::vector<char> > map2;
+		std::vector<std::vector<char> > map3;
 	};
 }
