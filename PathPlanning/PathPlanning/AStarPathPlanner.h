@@ -7,7 +7,6 @@
 #ifndef A_STAR_PATH_PLANNER_
 #define A_STAR_PATH_PLANNER_
 
-//#include <stdexcept>
 #include <iostream>
 #include <string>
 
@@ -23,6 +22,7 @@
 class AStarPathPlanner : public PathPlanner
 {
 public:
+	AStarPathPlanner() = default;
 	~AStarPathPlanner() = default;
 
 	/**
@@ -31,7 +31,7 @@ public:
 	 *  the map is empty.
 	 * @assumption Input map has one and only one start location and one and only one goal location.
 	 */
-	void Load(const std::vector<std::vector<char>> &map) override;
+	void Load(const std::vector<std::vector<char> > &map) override;
 
 	/**
 	 * @brief Start navigating until the car reaches the goal oris unable to reach the goal.
@@ -62,12 +62,12 @@ private:
 	/**
 	 * @brief actual world map
 	 */
-	std::vector<std::vector<char>> actual_world_;
+	std::vector<std::vector<char> > actual_world_;
 
 	/**
 	 * @brief the map that the car has explored so far
 	 */
-	std::vector<std::vector<Node>> observed_world_;
+	std::vector<std::vector<Node> > observed_world_;
 
 	/**
 	 * @brief number of searches

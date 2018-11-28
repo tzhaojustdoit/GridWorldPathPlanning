@@ -1,7 +1,7 @@
 #include "AdaptiveAStarPathPlanner.h"
 
 // assumption: input map has one and only one start location and one and only one goal location.
-void AdaptiveAStarPathPlanner::Load(const std::vector<std::vector<char>> &map)
+void AdaptiveAStarPathPlanner::Load(const std::vector<std::vector<char> > &map)
 {
 	// copy the map
 	actual_world_ = map;
@@ -70,7 +70,7 @@ void AdaptiveAStarPathPlanner::Go()
 		}
 	}
 	// print number of nodes expanded
-	std::cout << "Navigation ended." << std::endl << "Total number of nodes expanded is: " << num_of_expanded_nodes_ <<"."<< std::endl;
+	std::cout << std::endl << "Navigation ended." << std::endl << "Total number of nodes expanded is: " << num_of_expanded_nodes_ << "." << std::endl;
 }
 
 int AdaptiveAStarPathPlanner::GetNumOfSearches()
@@ -137,7 +137,7 @@ void AdaptiveAStarPathPlanner::ObserveLocation(int x, int y)
 std::vector<Node*> AdaptiveAStarPathPlanner::Plan()
 {
 	num_of_searches_++;
-	std::cout << "Planning (" << num_of_searches_ << ")..." << std::endl;
+	std::cout << std::endl << "Planning (" << num_of_searches_ << ")..." << std::endl;
 	// open list, contains generated nodes
 	PriorityQueue open;
 	// closed list, contains expanded nodes
@@ -153,7 +153,7 @@ std::vector<Node*> AdaptiveAStarPathPlanner::Plan()
 	int h = current_location_.get_manhattan_distance(goal_location_);
 	current_node->set_h(h);
 	// set parent pointer
-	current_node->set_parent(nullptr);
+	current_node->set_parent(0);
 	// add to the open list
 	open.push(current_node);
 	current_node->set_type(OPEN);
@@ -178,7 +178,7 @@ std::vector<Node*> AdaptiveAStarPathPlanner::Plan()
 			}
 			open.reset_type();
 			// make path points from the current location(exclusive) to the goal location(exclusive)
-			while (current_node->get_parent() != nullptr)
+			while (current_node->get_parent() != 0)
 			{
 				path_points.push_back(current_node);
 				current_node = current_node->get_parent();
@@ -213,7 +213,7 @@ void AdaptiveAStarPathPlanner::Generate(int x, int y, Node* parent, PriorityQueu
 {
 	try {
 		Node& current_node = observed_world_.at(x).at(y);
-		if (!current_node.is_blocked()) {			
+		if (!current_node.is_blocked()) {
 			if (current_node.get_type() == DEFAULT) {
 				Point2D location{ x,y };
 				int g = parent->get_g() + 1;
@@ -230,6 +230,8 @@ void AdaptiveAStarPathPlanner::Generate(int x, int y, Node* parent, PriorityQueu
 				int g = parent->get_g() + 1;
 				if (g < current_node.get_g()) {
 					current_node.set_g(g);
+					// update the node position in the open list
+					open.decrease_key(&current_node);
 					current_node.set_parent(parent);
 				}
 			}

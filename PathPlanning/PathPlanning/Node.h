@@ -19,7 +19,7 @@
 class Node
 {
 public:
-	Node();
+	Node() = default;
 
 	/**
 	 *@brief construct a node with given x, y coordinate
@@ -110,7 +110,7 @@ private:
 	int g_ = 0;
 	int h_ = 0;
 	int f_ = 0;
-	Node* parent_ = nullptr;
+	Node* parent_ = 0;
 	int x_ = 0;
 	int y_ = 0;
 	bool blocked_ = false;

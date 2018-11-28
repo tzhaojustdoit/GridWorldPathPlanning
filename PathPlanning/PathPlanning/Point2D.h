@@ -7,6 +7,7 @@
 #ifndef POINT_2D_
 #define POINT_2D_
 
+#include <stdlib.h>
 #include <cmath>
 
 /**

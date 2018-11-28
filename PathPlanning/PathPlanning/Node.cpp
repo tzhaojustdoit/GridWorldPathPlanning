@@ -1,6 +1,5 @@
 #include "Node.h"
 
-Node::Node() {}
 Node::Node(int x, int y) : x_(x), y_(y)
 {
 }

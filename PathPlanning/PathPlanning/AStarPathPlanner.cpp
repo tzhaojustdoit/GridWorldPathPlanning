@@ -1,7 +1,7 @@
 #include "AStarPathPlanner.h"
 
 // assumption: input map has one and only one start location and one and only one goal location.
-void AStarPathPlanner::Load(const std::vector<std::vector<char>> &map)
+void AStarPathPlanner::Load(const std::vector<std::vector<char> > &map)
 {
 	// copy the map
 	actual_world_ = map;
@@ -70,7 +70,7 @@ void AStarPathPlanner::Go()
 		}
 	}
 	// print number of nodes expanded
-	std::cout << "Navigation ended." << std::endl << "Total number of nodes expanded is: " << num_of_expanded_nodes_ << "." << std::endl;
+	std::cout << std::endl << "Navigation ended." << std::endl << "Total number of nodes expanded is: " << num_of_expanded_nodes_ << "." << std::endl;
 }
 
 
@@ -144,7 +144,7 @@ void AStarPathPlanner::ObserveLocation(int x, int y)
 std::vector<Node*> AStarPathPlanner::Plan()
 {
 	num_of_searches_++;
-	std::cout << "Planning (" << num_of_searches_ << ")..." << std::endl;
+	std::cout << std::endl << "Planning (" << num_of_searches_ << ")..." << std::endl;
 	// open list, contains generated nodes
 	PriorityQueue open;
 	// closed list, contains expanded nodes
@@ -159,7 +159,7 @@ std::vector<Node*> AStarPathPlanner::Plan()
 	int h = current_location_.get_manhattan_distance(goal_location_);
 	current_node->set_h(h);
 	// set parent pointer
-	current_node->set_parent(nullptr);
+	current_node->set_parent(0);
 	// add to the open list
 	open.push(current_node);
 	while (!open.empty())
@@ -177,7 +177,7 @@ std::vector<Node*> AStarPathPlanner::Plan()
 			}
 			open.reset_type();
 			// make path points 
-			while (current_node->get_parent() != nullptr)
+			while (current_node->get_parent() != 0)
 			{
 				path_points.push_back(current_node);
 				current_node = current_node->get_parent();
@@ -230,6 +230,8 @@ void AStarPathPlanner::Generate(int x, int y, Node* parent, PriorityQueue &open,
 				int g = parent->get_g() + 1;
 				if (g < current_node.get_g()) {
 					current_node.set_g(g);
+					// update the node position in the open list
+					open.decrease_key(&current_node);
 					current_node.set_parent(parent);
 				}
 			}

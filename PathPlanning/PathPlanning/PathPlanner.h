@@ -17,6 +17,7 @@
 class PathPlanner
 {
 public:
+	PathPlanner() = default;
 	virtual ~PathPlanner() = default;
 
 	/**
@@ -25,7 +26,7 @@ public:
 	 *  the map is empty.
 	 * @assumption Input map has one and only one start location and one and only one goal location.
 	 */
-	virtual void Load(const std::vector<std::vector<char>> &map) = 0;
+	virtual void Load(const std::vector<std::vector<char> > &map) = 0;
 
 	/**
 	 * @brief Start navigating until the car reaches the goal oris unable to reach the goal.

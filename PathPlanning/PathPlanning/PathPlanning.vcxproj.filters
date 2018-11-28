@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{a5edc326-4453-4c8f-9c2b-c5e7727d7fcf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Driver.cpp">
@@ -56,6 +59,9 @@
     <ClInclude Include="AStarPathPlanner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CellType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PathPlanning.rc">
@@ -64,58 +70,58 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="1.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Data</Filter>
     </Text>
     <Text Include="2.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Data</Filter>
     </Text>
     <Text Include="3.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Data</Filter>
     </Text>
     <Text Include="4.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Data</Filter>
     </Text>
     <Text Include="5.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Data</Filter>
     </Text>
     <Text Include="6.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Data</Filter>
     </Text>
     <Text Include="7.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Data</Filter>
     </Text>
     <Text Include="8.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Data</Filter>
     </Text>
     <Text Include="9.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Data</Filter>
     </Text>
     <Text Include="10.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Data</Filter>
     </Text>
     <Text Include="11.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Data</Filter>
     </Text>
     <Text Include="12.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Data</Filter>
     </Text>
     <Text Include="13.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Data</Filter>
     </Text>
     <Text Include="14.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Data</Filter>
     </Text>
     <Text Include="15.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Data</Filter>
     </Text>
     <Text Include="16.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Data</Filter>
     </Text>
     <Text Include="17.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Data</Filter>
     </Text>
     <Text Include="18.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Data</Filter>
     </Text>
   </ItemGroup>
 </Project>
