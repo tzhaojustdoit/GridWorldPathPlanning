@@ -53,7 +53,7 @@ int main(int argc, char *argv[]) {
 		if (strcmp(argv[2], "a*") == 0) {
 			p = new AdaptiveAStarPathPlanner();
 		} 
-		if (strcmp(argv[2], "aa*") == 0) {
+		else if (strcmp(argv[2], "aa*") == 0) {
 			p = new AStarPathPlanner();
 		}
 		else {
