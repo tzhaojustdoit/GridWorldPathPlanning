@@ -1,10 +1,24 @@
+/**
+ * @file Driver.cpp
+ * @brief Defines the main.
+ * @authur: Tianhua Zhao
+ */
+
 #include <vector>
 #include <fstream>
 #include <string>
+#include <iostream>
+
 #include "PathPlanner.h"
 #include "AdaptiveAStarPathPlanner.h"
 #include "AStarPathPlanner.h"
-#include <iostream>
+
+/*
+ *@brief Reads input map from a txt file and runs AdaptiveAstarPathPlanner or AstarPathPlanner on the map.
+ *Accepts two command line input: 1. file name. 2. a* or adaptive a*.
+ *Sample command line input : 1.txt a*
+ *						      10.txt aa*
+ */
 int main(int argc, char *argv[]) {
 	if (argc < 3) {
 		std::cout << "Invalid argument count." << std::endl;
@@ -15,12 +29,13 @@ int main(int argc, char *argv[]) {
 	std::ifstream input_file_stream(filename.c_str());
 	std::string line;
 	if (input_file_stream.good()) {
-		int row;
+		int row; // number of rows
 		input_file_stream >> row;
-		int col;
+		int col; // number of columns
 		input_file_stream >> col;
 		map.reserve(row);
 		char cur;
+		// construct a 2d vector of char
 		for (int i = 0; i < row; i++)
 		{
 			std::vector<char> row_vec;
@@ -33,6 +48,7 @@ int main(int argc, char *argv[]) {
 			map.push_back(row_vec);
 		}
 		input_file_stream.close();
+		// construct PathPlanner
 		PathPlanner* p;
 		if (strcmp(argv[2], "a*") == 0) {
 			p = new AdaptiveAStarPathPlanner();
@@ -44,8 +60,10 @@ int main(int argc, char *argv[]) {
 			std::cout << "Invalid argument." << std::endl;
 			return 0;
 		}
+		// load the map
 		std::cout << "Loading into the world..." << std::endl;
 		p->Load(map);
+		// go
 		std::cout << "Navigation starts:" << std::endl;
 		p->Go();
 	}
