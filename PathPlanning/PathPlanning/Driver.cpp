@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
 		std::cout << "Invalid argument count." << std::endl;
 		return 0;
 	}
-	std::string filename = "../data/" + std::string(argv[2]);
+	std::string filename = "../data/" + std::string(argv[1]);
 	std::vector<std::vector<char> > map;
 	std::ifstream input_file_stream(filename.c_str());
 	std::string line;
@@ -34,10 +34,10 @@ int main(int argc, char *argv[]) {
 		}
 		input_file_stream.close();
 		PathPlanner* p;
-		if (argv[1] == "a*") {
+		if (strcmp(argv[2], "a*") == 0) {
 			p = new AdaptiveAStarPathPlanner();
 		} 
-		if (argv[1] == "a*") {
+		if (strcmp(argv[2], "aa*") == 0) {
 			p = new AStarPathPlanner();
 		}
 		else {
