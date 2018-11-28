@@ -51,12 +51,12 @@ public:
 	bool contains(Node*) const;
 
 	/**
-	 * @brief reset the type of each node in the pq to DEFAULT
+	 * @brief reset the type of each node in the priority queue to DEFAULT
 	 */
 	void reset_type();
 
 	/**
-	 * @brief reset the type of each node in the pq to DEFAULT
+	 * @brief move the node to the correct location since the value decreased.
 	 */
 	void decrease_key(Node* node);
 private:
