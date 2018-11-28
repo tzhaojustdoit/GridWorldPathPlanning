@@ -5,10 +5,14 @@
 #include "AdaptiveAStarPathPlanner.h"
 #include "AStarPathPlanner.h"
 #include <iostream>
-int main() {
-	std::string filename = "15.txt";
-	std::vector<std::vector<char>> map;
-	std::ifstream input_file_stream(filename);
+int main(int argc, char *argv[]) {
+	if (argc < 3) {
+		std::cout << "Invalid argument count." << std::endl;
+		return 0;
+	}
+	std::string filename = "../data/" + std::string(argv[2]);
+	std::vector<std::vector<char> > map;
+	std::ifstream input_file_stream(filename.c_str());
 	std::string line;
 	if (input_file_stream.good()) {
 		int row;
@@ -29,9 +33,24 @@ int main() {
 			map.push_back(row_vec);
 		}
 		input_file_stream.close();
+		PathPlanner* p;
+		if (argv[1] == "a*") {
+			p = new AdaptiveAStarPathPlanner();
+		} 
+		if (argv[1] == "a*") {
+			p = new AStarPathPlanner();
+		}
+		else {
+			std::cout << "Invalid argument." << std::endl;
+			return 0;
+		}
+		std::cout << "Loading into the world..." << std::endl;
+		p->Load(map);
+		std::cout << "Navigation starts:" << std::endl;
+		p->Go();
 	}
-	PathPlanner* p = new AdaptiveAStarPathPlanner();
-	p->Load(map);
-	p->Go();
+	else {
+		std::cout << "Error openning file." << std::endl;
+	}
 	return 0;
 }
