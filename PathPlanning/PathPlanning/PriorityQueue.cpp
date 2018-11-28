@@ -68,3 +68,12 @@ void PriorityQueue::reset_type()
 		var->set_type(DEFAULT);
 	}
 }
+
+void PriorityQueue::decrease_key(Node * node)
+{
+	for (unsigned i = 0; i < vec_.size(); i++) {
+		if (vec_[i] == node) {
+			perculate_up(i);
+		}
+	}
+}

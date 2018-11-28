@@ -54,6 +54,11 @@ public:
 	 * @brief reset the type of each node in the pq to DEFAULT
 	 */
 	void reset_type();
+
+	/**
+	 * @brief reset the type of each node in the pq to DEFAULT
+	 */
+	void decrease_key(Node* node);
 private:
 	/**
 	 * @brief the underlying container
