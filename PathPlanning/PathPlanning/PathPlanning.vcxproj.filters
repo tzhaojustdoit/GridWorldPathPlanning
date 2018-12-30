@@ -36,6 +36,9 @@
     <ClCompile Include="AStarPathPlanner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Display.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Node.h">
@@ -60,6 +63,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CellType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Display.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Marker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

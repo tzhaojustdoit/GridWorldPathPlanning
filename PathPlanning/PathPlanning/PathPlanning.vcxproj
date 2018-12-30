@@ -120,6 +120,7 @@
   <ItemGroup>
     <ClCompile Include="AdaptiveAStarPathPlanner.cpp" />
     <ClCompile Include="AStarPathPlanner.cpp" />
+    <ClCompile Include="Display.cpp" />
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Point2D.cpp" />
@@ -129,6 +130,8 @@
     <ClInclude Include="AdaptiveAStarPathPlanner.h" />
     <ClInclude Include="AStarPathPlanner.h" />
     <ClInclude Include="CellType.h" />
+    <ClInclude Include="Display.h" />
+    <ClInclude Include="Marker.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="PathPlanner.h" />
     <ClInclude Include="Point2D.h" />
