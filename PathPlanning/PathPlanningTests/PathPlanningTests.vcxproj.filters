@@ -41,5 +41,8 @@
     <ClCompile Include="AStarPathPlannerTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DisplayTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

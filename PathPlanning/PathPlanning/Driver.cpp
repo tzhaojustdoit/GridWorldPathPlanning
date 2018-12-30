@@ -12,6 +12,7 @@
 #include "PathPlanner.h"
 #include "AdaptiveAStarPathPlanner.h"
 #include "AStarPathPlanner.h"
+#include "Display.h"
 
 /*
  *@brief Reads input map from a txt file and runs AdaptiveAstarPathPlanner or AstarPathPlanner on the map.
@@ -20,6 +21,9 @@
  *						      10.txt aa*
  */
 int main(int argc, char *argv[]) {
+	std::vector<bool> map2{ 0,0,1,0 };
+	std::vector<int> path{ 1,3 };
+	Display::DisplayMap(2, 2, map2, path, 0, 3);
 	if (argc < 3) {
 		std::cout << "Invalid argument count." << std::endl;
 		return 0;

@@ -157,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AStarPathPlannerTests.cpp" />
+    <ClCompile Include="DisplayTests.cpp" />
     <ClCompile Include="NodeTests.cpp" />
     <ClCompile Include="Point2DTests.cpp" />
     <ClCompile Include="PriorityQueueTests.cpp" />
