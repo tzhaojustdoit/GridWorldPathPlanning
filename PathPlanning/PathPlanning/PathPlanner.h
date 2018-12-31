@@ -1,24 +1,26 @@
 /**
- * @file PathPlanner.h
- * @brief Defines the PathPlanner interface.
+ * @file AutomomousNavigator.h
+ * @brief Defines the AutomomousNavigator class.
  * @authur: Tianhua Zhao
  */
 
-#ifndef PATH_PLANNER
-#define PATH_PLANNER
+#ifndef AUTONOMOUS_NAVIGATOR_
+#define AUTONOMOUS_NAVIGATOR_
 
 #include <vector>
 
+#include "MockPerceptionModule.h"
+#include "PlanningModule.h"
 /**
- * @class PathPlanner
+ * @class AutomomousNavigator
  *
- * @brief a planning system for a self driving car.
+ * @brief an autonomous navigating system
  */
-class PathPlanner
+class AutomomousNavigator
 {
 public:
-	PathPlanner() = default;
-	virtual ~PathPlanner() = default;
+	AutomomousNavigator(MockPerceptionModule percepter, PlanningModule planner);
+	~AutomomousNavigator();
 
 	/**
 	 * @brief Load the map. The self driving car navigates on this map.
@@ -26,22 +28,22 @@ public:
 	 *  the map is empty.
 	 * @assumption Input map has one and only one start location and one and only one goal location.
 	 */
-	virtual void Load(const std::vector<std::vector<char> > &map) = 0;
+	void Init();
 
 	/**
-	 * @brief Start navigating until the car reaches the goal oris unable to reach the goal.
+	 * @brief Start navigating until the car reaches the goal.
 	 */
-	virtual void Go() = 0;
+	void Navigate();
 
 	/**
-	 * @brief number of searches
+	 * @brief number of searches by the planning module
 	 */
-	virtual int GetNumOfSearches() = 0;
+	int GetNumOfSearches();
 
 	/**
-	 * @brief number of nodes expanded
+	 * @brief number of nodes expanded by the planning module
 	 */
-	virtual int GetNumOfNodesExpanded() = 0;
+	virtual int GetNumOfNodesExpanded();
 };
-#endif // !PATH_PLANNER
+#endif // !AUTONOMOUS_NAVIGATOR_
 
