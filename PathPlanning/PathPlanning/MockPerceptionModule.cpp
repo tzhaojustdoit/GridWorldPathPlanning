@@ -21,6 +21,16 @@ void MockPerceptionModule::PerceiveSurroundings(std::vector<bool>& map, int loca
 	}
 }
 
+int MockPerceptionModule::Localize()
+{
+	for(int i = 0; i < actual_map_.size(); i++) {
+		if (actual_map_[i] == 's') {
+			return i;
+		}
+	}
+	return -1;
+}
+
 void MockPerceptionModule::PerceiveLocation(std::vector<bool> &map, int location)
 {
 	if (actual_map_[location] == 'x') {

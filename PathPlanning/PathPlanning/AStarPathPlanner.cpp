@@ -154,12 +154,12 @@ std::vector<Node*> AStarPathPlanner::Plan()
 
 	Node* current_node = &observed_world_[current_location_.x][current_location_.y];
 	// set g value
-	current_node->set_g(0);
+	current_node->SetG(0);
 	// set h value
 	int h = current_location_.get_manhattan_distance(goal_location_);
-	current_node->set_h(h);
+	current_node->SetH(h);
 	// set parent pointer
-	current_node->set_parent(0);
+	current_node->SetParentId(0);
 	// add to the open list
 	open.push(current_node);
 	while (!open.empty())
@@ -173,14 +173,14 @@ std::vector<Node*> AStarPathPlanner::Plan()
 			// reset type for each node in open and closed list
 			for (Node* var : closed)
 			{
-				var->set_type(DEFAULT);
+				var->SetType(DEFAULT);
 			}
-			open.reset_type();
+			open.reSetType();
 			// make path points 
-			while (current_node->get_parent() != 0)
+			while (current_node->GetParentId() != 0)
 			{
 				path_points.push_back(current_node);
-				current_node = current_node->get_parent();
+				current_node = current_node->GetParentId();
 			}
 
 			break;
@@ -189,7 +189,7 @@ std::vector<Node*> AStarPathPlanner::Plan()
 		open.pop();
 		// add the node to the closed list
 		closed.push_back(current_node);
-		current_node->set_type(CLOSED);
+		current_node->SetType(CLOSED);
 		// expand the node
 		Expand(location.x, location.y, open, closed);
 	}
@@ -214,25 +214,25 @@ void AStarPathPlanner::Generate(int x, int y, Node* parent, PriorityQueue &open,
 	try {
 		Node& current_node = observed_world_.at(x).at(y);
 		if (!current_node.is_blocked()) {
-			if (current_node.get_type() == DEFAULT) {
+			if (current_node.GetType() == DEFAULT) {
 				Point2D location{ x,y };
-				int g = parent->get_g() + 1;
-				current_node.set_g(g);
-				if (current_node.get_h() == 0) {
+				int g = parent->GetG() + 1;
+				current_node.SetG(g);
+				if (current_node.GetH() == 0) {
 					int h = location.get_manhattan_distance(goal_location_);
-					current_node.set_h(h);
+					current_node.SetH(h);
 				}
-				current_node.set_parent(parent);
+				current_node.SetParentId(parent);
 				open.push(&current_node);
-				current_node.set_type(OPEN);
+				current_node.SetType(OPEN);
 			}
-			else if (current_node.get_type() == OPEN) {
-				int g = parent->get_g() + 1;
-				if (g < current_node.get_g()) {
-					current_node.set_g(g);
+			else if (current_node.GetType() == OPEN) {
+				int g = parent->GetG() + 1;
+				if (g < current_node.GetG()) {
+					current_node.SetG(g);
 					// update the node position in the open list
 					open.decrease_key(&current_node);
-					current_node.set_parent(parent);
+					current_node.SetParentId(parent);
 				}
 			}
 		}

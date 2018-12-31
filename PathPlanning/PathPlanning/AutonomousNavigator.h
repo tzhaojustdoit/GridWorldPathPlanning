@@ -19,7 +19,7 @@
 class AutomomousNavigator
 {
 public:
-	AutomomousNavigator(MockPerceptionModule percepter, PlanningModule planner);
+	AutomomousNavigator(MockPerceptionModule & percepttion_unit, PlanningModule & planning_unit);
 	~AutomomousNavigator();
 
 	/**
@@ -28,7 +28,7 @@ public:
 	 *  the map is empty.
 	 * @assumption Input map has one and only one start location and one and only one goal location.
 	 */
-	void Init();
+	void SetDestination(int goal);
 
 	/**
 	 * @brief Start navigating until the car reaches the goal.
@@ -43,7 +43,19 @@ public:
 	/**
 	 * @brief number of nodes expanded by the planning module
 	 */
-	virtual int GetNumOfNodesExpanded();
+	int GetNumOfNodesExpanded();
+
+private:
+	MockPerceptionModule &perception_unit_;
+	PlanningModule &planning_unit_;
+	int rows_;
+	int cols_;
+	std::vector<int> path_;
+	std::vector<bool> obstacles_;
+	int current_location_;
+	int goal_location_;
+	int num_of_searches_ = 0;
+	int num_of_expanded_nodes_ = 0;
 };
 #endif // !AUTONOMOUS_NAVIGATOR_
 

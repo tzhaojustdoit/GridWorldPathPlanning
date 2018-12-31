@@ -1,100 +1,65 @@
 #include "Node.h"
 
-Node::Node(int x, int y) : x_(x), y_(y)
+
+Node::Node()
 {
 }
 
-int Node::get_g() const
+int Node::GetId() const
+{
+	return id_;
+}
+
+int Node::GetG() const
 {
 	return g_;
 }
 
-int Node::get_h() const
+int Node::GetH() const
 {
 	return h_;
 }
 
-int Node::get_f() const
+int Node::GetF() const
 {
 	return f_;
 }
 
-Node * Node::get_parent() const
+int Node::GetParentId() const
 {
-	return parent_;
+	return parent_id_;
 }
 
-
-int Node::get_x() const
-{
-	return x_;
-}
-
-int Node::get_y() const
-{
-	return y_;
-}
-
-bool Node::is_blocked() const
-{
-	return blocked_;
-}
-
-Point2D Node::get_location() const
-{
-	return Point2D{x_, y_};
-}
-
-CellType Node::get_type() const
+CellType Node::GetType() const
 {
 	return type_;
 }
 
+void Node::SetId(int id)
+{
+	id_ = id;
+}
 
-void Node::set_g(int g)
+
+void Node::SetG(int g)
 {
 	g_ = g;
 	f_ = g_ + h_;
 }
 
-void Node::set_h(int h)
+void Node::SetH(int h)
 {
 	h_ = h;
 	f_ = g_ + h_;
 }
 
-void Node::set_parent(Node * n)
+void Node::SetParentId(int id)
 {
-	parent_ = n;
+	parent_id_ = id;
 }
 
-
-void Node::set_location(int x, int y)
-{
-	x_ = x;
-	y_ = y;
-}
-
-void Node::set_blocked()
-{
-	blocked_ = true;
-}
-
-void Node::set_type(CellType type)
+void Node::SetType(CellType type)
 {
 	type_ = type;
-}
-
-
-bool Node::operator<(const Node &other)
-{
-	if (f_ < other.f_) {
-		return true;
-	}
-	if (f_ > other.f_)
-	{
-		return false;
-	}
-	return g_ > other.g_;
 }
 

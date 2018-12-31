@@ -7,7 +7,6 @@
 #ifndef NODE_
 #define NODE_
 #include <vector>
-#include "Point2D.h"
 #include "CellType.h"
 
 /**
@@ -19,101 +18,73 @@
 class Node
 {
 public:
-	Node() = default;
-
 	/**
 	 *@brief construct a node with given x, y coordinate
 	 */
-	Node(int x, int y);
+	Node();
+
+	/**
+	*@brief get id
+	*/
+	int GetId() const;
 
 	/**
 	 *@brief get g value
 	 */
-	int get_g() const;
+	int GetG() const;
 
 	/**
 	 *@brief get h value
 	 */
-	int get_h() const;
+	int GetH() const;
 
 	/**
 	 *@brief get f value
 	 */
-	int get_f() const;
+	int GetF() const;
 
 	/**
 	 *@brief get parent pointer
 	 */
-	Node* get_parent() const;
-
-	/**
-	 *@brief get x coordinate
-	 */
-	int get_x() const;
-
-	/**
-	 *@brief get y coordinate
-	 */
-	int get_y() const;
-
-	/**
-	 *@brief if the cell is blocked
-	 */
-	bool is_blocked() const;
+	int GetParentId() const;
 	
-	/**
-	 *@brief get the current location
-	 */
-	Point2D get_location() const;
-
 	/**
 	 *@brief get the cell type, i.e., in open list or closed list or neither
 	 */
-	CellType get_type() const;
+	CellType GetType() const;
+
+	/**
+	*@brief set id
+	*/
+	void SetId(int);
 
 	/**
 	 *@brief set g value
 	 */
-	void set_g(int);
+	void SetG(int);
 
 	/**
 	 *@brief set h value
 	 */
-	void set_h(int);
+	void SetH(int);
 
 	/**
 	 *@brief set parent pointer
 	 */
-	void set_parent(Node*);
+	void SetParentId(int);
 
-	/**
-	 *@brief set location
-	 */
-	void set_location(int, int);
 
 	/**
 	 *@brief mark the cell as blocked
 	 */
-	void set_blocked();
-
-	/**
-	 *@brief mark the cell as blocked
-	 */
-	void set_type(CellType type);
-
-	/**
-	 *@brief overloaded < operator 
-	 */
-	bool operator< (const Node &);
+	void SetType(CellType type);
 
 private:
+	int id_ = -1;
 	int g_ = 0;
 	int h_ = 0;
 	int f_ = 0;
-	Node* parent_ = 0;
-	int x_ = 0;
-	int y_ = 0;
-	bool blocked_ = false;
+	int parent_id_ = -1;
 	CellType type_ = DEFAULT;
 };
 #endif // !NODE_

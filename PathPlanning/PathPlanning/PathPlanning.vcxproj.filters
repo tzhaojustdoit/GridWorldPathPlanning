@@ -45,15 +45,15 @@
     <ClCompile Include="AdaptiveAStarPlanningModule.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AutonomousNavigator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PriorityQueue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PathPlanner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Point2D.h">
@@ -84,6 +84,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AdaptiveAStarPlanningModule.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AutonomousNavigator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

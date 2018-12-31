@@ -62,10 +62,10 @@ void PriorityQueue::perculate_down(int idx)
 	}
 }
 
-void PriorityQueue::reset_type()
+void PriorityQueue::reSetType()
 {
 	for (Node* var : vec_) {
-		var->set_type(DEFAULT);
+		var->SetType(DEFAULT);
 	}
 }
 

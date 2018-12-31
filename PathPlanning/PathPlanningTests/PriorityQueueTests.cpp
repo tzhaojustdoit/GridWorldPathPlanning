@@ -13,15 +13,15 @@ namespace PathPlanningTests
 	public:
 		TEST_METHOD_INITIALIZE(Initializer)
 		{
-			n1.set_g(1);
-			n2.set_g(2);
-			n3.set_g(3);
-			n4_1.set_g(1);
-			n4_1.set_h(3);
-			n4_2.set_g(2);
-			n4_2.set_h(2);
-			n4_3.set_g(3);
-			n4_3.set_h(1);
+			n1.SetG(1);
+			n2.SetG(2);
+			n3.SetG(3);
+			n4_1.SetG(1);
+			n4_1.SetH(3);
+			n4_2.SetG(2);
+			n4_2.SetH(2);
+			n4_3.SetG(3);
+			n4_3.SetH(1);
 			pq.push(&n4_1);
 			pq.push(&n4_2);
 			pq.push(&n4_3);
@@ -35,49 +35,49 @@ namespace PathPlanningTests
 		{
 			PriorityQueue pqCopy{};
 			pqCopy = pq;
-			Assert::AreEqual(pqCopy.top()->get_f(), 0);
+			Assert::AreEqual(pqCopy.top()->GetF(), 0);
 			Assert::AreEqual(pqCopy.size(), 7);
 			pqCopy.pop();
-			Assert::AreEqual(pqCopy.top()->get_f(), 1);
+			Assert::AreEqual(pqCopy.top()->GetF(), 1);
 			pqCopy.pop();
-			Assert::AreEqual(pqCopy.top()->get_f(), 2);
+			Assert::AreEqual(pqCopy.top()->GetF(), 2);
 			pqCopy.pop();
-			Assert::AreEqual(pqCopy.top()->get_f(), 3);
+			Assert::AreEqual(pqCopy.top()->GetF(), 3);
 			pqCopy.pop();
-			Assert::AreEqual(pqCopy.top()->get_h(), 1);
+			Assert::AreEqual(pqCopy.top()->GetH(), 1);
 			pqCopy.pop();
-			Assert::AreEqual(pqCopy.top()->get_h(), 2);
+			Assert::AreEqual(pqCopy.top()->GetH(), 2);
 			pqCopy.pop();
-			Assert::AreEqual(pqCopy.top()->get_h(), 3);
+			Assert::AreEqual(pqCopy.top()->GetH(), 3);
 			pqCopy.pop();
 			Assert::AreEqual(pqCopy.size(), 0);
 			Assert::IsTrue(pqCopy.empty());
-			Assert::AreEqual(pq.top()->get_f(), 0);
+			Assert::AreEqual(pq.top()->GetF(), 0);
 			Assert::AreEqual(pq.size(), 7);
 			Assert::IsFalse(pq.empty());
 			pqCopy = pq;
 			Node n3_1;
-			n3_1.set_g(2);
-			n3_1.set_h(1);
+			n3_1.SetG(2);
+			n3_1.SetH(1);
 			pqCopy.push(&n3_1);
-			Assert::AreEqual(pqCopy.top()->get_f(), 0);
+			Assert::AreEqual(pqCopy.top()->GetF(), 0);
 			Assert::AreEqual(pqCopy.size(), 8);
 			pqCopy.pop();
-			Assert::AreEqual(pqCopy.top()->get_f(), 1);
+			Assert::AreEqual(pqCopy.top()->GetF(), 1);
 			pqCopy.pop();
-			Assert::AreEqual(pqCopy.top()->get_f(), 2);
+			Assert::AreEqual(pqCopy.top()->GetF(), 2);
 			pqCopy.pop();
-			Assert::AreEqual(pqCopy.top()->get_f(), 3);
-			Assert::AreEqual(pqCopy.top()->get_h(), 0);
+			Assert::AreEqual(pqCopy.top()->GetF(), 3);
+			Assert::AreEqual(pqCopy.top()->GetH(), 0);
 			pqCopy.pop();
-			Assert::AreEqual(pqCopy.top()->get_f(), 3);
-			Assert::AreEqual(pqCopy.top()->get_h(), 1);
+			Assert::AreEqual(pqCopy.top()->GetF(), 3);
+			Assert::AreEqual(pqCopy.top()->GetH(), 1);
 			pqCopy.pop();
-			Assert::AreEqual(pqCopy.top()->get_h(), 1);
+			Assert::AreEqual(pqCopy.top()->GetH(), 1);
 			pqCopy.pop();
-			Assert::AreEqual(pqCopy.top()->get_h(), 2);
+			Assert::AreEqual(pqCopy.top()->GetH(), 2);
 			pqCopy.pop();
-			Assert::AreEqual(pqCopy.top()->get_h(), 3);
+			Assert::AreEqual(pqCopy.top()->GetH(), 3);
 			pqCopy.pop();
 		}
 	private:
@@ -93,7 +93,7 @@ namespace PathPlanningTests
 			std::vector<int> res;
 			for (int i = 0; i < pq.size(); i++)
 			{
-				res.push_back(pq.top()->get_h());
+				res.push_back(pq.top()->GetH());
 			}
 			return res;
 		}

@@ -7,7 +7,8 @@ class PlanningModule {
 public:
 	PlanningModule() {};
 	virtual ~PlanningModule() {};
-	virtual std::vector<int> GetPath(const std::vector<int> &map, int row, int col, int start, int goal) = 0;
+	virtual void SetGoal(int) = 0;
+	virtual std::vector<int> FindPath(const std::vector<bool> &map, int location) = 0;
 };
 #endif // !PLANNING_MODULE_
 

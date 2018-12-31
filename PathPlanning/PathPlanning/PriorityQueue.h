@@ -9,8 +9,6 @@
 
 #include <vector>
 
-#include "Node.h"
-
 /*
  *@class PriorityQueue
  *
@@ -23,17 +21,17 @@ public:
 	/**
 	 * @brief insert a node pointer
 	 */
-	void push(Node*);
+	void push(std::pair<int, int> p);
 
 	/**
 	 * @brief remove top node pointer
 	 */
-	Node* pop();
+	std::pair<int, int> pop();
 
 	/**
 	 * @brief access top node pointer
 	 */
-	Node* top() const;
+	std::pair<int, int> top() const;
 
 	/**
 	 * @brief test whether container is empty
@@ -48,22 +46,17 @@ public:
 	/**
 	 * @brief test whether a node pointer is in the priority queue
 	 */
-	bool contains(Node*) const;
-
-	/**
-	 * @brief reset the type of each node in the priority queue to DEFAULT
-	 */
-	void reset_type();
+	bool contains(int id) const;
 
 	/**
 	 * @brief move the node to the correct location since the value decreased.
 	 */
-	void decrease_key(Node* node);
+	void decrease_key(int key, int value);
 private:
 	/**
 	 * @brief the underlying container
 	 */
-	std::vector<Node*> vec_;
+	std::vector<std::pair<int, int>> vec_;
 
 	/**
 	 * @brief perculate a node* up to the correct location
