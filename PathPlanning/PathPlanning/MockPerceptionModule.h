@@ -10,6 +10,13 @@
 class MockPerceptionModule
 {
 public:
+	/**
+	 * @brief construct a mock perception module with given actual map,
+	 *        simluate sensing process by checking the actual map.
+	 * @param map the actual world map
+	 * @param row, col, number of rows and colums in the grid world map
+	 */
+
 	MockPerceptionModule(std::vector<char> actual_map, int row, int col);
 	/**
 	 * @brief perceive the surroundings of a location, update obstacle info to the map
