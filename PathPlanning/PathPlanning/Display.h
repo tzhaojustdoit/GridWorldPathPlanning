@@ -12,7 +12,7 @@ namespace Display {
 
 	/**
 	 * @brief display the planned navigation map.
-	 * @param row number of rows of the map
+	 * @param row, col number of rows and columns of the map
 	 * @param map contains obsacle info of the map
 	 * @param path contains path info of the map
 	 * @param start, goal contains start adn goal location of the map
