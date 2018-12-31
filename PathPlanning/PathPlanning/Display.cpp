@@ -4,7 +4,7 @@ void Display::DisplayMap(int row, int col, const std::vector<bool> &obstacles, c
 {
 	std::vector<char> output(obstacles.size(), '_');
 	// mark obstacles
-	for (int i = 0; i < obstacles.size(); i++)
+	for (unsigned i = 0; i < obstacles.size(); i++)
 	{
 		if (obstacles[i]) {
 			output[i] = 'x';
@@ -20,7 +20,7 @@ void Display::DisplayMap(int row, int col, const std::vector<bool> &obstacles, c
 	output[goal] = 'g';
 	// console output
 	int counter = 0;
-	for (int i = 0; i < obstacles.size(); i++)
+	for (unsigned i = 0; i < obstacles.size(); i++)
 	{
 		if (counter == col) {
 			std::cout << std::endl;

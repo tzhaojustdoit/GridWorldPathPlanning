@@ -28,17 +28,6 @@ namespace PathPlanningTests
 			Assert::AreEqual(4, n->GetF());
 		}
 
-		TEST_METHOD(NodeSetGet_parentTest)
-		{
-			Node* p = new Node{};
-			p->SetG(0);
-			p->SetH(1);
-			Node* n = new Node{};
-			n->SetParentId(p);
-			Assert::AreEqual(n->GetParentId()->GetG(), 0);
-			Assert::AreEqual(n->GetParentId()->GetH(), 1);
-		}
-
 		TEST_METHOD(NodeLessThanOperatorTest)
 		{
 			Node* n1 = new Node{};

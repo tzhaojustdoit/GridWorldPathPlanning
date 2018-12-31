@@ -118,30 +118,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AdaptiveAStarPathPlanner.cpp" />
     <ClCompile Include="AdaptiveAStarPlanningModule.cpp" />
-    <ClCompile Include="AStarPathPlanner.cpp" />
     <ClCompile Include="AutonomousNavigator.cpp" />
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="MockPerceptionModule.cpp" />
-    <ClCompile Include="Point2D.cpp" />
     <ClCompile Include="PriorityQueue.cpp" />
+    <ClCompile Include="Read.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AdaptiveAStarPathPlanner.h" />
     <ClInclude Include="AdaptiveAStarPlanningModule.h" />
-    <ClInclude Include="AStarPathPlanner.h" />
     <ClInclude Include="CellType.h" />
     <ClInclude Include="Display.h" />
-    <ClInclude Include="Marker.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="AutonomousNavigator.h" />
     <ClInclude Include="MockPerceptionModule.h" />
     <ClInclude Include="PlanningModule.h" />
-    <ClInclude Include="Point2D.h" />
     <ClInclude Include="PriorityQueue.h" />
+    <ClInclude Include="Read.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

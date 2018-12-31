@@ -35,16 +35,13 @@
     <ClCompile Include="PriorityQueueTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Point2DTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AStarPathPlannerTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DisplayTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MockPerceptionModuleTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

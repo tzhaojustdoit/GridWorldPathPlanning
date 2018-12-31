@@ -4,9 +4,7 @@
 #include <vector>
 #include <iostream>
 
-#include "Point2D.h"
 #include "Node.h"
-#include "Marker.h"
 
 namespace Display {
 

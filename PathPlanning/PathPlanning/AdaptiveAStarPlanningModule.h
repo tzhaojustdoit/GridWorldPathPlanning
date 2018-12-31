@@ -14,6 +14,8 @@ public:
 	~AdaptiveAStarPlanningModule();
 	void SetGoal(int goal) override;
 	std::vector<int> FindPath(const std::vector<bool> &obsacles, int location) override;
+	int GetNumOfSearches() const override;
+	int GetNumOfNodesExpanded() const override;
 
 private:
 	int rows_;

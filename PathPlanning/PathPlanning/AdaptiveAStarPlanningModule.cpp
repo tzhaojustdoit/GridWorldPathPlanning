@@ -16,7 +16,7 @@ void AdaptiveAStarPlanningModule::SetGoal(int goal)
 {
 	goal_location_ = goal;
 	// pre-compute heuristics for each node
-	for (int i = 0; i < graph_.size(); i++)
+	for (unsigned i = 0; i < graph_.size(); i++)
 	{
 		int h = GetHeuristic(i, goal);
 		graph_[i].SetH(h);
@@ -63,7 +63,7 @@ std::vector<int> AdaptiveAStarPlanningModule::FindPath(const std::vector<bool>& 
 			// make path points from the current location(exclusive) to the goal location(exclusive)
 			while (current_node.GetParentId() != -2)
 			{
-				path.push_back(current_node.GetId);
+				path.push_back(current_node.GetId());
 				current_node = graph_[current_node.GetParentId()];
 			}
 			break;
@@ -77,6 +77,16 @@ std::vector<int> AdaptiveAStarPlanningModule::FindPath(const std::vector<bool>& 
 		Expand(current_node.GetId(), obstacles, closed, open);
 	}
 	return path;
+}
+
+int AdaptiveAStarPlanningModule::GetNumOfSearches() const
+{
+	return num_of_searches_;
+}
+
+int AdaptiveAStarPlanningModule::GetNumOfNodesExpanded() const
+{
+	return num_of_expanded_nodes_;
 }
 
 int AdaptiveAStarPlanningModule::GetHeuristic(int a, int b)

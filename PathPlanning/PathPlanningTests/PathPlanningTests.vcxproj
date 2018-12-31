@@ -156,12 +156,11 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AStarPathPlannerTests.cpp" />
     <ClCompile Include="DisplayTests.cpp" />
     <ClCompile Include="MockPerceptionModuleTests.cpp" />
     <ClCompile Include="NodeTests.cpp" />
-    <ClCompile Include="Point2DTests.cpp" />
     <ClCompile Include="PriorityQueueTests.cpp" />
+    <ClCompile Include="ReadTests.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

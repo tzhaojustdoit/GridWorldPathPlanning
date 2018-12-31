@@ -23,7 +23,7 @@ void MockPerceptionModule::PerceiveSurroundings(std::vector<bool>& map, int loca
 
 int MockPerceptionModule::Localize()
 {
-	for(int i = 0; i < actual_map_.size(); i++) {
+	for(unsigned i = 0; i < actual_map_.size(); i++) {
 		if (actual_map_[i] == 's') {
 			return i;
 		}

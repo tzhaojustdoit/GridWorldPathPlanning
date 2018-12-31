@@ -20,10 +20,10 @@
 class AutomomousNavigator
 {
 public:
-	AutomomousNavigator(int rows, int cols, MockPerceptionModule & percepttion_unit, PlanningModule & planning_unit);
+	AutomomousNavigator(int rows, int cols, MockPerceptionModule* percepttion_unit, PlanningModule* planning_unit);
 	~AutomomousNavigator();
 
-	void Initialize();
+
 
 	/**
 	 * @brief Load the map. The self driving car navigates on this map.
@@ -49,8 +49,9 @@ public:
 	int GetNumOfNodesExpanded();
 
 private:
-	MockPerceptionModule &perception_unit_;
-	PlanningModule &planning_unit_;
+	void Initialize();
+	MockPerceptionModule *perception_unit_;
+	PlanningModule *planning_unit_;
 	int rows_;
 	int cols_;
 	std::vector<int> path_;

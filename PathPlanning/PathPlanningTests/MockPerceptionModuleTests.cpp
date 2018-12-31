@@ -21,5 +21,12 @@ namespace PathPlanningTests
 			std::vector<bool> map{ 0,0,0,0 };
 			p.PerceiveSurroundings(map, 1);
 		}
+
+		TEST_METHOD(LocalizeTest) {
+			std::vector<char> actual_map{ 's', '_', 'x', 'g' };
+			MockPerceptionModule p(actual_map, 2, 2);
+			int result = p.Localize();
+			Assert::AreEqual(result, 0);
+		}
 	};
 }
