@@ -7,7 +7,8 @@
 #include "Node.h"
 #include "Marker.h"
 
-class MockPerceptionModule {
+class MockPerceptionModule
+{
 public:
 	MockPerceptionModule(std::vector<char> actual_map, int row, int col);
 	/**
@@ -27,5 +28,5 @@ private:
 	 * @param location the location to perceive
 	 */
 	void PerceiveLocation(std::vector<bool> &map, int location);
-}
+};
 #endif // !MOCK_PERCEPTION_MODULE_

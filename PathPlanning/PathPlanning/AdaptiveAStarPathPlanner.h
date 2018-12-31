@@ -53,17 +53,27 @@ private:
 	/**
 	 * @brief current location
 	 */
-	int current_location_;
+	Point2D current_location_;
 
 	/**
 	 * @brief goal location
 	 */
-	int goal_location_;
+	Point2D goal_location_;
 
 	/**
 	 * @brief the map that contains currently known obstacle info
 	 */
 	std::vector<bool> map_;
+
+	/**
+	 * @brief actual world map
+	 */
+	std::vector<std::vector<char> > actual_world_;
+
+	/**
+	 * @brief the map that the car has explored so far
+	 */
+	std::vector<std::vector<Node> > observed_world_;
 
 	/**
 	 * @brief number of searches

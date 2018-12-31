@@ -39,7 +39,7 @@
     <ClCompile Include="Display.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PerceptionModule.cpp">
+    <ClCompile Include="MockPerceptionModule.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

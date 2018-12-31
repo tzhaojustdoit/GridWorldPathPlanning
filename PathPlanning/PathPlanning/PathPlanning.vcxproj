@@ -123,7 +123,7 @@
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="Node.cpp" />
-    <ClCompile Include="PerceptionModule.cpp" />
+    <ClCompile Include="MockPerceptionModule.cpp" />
     <ClCompile Include="Point2D.cpp" />
     <ClCompile Include="PriorityQueue.cpp" />
   </ItemGroup>
