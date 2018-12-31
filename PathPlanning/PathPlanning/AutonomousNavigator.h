@@ -11,6 +11,7 @@
 
 #include "MockPerceptionModule.h"
 #include "PlanningModule.h"
+#include "Display.h"
 /**
  * @class AutomomousNavigator
  *
@@ -19,8 +20,10 @@
 class AutomomousNavigator
 {
 public:
-	AutomomousNavigator(MockPerceptionModule & percepttion_unit, PlanningModule & planning_unit);
+	AutomomousNavigator(int rows, int cols, MockPerceptionModule & percepttion_unit, PlanningModule & planning_unit);
 	~AutomomousNavigator();
+
+	void Initialize();
 
 	/**
 	 * @brief Load the map. The self driving car navigates on this map.
@@ -33,7 +36,7 @@ public:
 	/**
 	 * @brief Start navigating until the car reaches the goal.
 	 */
-	void Navigate();
+	void AutoNavigate();
 
 	/**
 	 * @brief number of searches by the planning module
@@ -56,6 +59,8 @@ private:
 	int goal_location_;
 	int num_of_searches_ = 0;
 	int num_of_expanded_nodes_ = 0;
+
+	bool Navigate();
 };
 #endif // !AUTONOMOUS_NAVIGATOR_
 

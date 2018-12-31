@@ -1,12 +1,12 @@
 #include "Display.h"
 
-void Display::DisplayMap(int row, int col, const std::vector<bool> &map, const std::vector<int> &path, int start, int goal)
+void Display::DisplayMap(int row, int col, const std::vector<bool> &obstacles, const std::vector<int> &path, int start, int goal)
 {
-	std::vector<char> output(map.size(), '_');
+	std::vector<char> output(obstacles.size(), '_');
 	// mark obstacles
-	for (int i = 0; i < map.size(); i++)
+	for (int i = 0; i < obstacles.size(); i++)
 	{
-		if (map[i]) {
+		if (obstacles[i]) {
 			output[i] = 'x';
 		}
 	}
@@ -20,7 +20,7 @@ void Display::DisplayMap(int row, int col, const std::vector<bool> &map, const s
 	output[goal] = 'g';
 	// console output
 	int counter = 0;
-	for (int i = 0; i < map.size(); i++)
+	for (int i = 0; i < obstacles.size(); i++)
 	{
 		if (counter == col) {
 			std::cout << std::endl;
