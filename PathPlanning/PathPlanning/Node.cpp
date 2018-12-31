@@ -63,3 +63,14 @@ void Node::SetType(CellType type)
 	type_ = type;
 }
 
+bool Node::operator<(const Node &other)
+{
+	if (f_ < other.f_) {
+		return true;
+	}
+	if (f_ > other.f_)
+	{
+		return false;
+	}
+	return g_ > other.g_;
+}

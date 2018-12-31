@@ -9,29 +9,31 @@
 
 #include <vector>
 
-/*
- *@class PriorityQueue
- *
- *@brief A priority queue of node pointers. Min element is always on top and poped first.
- * Smaller f value is favored; if f values are the same, node with larger g value is favored.
- */
+#include "Node.h"
+
+ /*
+  *@class PriorityQueue
+  *
+  *@brief A priority queue of node pointers. Min element is always on top and poped first.
+  * Smaller f value is favored; if f values are the same, node with larger g value is favored.
+  */
 class PriorityQueue
 {
 public:
 	/**
 	 * @brief insert a node pointer
 	 */
-	void push(std::pair<int, int> p);
+	void push(Node*);
 
 	/**
 	 * @brief remove top node pointer
 	 */
-	std::pair<int, int> pop();
+	Node* pop();
 
 	/**
 	 * @brief access top node pointer
 	 */
-	std::pair<int, int> top() const;
+	Node* top() const;
 
 	/**
 	 * @brief test whether container is empty
@@ -46,17 +48,22 @@ public:
 	/**
 	 * @brief test whether a node pointer is in the priority queue
 	 */
-	bool contains(int id) const;
+	bool contains(Node*) const;
+
+	/**
+	 * @brief reset the type of each node in the priority queue to DEFAULT
+	 */
+	void reset_type();
 
 	/**
 	 * @brief move the node to the correct location since the value decreased.
 	 */
-	void decrease_key(int key, int value);
+	void decrease_key(Node* node);
 private:
 	/**
 	 * @brief the underlying container
 	 */
-	std::vector<std::pair<int, int>> vec_;
+	std::vector<Node*> vec_;
 
 	/**
 	 * @brief perculate a node* up to the correct location
@@ -70,4 +77,3 @@ private:
 
 };
 #endif // !PRIORITY_QUEUE_
-

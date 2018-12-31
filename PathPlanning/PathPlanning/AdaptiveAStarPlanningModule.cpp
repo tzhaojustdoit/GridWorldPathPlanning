@@ -23,10 +23,10 @@ void AdaptiveAStarPlanningModule::SetGoal(int goal)
 	}
 }
 
-std::vector<int> AdaptiveAStarPlanningModule::FindPath(const std::vector<bool>& obsacles, int location)
+std::vector<int> AdaptiveAStarPlanningModule::FindPath(const std::vector<bool>& obstacles, int location)
 {
 	num_of_searches_++;
-	std::cout << std::endl << "[planning] id: " << num_of_searches_ <<std::endl;
+	std::cout << std::endl << "[planning] id: " << num_of_searches_ << std::endl;
 	// open list, contains generated nodes
 	PriorityQueue open;
 	// closed list, contains expanded nodes
@@ -38,20 +38,18 @@ std::vector<int> AdaptiveAStarPlanningModule::FindPath(const std::vector<bool>& 
 	Node & current_node = graph_[location];
 	// set g value
 	current_node.SetG(0);
+	// set parent id
+	current_node.SetParentId(-2);
 	// add to the open list
-	std::pair<int, int> p(location, current_node.GetH());
-	open.push(p);
+	open.push(&current_node);
 	current_node.SetType(OPEN);
 	while (!open.empty())
 	{
 		// get the node with the min f value.
-		current_node = open.top().first;
-		// get the current location
-		Point2D location = current_node->get_location();
-		// if goal has been reached
-		if (location == goal_location_) {
+		current_node = *open.top();
+		if (current_node.GetId() == goal_location_) {
 			// update h values for nodes in the closed list
-			int g_goal = current_node->GetG();
+			int g_goal = current_node.GetG();
 			for (Node* var : closed)
 			{
 				var->SetH(g_goal - var->GetG());
@@ -61,25 +59,23 @@ std::vector<int> AdaptiveAStarPlanningModule::FindPath(const std::vector<bool>& 
 			{
 				var->SetType(DEFAULT);
 			}
-			open.reSetType();
+			open.reset_type();
 			// make path points from the current location(exclusive) to the goal location(exclusive)
-			while (current_node->GetParentId() != 0)
+			while (current_node.GetParentId() != -2)
 			{
-				path_points.push_back(current_node);
-				current_node = current_node->GetParentId();
+				path.push_back(current_node.GetId);
+				current_node = graph_[current_node.GetParentId()];
 			}
 			break;
 		}
 		// remove from the open list
 		open.pop();
 		// add the node to the closed list
-		closed.push_back(current_node);
-		current_node->SetType(CLOSED);
+		closed.push_back(&current_node);
+		current_node.SetType(CLOSED);
 		// expand the node
-		Expand(location.x, location.y, open, closed);
+		Expand(current_node.GetId(), obstacles, closed, open);
 	}
-	// print the navigation map
-	PrintNavigationMap(path_points);
 	return path;
 }
 
@@ -91,4 +87,43 @@ int AdaptiveAStarPlanningModule::GetHeuristic(int a, int b)
 	int by = b / cols_;
 	// manhattan distance
 	return std::abs(ax - bx) + std::abs(ay - by);
+}
+
+void AdaptiveAStarPlanningModule::Expand(int id, const std::vector<bool> & obstacles, std::vector<Node*>& closed, PriorityQueue & open)
+{
+	num_of_expanded_nodes_++;
+	// check traverability of 4 adjacent cells in this order: right, down, left, up
+	// if traversable, generate the successor node
+	if ((id + 1) % cols_ != 0 /* boundary check */ && !obstacles[id + 1] /* collision check */) {
+		Generate(id + 1, id, closed, open);
+	}
+	if (id < (rows_ - 1) * cols_ && !obstacles[id + cols_]) {
+		Generate(id + cols_, id, closed, open);
+	}
+	if (id % cols_ != 0 && !obstacles[id - 1]) {
+		Generate(id - 1, id, closed, open);
+	}
+	if (id >= cols_ && !obstacles[id - cols_]) {
+		Generate(id - cols_, id, closed, open);
+	}
+}
+
+void AdaptiveAStarPlanningModule::Generate(int id, int parent_id, std::vector<Node*>& closed, PriorityQueue & open)
+{
+	Node & current_node = graph_[id];
+	int g = graph_[parent_id].GetG() + 1;
+	if (current_node.GetType() == DEFAULT) {
+		current_node.SetG(g);
+		current_node.SetParentId(parent_id);
+		open.push(&current_node);
+		current_node.SetType(OPEN);
+	}
+	else if (current_node.GetType() == OPEN) {
+		if (g < current_node.GetG()) {
+			current_node.SetG(g);
+			// update the node position in the open list
+			open.decrease_key(&current_node);
+			current_node.SetParentId(parent_id);
+		}
+	}
 }

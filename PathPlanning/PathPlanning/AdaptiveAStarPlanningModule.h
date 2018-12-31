@@ -21,7 +21,10 @@ private:
 	int goal_location_;
 	std::vector<Node> graph_;
 	int num_of_searches_;
+	int num_of_expanded_nodes_;
 	int GetHeuristic(int a, int b);
+	void Expand(int id, const std::vector<bool> & obstacles, std::vector<Node*> & closed, PriorityQueue & open);
+	void Generate(int id, int parent_id, std::vector<Node*> & closed, PriorityQueue & open);
 };
 #endif // !ADAPTIVE_ASTAR_PLANNING_MODULE_
 

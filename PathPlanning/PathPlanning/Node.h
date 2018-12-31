@@ -79,6 +79,10 @@ public:
 	 */
 	void SetType(CellType type);
 
+	/**
+	*@brief overloaded < operator
+	*/
+	bool operator< (const Node &);
 private:
 	int id_ = -1;
 	int g_ = 0;
