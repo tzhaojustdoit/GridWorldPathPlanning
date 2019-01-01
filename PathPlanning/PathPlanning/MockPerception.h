@@ -1,10 +1,21 @@
-#ifndef MOCK_PERCEPTION_MODULE_
-#define MOCK_PERCEPTION_MODULE_
+/**
+ * @file MockPerception.h
+ * @brief Defines the MockPerception class.
+ * @authur: Tianhua Zhao
+ */
+
+#ifndef MOCK_PERCEPTION_
+#define MOCK_PERCEPTION_
 
 #include <vector>
 
 #include "Node.h"
 
+ /**
+  * @class MockPerception
+  *
+  * @brief Mock perception class by reading data from an char array.
+  */
 class MockPerception
 {
 public:
@@ -39,4 +50,4 @@ private:
 	 */
 	void PerceiveLocation(std::vector<bool> &map, int location);
 };
-#endif // !MOCK_PERCEPTION_MODULE_
+#endif // !MOCK_PERCEPTION_

@@ -1,3 +1,9 @@
+/**
+ * @file Display.h
+ * @brief Defines functions related to display.
+ * @authur: Tianhua Zhao
+ */
+
 #ifndef DISPLAY_
 #define DISPLAY_
 
