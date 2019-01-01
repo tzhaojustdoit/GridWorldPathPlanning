@@ -12,6 +12,7 @@
 #include "AutonomousNavigation.h"
 #include "Planning.h"
 #include "AdaptiveAStarPlanning.h"
+#include "AStarPlanning.h"
 #include "Read.h"
 /*
  *@brief Reads input map from a txt file and runs AdaptiveAstarPathPlanner or AstarPathPlanner on the map.
@@ -26,10 +27,12 @@ int main(int argc, char *argv[]) {
 	}
 	std::string filename = "../data/" + std::string(argv[1]);
 	MapData data = Read::ReadMapFile(filename);
-	Planning* planning_unit =  new AdaptiveAStarPlanning(data.rows, data.cols);
+	Planning* planning_unit =  new AStarPlanning(data.rows, data.cols);
 	MockPerception* perception_unit = new MockPerception(data.map, data.rows, data.cols);
 	AutonomousNavigation an(data.rows, data.cols, perception_unit, planning_unit);
 	an.SetDestination(data.goal);
 	an.AutoNavigate();
+	delete planning_unit;
+	delete perception_unit;
 	return 0;
 }
