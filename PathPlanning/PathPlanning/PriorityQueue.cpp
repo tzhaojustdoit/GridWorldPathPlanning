@@ -1,5 +1,10 @@
 #include "PriorityQueue.h"
 
+PriorityQueue::PriorityQueue(int capacity)
+{
+	vec_.reserve(capacity);
+}
+
 void PriorityQueue::push(Node* n)
 {
 	vec_.push_back(n);

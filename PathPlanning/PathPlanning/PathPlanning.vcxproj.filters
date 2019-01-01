@@ -30,16 +30,16 @@
     <ClCompile Include="Display.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MockPerceptionModule.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AdaptiveAStarPlanningModule.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AutonomousNavigator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Read.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AutonomousNavigation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AdaptiveAStarPlanning.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MockPerception.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,19 +59,19 @@
     <ClInclude Include="Display.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MockPerceptionModule.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PlanningModule.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AdaptiveAStarPlanningModule.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AutonomousNavigator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Read.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AdaptiveAStarPlanning.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AutonomousNavigation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MockPerception.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

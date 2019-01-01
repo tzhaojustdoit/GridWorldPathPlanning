@@ -20,6 +20,8 @@
 class PriorityQueue
 {
 public:
+	PriorityQueue() = default;
+	PriorityQueue(int capacity);
 	/**
 	 * @brief insert a node pointer
 	 */

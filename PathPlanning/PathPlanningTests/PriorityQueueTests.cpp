@@ -88,7 +88,7 @@ namespace PathPlanningTests
 		Node n4_1{};
 		Node n4_2{};
 		Node n4_3{};
-		PriorityQueue pq{};
+		PriorityQueue pq;
 		std::vector<int> toVector(PriorityQueue pq) {
 			std::vector<int> res;
 			for (int i = 0; i < pq.size(); i++)

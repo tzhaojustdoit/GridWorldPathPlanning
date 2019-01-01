@@ -1,20 +1,26 @@
-#include "AdaptiveAStarPlanningModule.h"
+#include "AdaptiveAStarPlanning.h"
 
 
 
-AdaptiveAStarPlanningModule::AdaptiveAStarPlanningModule(int rows, int cols) : rows_(rows), cols_(cols)
+AdaptiveAStarPlanning::AdaptiveAStarPlanning(int rows, int cols) : rows_(rows), cols_(cols)
 {
-	graph_.reserve(rows * cols);
+	graph_.resize(rows * cols);
+	for (unsigned i = 0; i < graph_.size(); i++)
+	{
+		graph_[i].SetId(i);
+	}
 }
 
 
-AdaptiveAStarPlanningModule::~AdaptiveAStarPlanningModule()
+AdaptiveAStarPlanning::~AdaptiveAStarPlanning()
 {
 }
 
-void AdaptiveAStarPlanningModule::SetGoal(int goal)
+void AdaptiveAStarPlanning::SetGoal(int goal)
 {
 	goal_location_ = goal;
+	num_of_expanded_nodes_ = 0;
+	num_of_searches_ = 0;
 	// pre-compute heuristics for each node
 	for (unsigned i = 0; i < graph_.size(); i++)
 	{
@@ -23,33 +29,35 @@ void AdaptiveAStarPlanningModule::SetGoal(int goal)
 	}
 }
 
-std::vector<int> AdaptiveAStarPlanningModule::FindPath(const std::vector<bool>& obstacles, int location)
+std::vector<int> AdaptiveAStarPlanning::FindPath(const std::vector<bool>& obstacles, int location)
 {
 	num_of_searches_++;
 	std::cout << std::endl << "[planning] id: " << num_of_searches_ << std::endl;
 	// open list, contains generated nodes
-	PriorityQueue open;
+	PriorityQueue open(obstacles.size());
 	// closed list, contains expanded nodes
 	std::vector<Node*> closed;
+	closed.reserve(obstacles.size());
 
 	// path points from the current location(exclusive) to the goal location(exclusive)
 	std::vector<int> path;
+	path.reserve(obstacles.size());
 
-	Node & current_node = graph_[location];
+	Node * current_node = &graph_[location];
 	// set g value
-	current_node.SetG(0);
+	current_node->SetG(0);
 	// set parent id
-	current_node.SetParentId(-2);
+	current_node->SetParentId(-2);
 	// add to the open list
-	open.push(&current_node);
-	current_node.SetType(OPEN);
+	open.push(current_node);
+	current_node->SetType(OPEN);
 	while (!open.empty())
 	{
 		// get the node with the min f value.
-		current_node = *open.top();
-		if (current_node.GetId() == goal_location_) {
+		current_node = open.top();
+		if (current_node->GetId() == goal_location_) {
 			// update h values for nodes in the closed list
-			int g_goal = current_node.GetG();
+			int g_goal = current_node->GetG();
 			for (Node* var : closed)
 			{
 				var->SetH(g_goal - var->GetG());
@@ -61,45 +69,45 @@ std::vector<int> AdaptiveAStarPlanningModule::FindPath(const std::vector<bool>& 
 			}
 			open.reset_type();
 			// make path points from the current location(exclusive) to the goal location(exclusive)
-			while (current_node.GetParentId() != -2)
+			while (current_node->GetParentId() != -2)
 			{
-				path.push_back(current_node.GetId());
-				current_node = graph_[current_node.GetParentId()];
+				path.push_back(current_node->GetId());
+				current_node = &graph_[current_node->GetParentId()];
 			}
 			break;
 		}
 		// remove from the open list
 		open.pop();
 		// add the node to the closed list
-		closed.push_back(&current_node);
-		current_node.SetType(CLOSED);
+		closed.push_back(current_node);
+		current_node->SetType(CLOSED);
 		// expand the node
-		Expand(current_node.GetId(), obstacles, closed, open);
+		Expand(current_node->GetId(), obstacles, closed, open);
 	}
 	return path;
 }
 
-int AdaptiveAStarPlanningModule::GetNumOfSearches() const
+int AdaptiveAStarPlanning::GetNumOfSearches() const
 {
 	return num_of_searches_;
 }
 
-int AdaptiveAStarPlanningModule::GetNumOfNodesExpanded() const
+int AdaptiveAStarPlanning::GetNumOfNodesExpanded() const
 {
 	return num_of_expanded_nodes_;
 }
 
-int AdaptiveAStarPlanningModule::GetHeuristic(int a, int b)
+int AdaptiveAStarPlanning::GetHeuristic(int a, int b)
 {
 	int ax = a / cols_;
 	int ay = a % cols_;
 	int bx = b / cols_;
-	int by = b / cols_;
+	int by = b % cols_;
 	// manhattan distance
 	return std::abs(ax - bx) + std::abs(ay - by);
 }
 
-void AdaptiveAStarPlanningModule::Expand(int id, const std::vector<bool> & obstacles, std::vector<Node*>& closed, PriorityQueue & open)
+void AdaptiveAStarPlanning::Expand(int id, const std::vector<bool> & obstacles, std::vector<Node*>& closed, PriorityQueue & open)
 {
 	num_of_expanded_nodes_++;
 	// check traverability of 4 adjacent cells in this order: right, down, left, up
@@ -118,7 +126,7 @@ void AdaptiveAStarPlanningModule::Expand(int id, const std::vector<bool> & obsta
 	}
 }
 
-void AdaptiveAStarPlanningModule::Generate(int id, int parent_id, std::vector<Node*>& closed, PriorityQueue & open)
+void AdaptiveAStarPlanning::Generate(int id, int parent_id, std::vector<Node*>& closed, PriorityQueue & open)
 {
 	Node & current_node = graph_[id];
 	int g = graph_[parent_id].GetG() + 1;

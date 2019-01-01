@@ -1,34 +1,32 @@
-#include "AutonomousNavigator.h"
+#include "AutonomousNavigation.h"
 
-AutomomousNavigator::AutomomousNavigator(int rows, int cols, MockPerceptionModule * percepttion_unit, PlanningModule * planning_unit) : rows_(rows), cols_(cols), perception_unit_(percepttion_unit), planning_unit_(planning_unit)
+AutonomousNavigation::AutonomousNavigation(int rows, int cols, MockPerception * percepttion_unit, PlanningModule * planning_unit) : rows_(rows), cols_(cols), perception_unit_(percepttion_unit), planning_unit_(planning_unit)
 {
 	Initialize();
 }
 
-AutomomousNavigator::~AutomomousNavigator()
+AutonomousNavigation::~AutonomousNavigation()
 {
 }
 
-void AutomomousNavigator::Initialize()
+void AutonomousNavigation::Initialize()
 {
 	obstacles_.resize(rows_ * cols_);
 	current_location_ = perception_unit_->Localize();
 	perception_unit_->PerceiveSurroundings(obstacles_, current_location_);
 }
 
-void AutomomousNavigator::SetDestination(int goal)
+void AutonomousNavigation::SetDestination(int goal)
 {
 	goal_location_ = goal;
 	planning_unit_->SetGoal(goal);
-	num_of_searches_ = 0;
-	num_of_expanded_nodes_ = 0;
 
 	//initial planning
 	path_ = planning_unit_->FindPath(obstacles_, current_location_);
 	Display::DisplayMap(rows_, cols_, obstacles_, path_, current_location_, goal_location_);
 }
 
-void AutomomousNavigator::AutoNavigate()
+void AutonomousNavigation::AutoNavigate()
 {
 	while (!Navigate()) {
 		path_ = planning_unit_->FindPath(obstacles_, current_location_);
@@ -39,22 +37,22 @@ void AutomomousNavigator::AutoNavigate()
 		Display::DisplayMap(rows_, cols_, obstacles_, path_, current_location_, goal_location_);
 	}
 	// print number of nodes expanded
-	std::cout << std::endl << "Auto-navigation ended." << std::endl << "Total number of nodes expanded is: " << num_of_expanded_nodes_ << "." << std::endl;
+	std::cout << std::endl << "Auto-navigation ended." << std::endl << "Total number of nodes expanded is: " << GetNumOfNodesExpanded() << "." << std::endl;
 }
 
-int AutomomousNavigator::GetNumOfSearches()
+int AutonomousNavigation::GetNumOfSearches()
 {
 	return planning_unit_->GetNumOfSearches();
 }
 
-int AutomomousNavigator::GetNumOfNodesExpanded()
+int AutonomousNavigation::GetNumOfNodesExpanded()
 {
 	return planning_unit_->GetNumOfNodesExpanded();
 }
 
-bool AutomomousNavigator::Navigate()
+bool AutonomousNavigation::Navigate()
 {
-	std::cout << "Navigation started." << std::endl;
+	std::cout << std::endl << "Navigation started." << std::endl;
 	// move the car from the start cell to the next cell
 	// since start cell is already sensed, it is safe to move one step
 	current_location_ = path_.back();

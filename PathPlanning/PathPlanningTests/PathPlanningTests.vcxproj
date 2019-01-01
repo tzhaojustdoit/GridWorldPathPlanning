@@ -156,8 +156,10 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AdaptiveAstarPlanningTests.cpp" />
+    <ClCompile Include="AutonomousNavitationTests.cpp" />
     <ClCompile Include="DisplayTests.cpp" />
-    <ClCompile Include="MockPerceptionModuleTests.cpp" />
+    <ClCompile Include="MockPerceptionTests.cpp" />
     <ClCompile Include="NodeTests.cpp" />
     <ClCompile Include="PriorityQueueTests.cpp" />
     <ClCompile Include="ReadTests.cpp" />

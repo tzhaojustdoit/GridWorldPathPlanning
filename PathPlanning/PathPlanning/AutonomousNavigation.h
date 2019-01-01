@@ -1,27 +1,27 @@
 /**
- * @file AutomomousNavigator.h
- * @brief Defines the AutomomousNavigator class.
+ * @file AutonomousNavigation.h
+ * @brief Defines the AutonomousNavigation class.
  * @authur: Tianhua Zhao
  */
 
-#ifndef AUTONOMOUS_NAVIGATOR_
-#define AUTONOMOUS_NAVIGATOR_
+#ifndef AUTONOMOUS_NAVIGATION_
+#define AUTONOMOUS_NAVIGATION_
 
 #include <vector>
 
-#include "MockPerceptionModule.h"
+#include "MockPerception.h"
 #include "PlanningModule.h"
 #include "Display.h"
 /**
- * @class AutomomousNavigator
+ * @class AutonomousNavigation
  *
  * @brief an autonomous navigating system
  */
-class AutomomousNavigator
+class AutonomousNavigation
 {
 public:
-	AutomomousNavigator(int rows, int cols, MockPerceptionModule* percepttion_unit, PlanningModule* planning_unit);
-	~AutomomousNavigator();
+	AutonomousNavigation(int rows, int cols, MockPerception* percepttion_unit, PlanningModule* planning_unit);
+	~AutonomousNavigation();
 
 
 
@@ -50,7 +50,7 @@ public:
 
 private:
 	void Initialize();
-	MockPerceptionModule *perception_unit_;
+	MockPerception *perception_unit_;
 	PlanningModule *planning_unit_;
 	int rows_;
 	int cols_;
@@ -58,10 +58,8 @@ private:
 	std::vector<bool> obstacles_;
 	int current_location_;
 	int goal_location_;
-	int num_of_searches_ = 0;
-	int num_of_expanded_nodes_ = 0;
 
 	bool Navigate();
 };
-#endif // !AUTONOMOUS_NAVIGATOR_
+#endif // !AUTONOMOUS_NAVIGATION_
 

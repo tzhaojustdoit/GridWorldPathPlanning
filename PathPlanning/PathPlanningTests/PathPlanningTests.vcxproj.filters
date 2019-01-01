@@ -38,10 +38,16 @@
     <ClCompile Include="DisplayTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MockPerceptionModuleTests.cpp">
+    <ClCompile Include="ReadTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ReadTests.cpp">
+    <ClCompile Include="MockPerceptionTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AdaptiveAstarPlanningTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AutonomousNavitationTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
