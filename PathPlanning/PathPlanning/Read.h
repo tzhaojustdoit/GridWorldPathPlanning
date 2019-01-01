@@ -3,6 +3,8 @@
  * @brief Defines functions related to reading input.
  * @authur: Tianhua Zhao
  */
+#ifndef READ_
+#define READ_
 
 #include <vector>
 #include <string>
@@ -31,3 +33,4 @@ namespace Read
 	MapData ReadMapFile(std::string filename);
 }
 
+#endif // !READ_
