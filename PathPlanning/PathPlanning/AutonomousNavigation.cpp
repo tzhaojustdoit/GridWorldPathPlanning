@@ -23,21 +23,15 @@ void AutonomousNavigation::SetDestination(int goal)
 
 	//initial planning
 	path_ = planning_unit_->FindPath(obstacles_, current_location_);
-	Display::DisplayMap(rows_, cols_, obstacles_, path_, current_location_, goal_location_);
 }
 
 void AutonomousNavigation::AutoNavigate()
 {
-	while (!Navigate()) {
+	while (!path_.empty() && !Navigate()) {
 		path_ = planning_unit_->FindPath(obstacles_, current_location_);
-		if (path_.empty()) {
-			std::cout << "No route found. Unable to navigate." << std::endl;
-			break;
-		}
-		Display::DisplayMap(rows_, cols_, obstacles_, path_, current_location_, goal_location_);
 	}
 	// print number of nodes expanded
-	std::cout << std::endl << "Auto-navigation ended." << std::endl << "Total number of nodes expanded is: " << GetNumOfNodesExpanded() << "." << std::endl;
+	std::cout << std::endl << "[navigation] Auto-navigation ended." << std::endl << "[navigation] Total number of nodes expanded is: " << GetNumOfNodesExpanded() << "." << std::endl;
 }
 
 int AutonomousNavigation::GetNumOfSearches()
@@ -52,7 +46,7 @@ int AutonomousNavigation::GetNumOfNodesExpanded()
 
 bool AutonomousNavigation::Navigate()
 {
-	std::cout << std::endl << "Navigation started." << std::endl;
+	std::cout << std::endl << "[navigation] Navigation started." << std::endl;
 	// move the car from the start cell to the next cell
 	// since start cell is already sensed, it is safe to move one step
 	current_location_ = path_.back();
@@ -67,7 +61,7 @@ bool AutonomousNavigation::Navigate()
 		// if next cell is blocked, break out of the loop
 		if (obstacles_[next])
 		{
-			std::cout << "Obstacle detected, start replanning..." << std::endl;
+			std::cout << "[navigation] Obstacle detected, start replanning..." << std::endl;
 
 			return false;
 		}
@@ -75,6 +69,6 @@ bool AutonomousNavigation::Navigate()
 		current_location_ = next;
 		counter--;
 	}
-	std::cout << std::endl << "Arrived at the destination." << std::endl;
+	std::cout << std::endl << "[navigation] Arrived at the destination." << std::endl;
 	return true;
 }

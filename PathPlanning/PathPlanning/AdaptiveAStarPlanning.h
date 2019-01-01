@@ -13,6 +13,7 @@
 #include "Planning.h"
 #include "Node.h"
 #include "PriorityQueue.h"
+#include "Display.h"
 
  /**
   * @class AdaptiveAStarPlanning

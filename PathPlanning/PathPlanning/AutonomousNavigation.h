@@ -8,33 +8,42 @@
 #define AUTONOMOUS_NAVIGATION_
 
 #include <vector>
+#include <iostream>
 
 #include "MockPerception.h"
 #include "Planning.h"
-#include "Display.h"
+
 /**
  * @class AutonomousNavigation
  *
- * @brief an autonomous navigating system
+ * @brief an autonomous navigating system. The car assumes the world is empty initially, and gradually
+ * gains knowledge about the world as exploring to the goal
  */
 class AutonomousNavigation
 {
 public:
-	AutonomousNavigation(int rows, int cols, MockPerception* percepttion_unit, Planning* planning_unit);
-	~AutonomousNavigation();
-
-
+	/**
+	 *@brief ctor
+	 *@param rows, cols :discritized world frame, number of rows and columns in the grid world.
+	 *@param perception_unit: the mock perception unit
+	 *@param planning_unit: the planning unit
+	 */
+	AutonomousNavigation(int rows, int cols, MockPerception* perception_unit, Planning* planning_unit);
 
 	/**
-	 * @brief Load the map. The self driving car navigates on this map.
-	 *  The car initially only knows the start and goal position, and assumes
-	 *  the map is empty.
-	 * @assumption Input map has one and only one start location and one and only one goal location.
+	 *@brief dtor
+	 */
+	~AutonomousNavigation();
+
+	/**
+	 * @brief Set destination. Do initial planning.
+	 * @param goal: goal location
 	 */
 	void SetDestination(int goal);
 
 	/**
-	 * @brief Start navigating until the car reaches the goal.
+	 * @brief Start navigating according to the planned path, perceive surroundings as the car moves.
+	 * if the planned is blocked, replan, navigate... repeat until the car reaches the goal or is unable to find a path.
 	 */
 	void AutoNavigate();
 
@@ -49,7 +58,6 @@ public:
 	int GetNumOfNodesExpanded();
 
 private:
-	void Initialize();
 	MockPerception *perception_unit_;
 	Planning *planning_unit_;
 	int rows_;
@@ -59,6 +67,15 @@ private:
 	int current_location_;
 	int goal_location_;
 
+	/**
+	 *@brief localize the car, perceive surroundings.
+	 */
+	void Initialize();
+
+	/**
+	 *@brief navigate towards the destination according to the planned path.
+	 *@return true if reached the destination, false if blocked by an obstacle.
+	 */
 	bool Navigate();
 };
 #endif // !AUTONOMOUS_NAVIGATION_

@@ -36,7 +36,7 @@ std::vector<int> AdaptiveAStarPlanning::FindPath(const std::vector<bool>& obstac
 		return std::vector<int>();
 	}
 	num_of_searches_++;
-	std::cout << std::endl << "[planning] planning with adaptive A* , id: " << num_of_searches_ << std::endl;
+	std::cout << std::endl << "[planning] Planning with adaptive A* , id: " << num_of_searches_ << "." << std::endl;
 	// open list, contains generated nodes
 	PriorityQueue open(obstacles.size());
 	// closed list, contains expanded nodes
@@ -88,6 +88,13 @@ std::vector<int> AdaptiveAStarPlanning::FindPath(const std::vector<bool>& obstac
 		// expand the node
 		Expand(current_node->GetId(), obstacles, closed, open);
 	}
+	if (path.empty()) {
+		std::cout << "[planning] No path is found." << std::endl;
+	}
+	else {
+		std::cout << "[planning] Successfully found a path." << std::endl;
+	}
+	Display::DisplayMap(rows_, cols_, obstacles, path, location, goal_location_);
 	return path;
 }
 
