@@ -31,8 +31,12 @@ void AdaptiveAStarPlanning::SetGoal(int goal)
 
 std::vector<int> AdaptiveAStarPlanning::FindPath(const std::vector<bool>& obstacles, int location)
 {
+	if (goal_location_ == -1) {
+		std::cerr << "[planning] Goal location is not set." << std::endl;
+		return std::vector<int>();
+	}
 	num_of_searches_++;
-	std::cout << std::endl << "[planning] id: " << num_of_searches_ << std::endl;
+	std::cout << std::endl << "[planning] planning with adaptive A* , id: " << num_of_searches_ << std::endl;
 	// open list, contains generated nodes
 	PriorityQueue open(obstacles.size());
 	// closed list, contains expanded nodes

@@ -6,7 +6,9 @@
 
 #ifndef NODE_
 #define NODE_
+
 #include <vector>
+
 #include "CellType.h"
 
 /**
