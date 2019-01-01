@@ -47,10 +47,10 @@ int AutonomousNavigation::GetNumOfNodesExpanded()
 bool AutonomousNavigation::Navigate()
 {
 	std::cout << std::endl << "[navigation] Navigation started." << std::endl;
-	// move the car from the start cell to the next cell
+	// move the vehicle from the start cell to the next cell
 	// since start cell is already sensed, it is safe to move one step
 	current_location_ = path_.back();
-	// move the car along the shortest path until it is blocked by an obstacle or reaches the goal
+	// move the vehicle along the shortest path until it is blocked by an obstacle or reaches the goal
 	int counter = path_.size() - 1;
 	while (counter > 0)
 	{

@@ -16,7 +16,7 @@
 /**
  * @class AutonomousNavigation
  *
- * @brief an autonomous navigating system. The car assumes the world is empty initially, and gradually
+ * @brief an autonomous navigating system. The vehicle assumes the world is empty initially, and gradually
  * gains knowledge about the world as exploring to the goal
  */
 class AutonomousNavigation
@@ -42,8 +42,8 @@ public:
 	void SetDestination(int goal);
 
 	/**
-	 * @brief Start navigating according to the planned path, perceive surroundings as the car moves.
-	 * if the planned is blocked, replan, navigate... repeat until the car reaches the goal or is unable to find a path.
+	 * @brief Start navigating according to the planned path, perceive surroundings as the vehicle moves.
+	 * if the planned is blocked, replan, navigate... repeat until the vehicle reaches the goal or is unable to find a path.
 	 */
 	void AutoNavigate();
 
@@ -68,7 +68,7 @@ private:
 	int goal_location_;
 
 	/**
-	 *@brief localize the car, perceive surroundings.
+	 *@brief localize the vehicle, perceive surroundings.
 	 */
 	void Initialize();
 
