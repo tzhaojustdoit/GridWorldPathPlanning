@@ -14,14 +14,14 @@
 /**
  * @class Node
  *
- * @brief A cell node in a grid world.
+ * @brief A node in a graph.
  * @invariants: f = g + h
  */
 class Node
 {
 public:
 	/**
-	 *@brief construct a node with given x, y coordinate
+	 *@brief construct a node 
 	 */
 	Node();
 
@@ -46,7 +46,7 @@ public:
 	int GetF() const;
 
 	/**
-	 *@brief get parent pointer
+	 *@brief get parent id
 	 */
 	int GetParentId() const;
 	
@@ -71,13 +71,13 @@ public:
 	void SetH(int);
 
 	/**
-	 *@brief set parent pointer
+	 *@brief set parent id
 	 */
 	void SetParentId(int);
 
 
 	/**
-	 *@brief mark the cell as blocked
+	 *@brief set the cell type, i.e., in open list or closed list or neither
 	 */
 	void SetType(CellType type);
 
