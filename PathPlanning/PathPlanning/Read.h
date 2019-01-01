@@ -1,8 +1,19 @@
-#pragma once
+/**
+ * @file Read.h
+ * @brief Defines functions related to reading input.
+ * @authur: Tianhua Zhao
+ */
+
 #include <vector>
 #include <string>
 #include <fstream>
 #include <iostream>
+
+ /**
+  * @struct MapData
+  *
+  * @brief map data.
+  */
 struct MapData
 {
 	int rows;
@@ -13,6 +24,10 @@ struct MapData
 };
 namespace Read
 {
-	MapData ReadMapFile(std::string);
+	/**
+	 *@brief read map data from a file
+	 *@param filename: file name
+	 */
+	MapData ReadMapFile(std::string filename);
 }
 
