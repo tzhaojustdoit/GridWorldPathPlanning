@@ -1,6 +1,6 @@
 #include "AutonomousNavigation.h"
 
-AutonomousNavigation::AutonomousNavigation(int rows, int cols, MockPerception * percepttion_unit, PlanningModule * planning_unit) : rows_(rows), cols_(cols), perception_unit_(percepttion_unit), planning_unit_(planning_unit)
+AutonomousNavigation::AutonomousNavigation(int rows, int cols, MockPerception * percepttion_unit, Planning * planning_unit) : rows_(rows), cols_(cols), perception_unit_(percepttion_unit), planning_unit_(planning_unit)
 {
 	Initialize();
 }

@@ -25,7 +25,8 @@ void Display::DisplayMap(int row, int col, const std::vector<bool> &obstacles, c
 		}
 		counter++;
 	}
-	for (int val : path) {
+	for (unsigned i = 1; i < path.size(); i++) {
+		int val = path[i];
 		result[val * 2 + val / col] = 'o';
 	}
 	std::cout << result <<std::endl;

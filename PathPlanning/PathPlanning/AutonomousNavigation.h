@@ -10,7 +10,7 @@
 #include <vector>
 
 #include "MockPerception.h"
-#include "PlanningModule.h"
+#include "Planning.h"
 #include "Display.h"
 /**
  * @class AutonomousNavigation
@@ -20,7 +20,7 @@
 class AutonomousNavigation
 {
 public:
-	AutonomousNavigation(int rows, int cols, MockPerception* percepttion_unit, PlanningModule* planning_unit);
+	AutonomousNavigation(int rows, int cols, MockPerception* percepttion_unit, Planning* planning_unit);
 	~AutonomousNavigation();
 
 
@@ -51,7 +51,7 @@ public:
 private:
 	void Initialize();
 	MockPerception *perception_unit_;
-	PlanningModule *planning_unit_;
+	Planning *planning_unit_;
 	int rows_;
 	int cols_;
 	std::vector<int> path_;

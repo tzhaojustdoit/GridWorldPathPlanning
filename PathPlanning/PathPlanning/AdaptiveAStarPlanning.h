@@ -1,13 +1,13 @@
-#ifndef ADAPTIVE_ASTAR_PLANNING_MODULE_
-#define ADAPTIVE_ASTAR_PLANNING_MODULE_
+#ifndef ADAPTIVE_ASTAR_PLANNING_
+#define ADAPTIVE_ASTAR_PLANNING_
 
-#include "PlanningModule.h"
+#include "Planning.h"
 #include "Node.h"
 #include "PriorityQueue.h"
 #include <vector>
 #include <iostream>
 
-class AdaptiveAStarPlanning : public PlanningModule
+class AdaptiveAStarPlanning : public Planning
 {
 public:
 	AdaptiveAStarPlanning(int rows, int cols);
@@ -28,7 +28,7 @@ private:
 	void Expand(int id, const std::vector<bool> & obstacles, std::vector<Node*> & closed, PriorityQueue & open);
 	void Generate(int id, int parent_id, std::vector<Node*> & closed, PriorityQueue & open);
 };
-#endif // !ADAPTIVE_ASTAR_PLANNING_MODULE_
+#endif // !ADAPTIVE_ASTAR_PLANNING_
 
 
 

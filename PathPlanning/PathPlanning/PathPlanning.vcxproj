@@ -119,6 +119,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AdaptiveAStarPlanning.cpp" />
+    <ClCompile Include="AStarPlanning.cpp" />
     <ClCompile Include="AutonomousNavigation.cpp" />
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="Driver.cpp" />
@@ -129,12 +130,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AdaptiveAStarPlanning.h" />
+    <ClInclude Include="AStarPlanning.h" />
     <ClInclude Include="CellType.h" />
     <ClInclude Include="Display.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="AutonomousNavigation.h" />
     <ClInclude Include="MockPerception.h" />
-    <ClInclude Include="PlanningModule.h" />
+    <ClInclude Include="Planning.h" />
     <ClInclude Include="PriorityQueue.h" />
     <ClInclude Include="Read.h" />
     <ClInclude Include="resource.h" />

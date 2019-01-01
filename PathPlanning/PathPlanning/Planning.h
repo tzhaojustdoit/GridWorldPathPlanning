@@ -1,16 +1,16 @@
-#ifndef PLANNING_MODULE_
-#define PLANNING_MODULE_
+#ifndef PLANNING_
+#define PLANNING_
 
 #include <vector>
 
-class PlanningModule {
+class Planning {
 public:
-	PlanningModule() {};
-	virtual ~PlanningModule() {};
+	Planning() {};
+	virtual ~Planning() {};
 	virtual void SetGoal(int) = 0;
 	virtual std::vector<int> FindPath(const std::vector<bool> &map, int location) = 0;
 	virtual int GetNumOfSearches() const = 0;
 	virtual int GetNumOfNodesExpanded() const = 0;
 };
-#endif // !PLANNING_MODULE_
+#endif // !PLANNING_
 
