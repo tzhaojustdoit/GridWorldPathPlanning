@@ -38,7 +38,7 @@ public:
 	 * @param map contains obsacle info of the map
 	 * @param location the location to perceive surroudings
 	 */
-	void PerceiveSurroundings(std::vector<bool> &map, int location);
+	void PerceiveSurroundings(std::vector<bool> & obstacles, int location);
 
 	/**
 	 * @brief return the vehicle's current location on the map

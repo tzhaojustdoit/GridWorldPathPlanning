@@ -31,9 +31,9 @@ int MockPerception::Localize()
 	return -1;
 }
 
-void MockPerception::PerceiveLocation(std::vector<bool> &map, int location)
+void MockPerception::PerceiveLocation(std::vector<bool> & obstacles, int location)
 {
 	if (actual_map_[location] == 'x') {
-		map[location] = true;  // update map, mark the location as blocked
+		obstacles[location] = true;  // update map, mark the location as blocked
 	}
 }
