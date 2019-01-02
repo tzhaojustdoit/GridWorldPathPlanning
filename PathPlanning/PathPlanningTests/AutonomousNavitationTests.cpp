@@ -20,7 +20,9 @@ namespace PathPlanningTests
 		TEST_METHOD(OutputTest)
 		{
 			std::vector<int> a;
+			std::vector<int> as;
 			std::vector<int> aa;
+			std::vector<int> aas;
 			MapData data;
 			for (int i = 1; i < 19; i++)
 			{
@@ -32,6 +34,7 @@ namespace PathPlanningTests
 				an.SetDestination(data.goal);
 				an.AutoNavigate();
 				a.push_back(an.GetNumOfNodesExpanded());
+				as.push_back(an.GetNumOfSearches());
 				delete planning_unit;
 				delete perception_unit;
 
@@ -41,6 +44,7 @@ namespace PathPlanningTests
 				an2.SetDestination(data.goal);
 				an2.AutoNavigate();
 				aa.push_back(an2.GetNumOfNodesExpanded());
+				aas.push_back(an2.GetNumOfSearches());
 				delete planning_unit;
 				delete perception_unit;
 			}
