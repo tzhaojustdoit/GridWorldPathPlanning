@@ -43,7 +43,7 @@ public:
 
 	/**
 	 * @brief Start navigating according to the planned path, perceive surroundings as the vehicle moves.
-	 * if the planned is blocked, replan, navigate... repeat until the vehicle reaches the goal or is unable to find a path.
+	 * if the planned path is blocked, replan, navigate... repeat until the vehicle reaches the goal or is unable to find a path.
 	 */
 	void AutoNavigate();
 
