@@ -15,7 +15,6 @@
   *@class PriorityQueue
   *
   *@brief A priority queue of node pointers. Min element is always on top and poped first.
-  * Smaller f value is favored; if f values are the same, node with larger g value is favored.
   */
 class PriorityQueue
 {
