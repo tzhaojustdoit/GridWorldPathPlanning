@@ -15,7 +15,7 @@
 
 #include <vector>
 
-#include "Node.h"
+#include "../Planning/library/Node.h"
 
  /**
   * @class MockPerception

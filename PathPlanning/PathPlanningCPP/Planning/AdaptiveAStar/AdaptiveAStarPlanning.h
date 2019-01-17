@@ -1,38 +1,38 @@
 /**
- * @file AStarPlanning.h
- * @brief Defines the AStarPlanning class.
+ * @file AdaptiveAStarPlanning.h
+ * @brief Defines the AdaptiveAStarPlanning class.
  * @authur: Tianhua Zhao
  */
 
-#ifndef ASTAR_PLANNING_
-#define ASTAR_PLANNING_
+#ifndef ADAPTIVE_ASTAR_PLANNING_
+#define ADAPTIVE_ASTAR_PLANNING_
 
 #include <vector>
 #include <iostream>
 
-#include "Planning.h"
-#include "Node.h"
-#include "PriorityQueue.h"
-#include "Display.h"
+#include "../Planning.h"
+#include "../library/Node.h"
+#include "../library/PriorityQueue.h"
+#include "../../Utilities/Display.h"
 
  /**
-  * @class AStarPlanning
+  * @class AdaptiveAStarPlanning
   *
-  * @brief Planning using a* search algorithm.
+  * @brief Planning using adaptive a* search algorithm.
   */
-class AStarPlanning : public Planning
+class AdaptiveAStarPlanning : public Planning
 {
 public:
 	/**
 	 *@brief ctor
 	 *@param rows, cols :discritized world frame, number of rows and columns in the grid world.
 	 */
-	AStarPlanning(int rows, int cols);
+	AdaptiveAStarPlanning(int rows, int cols);
 
 	/**
 	 *@brief dtor
 	 */
-	~AStarPlanning();
+	~AdaptiveAStarPlanning();
 
 	/**
 	 *@brief set goal location, pre-compute heuristic values for each node.
@@ -41,7 +41,7 @@ public:
 	void SetGoal(int goal) override;
 
 	/**
-	 *@brief find the shortest path using a* search.
+	 *@brief find the shortest path using adaptive a* search.
 	 *@param obstacles: contains obstacle info
 	 *@param location: starting location
 	 */
@@ -58,7 +58,7 @@ public:
 	int GetNumOfNodesExpanded() const override;
 
 private:
-	int rows_;
+	int rows_; 
 	int cols_;
 	std::vector<Node> graph_;
 	int goal_location_ = -1;
@@ -89,4 +89,7 @@ private:
 	 */
 	void Generate(int id, int parent_id, std::vector<Node*> & closed, PriorityQueue & open);
 };
-#endif // !ASTAR_PLANNING_
+#endif // !ADAPTIVE_ASTAR_PLANNING_
+
+
+

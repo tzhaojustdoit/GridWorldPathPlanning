@@ -1,0 +1,16 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "g++ PathPlanning/PathPlanningCPP/Drivers/Driver.cpp PathPlanning/PathPlanningCPP/AutoNav/AutonomousNavigation.cpp PathPlanning/PathPlanningCPP/AutoNav/AutonomousNavigation.h PathPlanning/PathPlanningCPP/Perception/MockPerception.cpp PathPlanning/PathPlanningCPP/Perception/MockPerception.h PathPlanning/PathPlanningCPP/Planning/AdaptiveAStar/AdaptiveAStarPlanning.cpp PathPlanning/PathPlanningCPP/Planning/AdaptiveAStar/AdaptiveAStarPlanning.h PathPlanning/PathPlanningCPP/Planning/AStar/AStarPlanning.cpp PathPlanning/PathPlanningCPP/Planning/AStar/AStarPlanning.h PathPlanning/PathPlanningCPP/Planning/library/CellType.h PathPlanning/PathPlanningCPP/Planning/library/Node.cpp PathPlanning/PathPlanningCPP/Planning/library/Node.h PathPlanning/PathPlanningCPP/Planning/library/PriorityQueue.cpp PathPlanning/PathPlanningCPP/Planning/library/PriorityQueue.h PathPlanning/PathPlanningCPP/Planning/Planning.h PathPlanning/PathPlanningCPP/Utilities/Display.cpp PathPlanning/PathPlanningCPP/Utilities/Display.h PathPlanning/PathPlanningCPP/Utilities/Read.cpp PathPlanning/PathPlanningCPP/Utilities/Read.h -std=c++11 -o Astar",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+        }
+    ]
+}

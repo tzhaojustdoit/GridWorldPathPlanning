@@ -10,8 +10,8 @@
 #include <vector>
 #include <iostream>
 
-#include "MockPerception.h"
-#include "Planning.h"
+#include "../Perception/MockPerception.h"
+#include "../Planning/Planning.h"
 
 /**
  * @class AutonomousNavigation

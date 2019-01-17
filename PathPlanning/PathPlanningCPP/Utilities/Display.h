@@ -11,7 +11,7 @@
 #include <iostream>
 #include <string>
 
-#include "Node.h"
+#include "../Planning/library/Node.h"
 
 namespace Display {
 
