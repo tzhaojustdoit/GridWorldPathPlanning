@@ -11,7 +11,7 @@
 #include <fstream>
 #include <iostream>
 
- /**
+/**
   * @struct MapData
   *
   * @brief map data.
@@ -26,11 +26,11 @@ struct MapData
 };
 namespace Read
 {
-	/**
+/**
 	 *@brief read map data from a file
 	 *@param filename: file name
 	 */
-	MapData ReadMapFile(std::string filename);
-}
+MapData ReadMapFile(std::string filename);
+} // namespace Read
 
 #endif // !READ_

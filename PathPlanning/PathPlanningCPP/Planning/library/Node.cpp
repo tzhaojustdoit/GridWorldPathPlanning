@@ -1,6 +1,5 @@
 #include "Node.h"
 
-
 Node::Node()
 {
 }
@@ -40,7 +39,6 @@ void Node::SetId(int id)
 	id_ = id;
 }
 
-
 void Node::SetG(int g)
 {
 	g_ = g;
@@ -65,18 +63,21 @@ void Node::SetType(CellType type)
 
 bool Node::operator<(const Node &other)
 {
-	if (f_ < other.f_) { 
+	if (f_ < other.f_)
+	{
 		return true;
 	}
 	if (f_ > other.f_)
 	{
 		return false;
 	}
-	if (g_ > other.g_) {  // if f is a tie, break tie in favor of larger g
+	if (g_ > other.g_)
+	{ // if f is a tie, break tie in favor of larger g
 		return true;
 	}
-	if (g_ < other.g_) {
+	if (g_ < other.g_)
+	{
 		return false;
 	}
-	return id_ < other.id_;  // if both f and g are tie, break tie in favor of smaller id
+	return id_ < other.id_; // if both f and g are tie, break tie in favor of smaller id
 }

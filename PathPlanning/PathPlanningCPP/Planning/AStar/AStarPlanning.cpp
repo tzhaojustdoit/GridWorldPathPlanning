@@ -9,7 +9,6 @@ AStarPlanning::AStarPlanning(int rows, int cols) : rows_(rows), cols_(cols)
 	}
 }
 
-
 AStarPlanning::~AStarPlanning()
 {
 }
@@ -27,25 +26,27 @@ void AStarPlanning::SetGoal(int goal)
 	}
 }
 
-std::vector<int> AStarPlanning::FindPath(const std::vector<bool>& obstacles, int location)
+std::vector<int> AStarPlanning::FindPath(const std::vector<bool> &obstacles, int location)
 {
-	if (goal_location_ == -1) {
+	if (goal_location_ == -1)
+	{
 		std::cerr << "[planning] Goal location is not set." << std::endl;
 		return std::vector<int>();
 	}
 	num_of_searches_++;
-	std::cout << std::endl << "[planning] Planning with adaptive A* , id: " << num_of_searches_ << "." << std::endl;
+	std::cout << std::endl
+			  << "[planning] Planning with A* , id: " << num_of_searches_ << "." << std::endl;
 	// open list, contains generated nodes
-	PriorityQueue open(obstacles.size());
+	OpenList open(obstacles.size());
 	// closed list, contains expanded nodes
-	std::vector<Node*> closed;
+	std::vector<Node *> closed;
 	closed.reserve(obstacles.size());
 
 	// path points from the current location(exclusive) to the goal location(exclusive)
 	std::vector<int> path;
 	path.reserve(obstacles.size());
 
-	Node * current_node = &graph_[location];
+	Node *current_node = &graph_[location];
 	// set g value
 	current_node->SetG(0);
 	// set parent id
@@ -57,9 +58,10 @@ std::vector<int> AStarPlanning::FindPath(const std::vector<bool>& obstacles, int
 	{
 		// get the node with the min f value.
 		current_node = open.top();
-		if (current_node->GetId() == goal_location_) {
+		if (current_node->GetId() == goal_location_)
+		{
 			// reset type for each node in open and closed list
-			for (Node* var : closed)
+			for (Node *var : closed)
 			{
 				var->SetType(DEFAULT);
 			}
@@ -80,11 +82,15 @@ std::vector<int> AStarPlanning::FindPath(const std::vector<bool>& obstacles, int
 		// expand the node
 		Expand(current_node->GetId(), obstacles, closed, open);
 	}
-	if (path.empty()) {
-		std::cout << "[planning] No path is found." << std::endl;
+	if (path.empty())
+	{
+		std::cout << std::endl
+				  << "[planning] No path is found." << std::endl;
 	}
-	else {
-		std::cout << "[planning] Successfully found a path." << std::endl;
+	else
+	{
+		std::cout << std::endl
+				  << "[planning] Successfully found a path." << std::endl;
 	}
 	Display::DisplayMap(rows_, cols_, obstacles, path, location, goal_location_);
 	return path;
@@ -110,37 +116,44 @@ int AStarPlanning::GetHeuristic(int a, int b)
 	return std::abs(ax - bx) + std::abs(ay - by);
 }
 
-void AStarPlanning::Expand(int id, const std::vector<bool> & obstacles, std::vector<Node*>& closed, PriorityQueue & open)
+void AStarPlanning::Expand(int id, const std::vector<bool> &obstacles, std::vector<Node *> &closed, OpenList &open)
 {
 	num_of_expanded_nodes_++;
 	// check traverability of 4 adjacent cells in this order: right, down, left, up
 	// if traversable, generate the successor node
-	if ((id + 1) % cols_ != 0 /* boundary check */ && !obstacles[id + 1] /* collision check */) {
+	if ((id + 1) % cols_ != 0 /* boundary check */ && !obstacles[id + 1] /* collision check */)
+	{
 		Generate(id + 1, id, closed, open);
 	}
-	if (id < (rows_ - 1) * cols_ && !obstacles[id + cols_]) {
+	if (id < (rows_ - 1) * cols_ && !obstacles[id + cols_])
+	{
 		Generate(id + cols_, id, closed, open);
 	}
-	if (id % cols_ != 0 && !obstacles[id - 1]) {
+	if (id % cols_ != 0 && !obstacles[id - 1])
+	{
 		Generate(id - 1, id, closed, open);
 	}
-	if (id >= cols_ && !obstacles[id - cols_]) {
+	if (id >= cols_ && !obstacles[id - cols_])
+	{
 		Generate(id - cols_, id, closed, open);
 	}
 }
 
-void AStarPlanning::Generate(int id, int parent_id, std::vector<Node*>& closed, PriorityQueue & open)
+void AStarPlanning::Generate(int id, int parent_id, std::vector<Node *> &closed, OpenList &open)
 {
-	Node & current_node = graph_[id];
+	Node &current_node = graph_[id];
 	int g = graph_[parent_id].GetG() + 1;
-	if (current_node.GetType() == DEFAULT) {
+	if (current_node.GetType() == DEFAULT)
+	{
 		current_node.SetG(g);
 		current_node.SetParentId(parent_id);
 		open.push(&current_node);
 		current_node.SetType(OPEN);
 	}
-	else if (current_node.GetType() == OPEN) {
-		if (g < current_node.GetG()) {
+	else if (current_node.GetType() == OPEN)
+	{
+		if (g < current_node.GetG())
+		{
 			current_node.SetG(g);
 			// update the node position in the open list
 			open.decrease_key(&current_node);

@@ -12,17 +12,17 @@
 
 #include "../Planning.h"
 #include "../library/Node.h"
-#include "../library/PriorityQueue.h"
+#include "../library/OpenList.h"
 #include "../../Utilities/Display.h"
 
- /**
+/**
   * @class AStarPlanning
   *
   * @brief Planning using a* search algorithm.
   */
 class AStarPlanning : public Planning
 {
-public:
+  public:
 	/**
 	 *@brief ctor
 	 *@param rows, cols :discritized world frame, number of rows and columns in the grid world.
@@ -57,7 +57,7 @@ public:
 	 */
 	int GetNumOfNodesExpanded() const override;
 
-private:
+  private:
 	int rows_;
 	int cols_;
 	std::vector<Node> graph_;
@@ -78,7 +78,7 @@ private:
 	 *@param closed: the closed list
 	 *@param open: the open list
 	 */
-	void Expand(int id, const std::vector<bool> & obstacles, std::vector<Node*> & closed, PriorityQueue & open);
+	void Expand(int id, const std::vector<bool> &obstacles, std::vector<Node *> &closed, OpenList &open);
 
 	/**
 	 *@brief generate the node with given id
@@ -87,6 +87,6 @@ private:
 	 *@param closed: the closed list
 	 *@param open: the open list
 	 */
-	void Generate(int id, int parent_id, std::vector<Node*> & closed, PriorityQueue & open);
+	void Generate(int id, int parent_id, std::vector<Node *> &closed, OpenList &open);
 };
 #endif // !ASTAR_PLANNING_

@@ -7,27 +7,33 @@ void Display::DisplayMap(int row, int col, const std::vector<bool> &obstacles, c
 	// mark obstacles
 	for (unsigned i = 0; i < obstacles.size(); i++)
 	{
-		if (counter == col) {
+		if (counter == col)
+		{
 			result += "\n";
 			counter = 0;
 		}
-		if (obstacles[i]) {
+		if (obstacles[i])
+		{
 			result += "x ";
 		}
-		else if (i == start) {
+		else if (i == start)
+		{
 			result += "s ";
 		}
-		else if (i == goal) {
+		else if (i == goal)
+		{
 			result += "g ";
 		}
-		else {
+		else
+		{
 			result += "_ ";
 		}
 		counter++;
 	}
-	for (unsigned i = 1; i < path.size(); i++) {
+	for (unsigned i = 1; i < path.size(); i++)
+	{
 		int val = path[i];
 		result[val * 2 + val / col] = 'o';
 	}
-	std::cout << result <<std::endl;
+	std::cout << result << std::endl;
 }

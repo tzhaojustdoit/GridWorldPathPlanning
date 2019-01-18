@@ -19,7 +19,7 @@
  */
 class Node
 {
-public:
+  public:
 	/**
 	 *@brief construct a node 
 	 */
@@ -49,7 +49,7 @@ public:
 	 *@brief get parent id
 	 */
 	int GetParentId() const;
-	
+
 	/**
 	 *@brief get the cell type, i.e., in open list or closed list or neither
 	 */
@@ -75,7 +75,6 @@ public:
 	 */
 	void SetParentId(int);
 
-
 	/**
 	 *@brief set the cell type, i.e., in open list or closed list or neither
 	 */
@@ -84,8 +83,9 @@ public:
 	/**
 	*@brief overloaded < operator
 	*/
-	bool operator< (const Node &);
-private:
+	bool operator<(const Node &);
+
+  private:
 	int id_ = -1;
 	int g_ = 0;
 	int h_ = 0;
@@ -94,7 +94,3 @@ private:
 	CellType type_ = DEFAULT;
 };
 #endif // !NODE_
-
-
-
-

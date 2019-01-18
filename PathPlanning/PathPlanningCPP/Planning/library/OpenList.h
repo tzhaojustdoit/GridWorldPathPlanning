@@ -1,40 +1,40 @@
 /**
- * @file PriorityQueue.h
- * @brief Defines the PriorityQueue class.
+ * @file OpenList.h
+ * @brief Defines the OpenList class.
  * @authur: Tianhua Zhao
  */
 
-#ifndef PRIORITY_QUEUE_
-#define PRIORITY_QUEUE_
+#ifndef OPEN_LIST
+#define OPEN_LIST
 
 #include <vector>
 
 #include "Node.h"
 
- /*
-  *@class PriorityQueue
+/*
+  *@class OpenList
   *
   *@brief A priority queue of node pointers. Min element is always on top and poped first.
   */
-class PriorityQueue
+class OpenList
 {
-public:
-	PriorityQueue() = default;
-	PriorityQueue(int capacity);
+  public:
+	OpenList() = default;
+	OpenList(int capacity);
 	/**
 	 * @brief insert a node pointer
 	 */
-	void push(Node*);
+	void push(Node *);
 
 	/**
 	 * @brief remove top node pointer
 	 */
-	Node* pop();
+	Node *pop();
 
 	/**
 	 * @brief access top node pointer
 	 */
-	Node* top() const;
+	Node *top() const;
 
 	/**
 	 * @brief test whether container is empty
@@ -49,7 +49,7 @@ public:
 	/**
 	 * @brief test whether a node pointer is in the priority queue
 	 */
-	bool contains(Node*) const;
+	bool contains(Node *) const;
 
 	/**
 	 * @brief reset the type of each node in the priority queue to DEFAULT
@@ -59,12 +59,13 @@ public:
 	/**
 	 * @brief move the node to the correct location since the value decreased.
 	 */
-	void decrease_key(Node* node);
-private:
+	void decrease_key(Node *node);
+
+  private:
 	/**
 	 * @brief the underlying container
 	 */
-	std::vector<Node*> vec_;
+	std::vector<Node *> vec_;
 
 	/**
 	 * @brief perculate a node* up to the correct location
@@ -75,6 +76,5 @@ private:
 	 * @brief perculate a node* down to the correct location
 	 */
 	void perculate_down(int);
-
 };
-#endif // !PRIORITY_QUEUE_
+#endif // !OPEN_LIST

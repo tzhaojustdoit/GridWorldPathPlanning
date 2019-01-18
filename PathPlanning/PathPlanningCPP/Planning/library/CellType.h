@@ -9,4 +9,3 @@ enum CellType
 };
 
 #endif // !CELL_TYPE
-

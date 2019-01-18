@@ -9,22 +9,23 @@
 
 #include <vector>
 
- /**
+/**
   * @class Planning
   *
   * @brief Interface of planning module
   */
-class Planning {
-public:
+class Planning
+{
+  public:
 	/**
 	 *@brief ctor
 	 */
-	Planning() {};
+	Planning(){};
 
 	/**
 	 *@brief dtor
 	 */
-	virtual ~Planning() {};
+	virtual ~Planning(){};
 
 	/**
 	 *@brief set goal location
@@ -50,4 +51,3 @@ public:
 	virtual int GetNumOfNodesExpanded() const = 0;
 };
 #endif // !PLANNING_
-
