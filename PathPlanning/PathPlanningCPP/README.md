@@ -1,4 +1,4 @@
-Compile with the following flags: Astar -i inputfile [-A]
+Run with the following flags: Astar -i inputfile [-A]
 -i is followed by input file name
 Use -A if running with Adaptive A*
 
